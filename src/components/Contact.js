@@ -38,7 +38,7 @@ export const Contact = () => {
     };
 
     try {
-      const response = await emailjs.send('service_hyg3qse', 'template_872kmo9', templateParams, 'IFz-Ot4BAJQ3XzunH');
+      const response = await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_USER_ID');
       console.log('Email sent successfully!', response.status, response.text);
       setStatus({ success: true, message: 'Message sent successfully!' });
     } catch (error) {

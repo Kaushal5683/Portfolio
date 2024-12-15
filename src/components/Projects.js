@@ -16,7 +16,7 @@ export const Projects = () => {
     },
     {
       title: "Automatic Timetable Generator",
-      description: "Engineering the frontend interface with Angular, JavaScript, and Node.js to enhance user interaction and achieve seamless integration with backend services for the Automatic Timetable Generator.",
+      description: "Engineered the frontend interface with Angular, JavaScript, and Node.js to enhance user interaction and achieve seamless integration with backend services for the Automatic Timetable Generator.",
       imgUrl: projImg3,
     },
     {
@@ -35,7 +35,7 @@ export const Projects = () => {
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn": ""}>
                 <h2>Projects</h2>
-                <p>Below Are the projects done during Bachelor's Degree</p>
+                <p>Below are the projects made during Bachelor's Degree</p>
                 <Tab.Container id="projects-tabs" defaultActiveKey="first">
                   <Tab.Content id="slideInUp" className={isVisible ? "animate__animated animate__slideInUp" : ""} >
                     <Tab.Pane eventKey="first">

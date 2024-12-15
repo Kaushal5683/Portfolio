@@ -4,6 +4,8 @@ import meter3 from "../assets/img/meter3.svg";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import colorSharp from "../assets/img/color-sharp.png"
+import colorSharp1 from "../assets/img/color-sharp2.png"
+
 
 export const Skills = () => {
   const responsive = {
@@ -33,7 +35,7 @@ export const Skills = () => {
                 <div className="col-12">
                     <div className="skill-bx wow zoomIn">
                         <h2>Skills</h2><br></br>
-                        <p>Hard Skills</p>
+                        <p>Technical Skills</p>
                         <Carousel responsive={responsive} infinite={true} className="owl-carousel owl-theme skill-slider">
                             <div className="item">
                                 <img src={meter1} alt="" />
@@ -77,6 +79,8 @@ export const Skills = () => {
             </div>
         </div>
         <img className="background-image-left" src={colorSharp} alt="" />
+        
+        <img className="background-image-right" src={colorSharp1} alt="" />
     </section>
   )
 }

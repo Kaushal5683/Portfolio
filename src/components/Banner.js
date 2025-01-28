@@ -50,8 +50,14 @@ export const Banner = () => {
               <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                 <span className="tagline">Welcome to my Portfolio</span>
                 <h1>{`Hi! I'm Kaushal Gujarathi`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Java Backend Developer", "Web Designer", "Full Stack Developer" ]'><span className="wrap">{text}</span></span></h1>
-                <p>Java Spring backend developer with a strong background in developing robust and scalable web applications.</p>
-                <p>Developed and maintained backend systems for web applications using Java and Spring Framework. Designed and implemented RESTful APIs for seamless integration with frontend applications.</p>
+                <p>Java Backend Developer skilled in designing and implementing scalable, robust backend solutions using Java, Spring Boot, JPA, Hibernate, and SQL</p>
+                <p>Experienced in building REST APIs to seamlessly integrate backend and frontend systems. Proficient with Angular and React, and well-versed in tools like Git, GitHub, and Postman.</p>
+                <p>Computer Science graduate from Savitribai Phule Pune University.</p>
+                <p>Technical Skills:</p>
+                <p>Languages: Java, SQL, HTML/CSS, JavaScript, TypeScript, Python, PHP</p>
+                <p>Frameworks: Spring Boot, Spring MVC, Hibernate, Angular, React, Tailwind CSS</p>
+                <p>Tools: Git, GitHub, VS Code, Eclipse, Postman, STS.</p>
+                <p>Database: MySQL, PostgreSQL, MongoDB</p>
                 <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
               </div>}
             </TrackVisibility>

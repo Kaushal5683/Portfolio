@@ -22,7 +22,7 @@ export const Footer = () => {
             <a href="https://www.instagram.com/kaushalll_01_/"><img src={navIcon3} alt="" /></a>
             <a href="https://github.com/Kaushal5683"><img src={navIcon4} alt=""/></a>
             </div>
-            <p>@Copyright 2024. All Rights Reserved</p>
+            <p>@Copyright 2025. All Rights Reserved</p>
           </Col>
         </Row>
       </Container>

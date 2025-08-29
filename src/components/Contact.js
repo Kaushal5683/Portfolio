@@ -4,6 +4,7 @@ import contactImg from "../assets/img/mail.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import emailjs from 'emailjs-com';
+import { FiSend } from 'react-icons/fi';
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -53,49 +54,110 @@ export const Contact = () => {
   return (
     <section className="contact" id="connect">
       <Container>
-        <Row className="align-items-center">
-          <Col size={12} md={6}>
-            <TrackVisibility>
-              {({ isVisible }) =>
-                <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us" />
-              }
-            </TrackVisibility>
-          </Col>
-          <Col size={12} md={6}>
-            <TrackVisibility>
-              {({ isVisible }) =>
-                <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                  <h2>Get In Touch</h2>
-                  <form onSubmit={handleSubmit}>
-                    <Row>
-                      <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} required />
-                      </Col>
-                      <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.lastName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)} required />
-                      </Col>
-                      <Col size={12} sm={6} className="px-1">
-                        <input type="email" value={formDetails.email} placeholder="Email Address" onChange={(e) => onFormUpdate('email', e.target.value)} required />
-                      </Col>
-                      <Col size={12} sm={6} className="px-1">
-                        <input type="tel" value={formDetails.phone} placeholder="Phone No." onChange={(e) => onFormUpdate('phone', e.target.value)} required />
-                      </Col>
-                      <Col size={12} className="px-1">
-                        <textarea rows="6" value={formDetails.message} placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)} required></textarea>
-                        <button type="submit"><span>{buttonText}</span></button>
-                      </Col>
-                      {
-                        status.message &&
-                        <Col>
-                          <p className={status.success === false ? "danger" : "success"}>{status.message}</p>
+        <div className="contact-wrapper">
+          <Row className="align-items-center">
+            <Col size={12} md={6}>
+              <TrackVisibility>
+                {({ isVisible }) =>
+                  <div className="contact-img-container">
+                    <img 
+                      className={isVisible ? "animate__animated animate__zoomIn contact-img" : "contact-img"} 
+                      src={contactImg} 
+                      alt="Contact Us" 
+                    />
+                  </div>
+                }
+              </TrackVisibility>
+            </Col>
+            <Col size={12} md={6}>
+              <TrackVisibility>
+                {({ isVisible }) =>
+                  <div className={isVisible ? "animate__animated animate__fadeIn contact-form-container" : "contact-form-container"}>
+                    <h2 className="contact-heading">Get In Touch</h2>
+                    <p className="contact-subheading">Your needs are my top priority. As they say, "Client is God" - I'm here to turn your vision into reality. Please share your thoughts!</p>
+                    <form onSubmit={handleSubmit} className="contact-form">
+                      <Row>
+                        <Col size={12} sm={6} className="px-1">
+                          <div className="form-group">
+                            <input 
+                              type="text" 
+                              className="form-control" 
+                              value={formDetails.firstName} 
+                              placeholder="First Name" 
+                              onChange={(e) => onFormUpdate('firstName', e.target.value)} 
+                              required 
+                            />
+                          </div>
                         </Col>
-                      }
-                    </Row>
-                  </form>
-                </div>}
-            </TrackVisibility>
-          </Col>
-        </Row>
+                        <Col size={12} sm={6} className="px-1">
+                          <div className="form-group">
+                            <input 
+                              type="text" 
+                              className="form-control" 
+                              value={formDetails.lastName} 
+                              placeholder="Last Name" 
+                              onChange={(e) => onFormUpdate('lastName', e.target.value)} 
+                              required 
+                            />
+                          </div>
+                        </Col>
+                        <Col size={12} sm={6} className="px-1">
+                          <div className="form-group">
+                            <input 
+                              type="email" 
+                              className="form-control" 
+                              value={formDetails.email} 
+                              placeholder="Email Address" 
+                              onChange={(e) => onFormUpdate('email', e.target.value)} 
+                              required 
+                            />
+                          </div>
+                        </Col>
+                        <Col size={12} sm={6} className="px-1">
+                          <div className="form-group">
+                            <input 
+                              type="tel" 
+                              className="form-control" 
+                              value={formDetails.phone} 
+                              placeholder="Phone No." 
+                              onChange={(e) => onFormUpdate('phone', e.target.value)} 
+                              required 
+                            />
+                          </div>
+                        </Col>
+                        <Col size={12} className="px-1">
+                          <div className="form-group">
+                            <textarea 
+                              rows="6" 
+                              className="form-control" 
+                              value={formDetails.message} 
+                              placeholder="Message" 
+                              onChange={(e) => onFormUpdate('message', e.target.value)} 
+                              required
+                            ></textarea>
+                          </div>
+                          <button type="submit" className="contact-submit-btn">
+                            <span>{buttonText}</span>
+                            <FiSend className="send-icon" />
+                            <span className="priority-text">Your request is my command</span>
+                          </button>
+                        </Col>
+                        {
+                          status.message &&
+                          <Col>
+                            <div className={status.success === false ? "message-alert danger" : "message-alert success"}>
+                              {status.message}
+                            </div>
+                          </Col>
+                        }
+                      </Row>
+                    </form>
+                  </div>
+                }
+              </TrackVisibility>
+            </Col>
+          </Row>
+        </div>
       </Container>
     </section>
   )

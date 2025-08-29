@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import headerImg from "../assets/img/banner.png";
+import headerImg from "../assets/img/banner.webp";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import { HashLink } from 'react-router-hash-link';
 
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
@@ -47,26 +48,57 @@ export const Banner = () => {
           <Col xs={12} md={6} xl={7}>
             <TrackVisibility>
               {({ isVisible }) =>
-              <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                <span className="tagline">Welcome to my Portfolio</span>
-                <h1>{`Hi! I'm Kaushal Gujarathi`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Java Backend Developer", "Web Designer", "Full Stack Developer" ]'><span className="wrap">{text}</span></span></h1>
-                <p>Java Backend Developer skilled in designing and implementing scalable, robust backend solutions using Java, Spring Boot, JPA, Hibernate, and SQL</p>
-                <p>Experienced in building REST APIs to seamlessly integrate backend and frontend systems. Proficient with Angular and React, and well-versed in tools like Git, GitHub, and Postman.</p>
-                <p>Computer Science graduate from Savitribai Phule Pune University.</p>
-                <p>Technical Skills:</p>
-                <p>Languages: Java, SQL, HTML/CSS, JavaScript, TypeScript, Python, PHP</p>
-                <p>Frameworks: Spring Boot, Spring MVC, Hibernate, Angular, React, Tailwind CSS</p>
-                <p>Tools: Git, GitHub, VS Code, Eclipse, Postman, STS.</p>
-                <p>Database: MySQL, PostgreSQL, MongoDB</p>
-                <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
+              <div className={isVisible ? "animate__animated animate__fadeIn animate__slower" : ""}>
+                <span className="tagline">Welcome to my Portfolio - You Are My Priority</span>
+                <h1 className="heading-text">
+                  <span className="hi-text">Hi! I'm Kaushal Gujarathi</span>
+                  <span className="profession">
+                    I'm a <span className="txt-rotate" dataperiod="1000" data-rotate='[ "Java Backend Developer", "Web Designer", "Full Stack Developer" ]'>
+                      <span className="wrap">{text}</span>
+                    </span>
+                  </span>
+                </h1>
+                <div className="banner-description">
+                  <p>Java Backend Developer skilled in designing and implementing scalable, robust backend solutions using Java, Spring Boot, JPA, Hibernate, and SQL</p>
+                  <p>Experienced in building REST APIs to seamlessly integrate backend and frontend systems. Proficient with Angular and React, and well-versed in tools like Git, GitHub, and Postman.</p>
+                  <p><strong>Your vision is my command - I believe the client is king, and thier satisfaction is my highest priority.</strong></p>
+                </div>
+                
+                <div className="skills-highlight">
+                  <h3>Technical Skills:</h3>
+                  <div className="skills-grid">
+                    <div className="skill-category">
+                      <span className="skill-title">Languages:</span>
+                      <span className="skill-items">Java, SQL, HTML/CSS, JavaScript, TypeScript, Python, PHP</span>
+                    </div>
+                    <div className="skill-category">
+                      <span className="skill-title">Frameworks:</span>
+                      <span className="skill-items">Spring Boot, Spring MVC, Hibernate, Angular, React, Tailwind CSS</span>
+                    </div>
+                    <div className="skill-category">
+                      <span className="skill-title">Tools:</span>
+                      <span className="skill-items">Git, GitHub, VS Code, Eclipse, Postman, STS</span>
+                    </div>
+                    <div className="skill-category">
+                      <span className="skill-title">Database:</span>
+                      <span className="skill-items">MySQL, PostgreSQL, MongoDB</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <HashLink to='#connect'>
+                  <button className="connect-btn">
+                    Let's Connect <ArrowRightCircle size={25} />
+                  </button>
+                </HashLink>
               </div>}
             </TrackVisibility>
           </Col>
           <Col xs={12} md={6} xl={5}>
             <TrackVisibility>
               {({ isVisible }) =>
-                <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
-                  <img src={headerImg} alt="Header Img"/>
+                <div className={isVisible ? "animate__animated animate__zoomIn animate__slower banner-img-container" : "banner-img-container"}>
+                  <img src={headerImg} alt="Header Img" className="banner-img"/>
                 </div>}
             </TrackVisibility>
           </Col>

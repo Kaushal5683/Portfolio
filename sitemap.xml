@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Main Page -->
+  <url>
+    <loc>https://kaushal104.netlify.app/</loc>
+    <lastmod>2023-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Home Section -->
+  <url>
+    <loc>https://kaushal104.netlify.app/#home</loc>
+    <lastmod>2023-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaushal104.netlify.app/#home"/>
+  </url>
+  
+  <!-- Skills Section -->
+  <url>
+    <loc>https://kaushal104.netlify.app/#skills</loc>
+    <lastmod>2023-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaushal104.netlify.app/#skills"/>
+  </url>
+  
+  <!-- Projects Section -->
+  <url>
+    <loc>https://kaushal104.netlify.app/#projects</loc>
+    <lastmod>2023-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaushal104.netlify.app/#projects"/>
+  </url>
+  
+  <!-- Connect Section -->
+  <url>
+    <loc>https://kaushal104.netlify.app/#connect</loc>
+    <lastmod>2023-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaushal104.netlify.app/#connect"/>
+  </url>
+  
+  <!-- Java Backend Development -->
+  <url>
+    <loc>https://kaushal104.netlify.app/#java-backend</loc>
+    <lastmod>2023-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Full Stack Development -->
+  <url>
+    <loc>https://kaushal104.netlify.app/#full-stack</loc>
+    <lastmod>2023-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

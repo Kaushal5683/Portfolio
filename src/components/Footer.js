@@ -12,7 +12,7 @@ export const Footer = () => {
           <Row className="align-items-center">
             <Col size={12} sm={6} className="footer-logo-col">
               <a href="/" className="footer-logo-link">
-                <img src={logo} alt="/" className="footer-logo" />
+                <img src={logo} alt="Kaushal Gujarathi Logo" className="footer-logo" />
               </a>
               <p className="footer-tagline">Building digital experiences that inspire</p>
               <p className="client-priority">Your vision is my mission - clients are the heart of everything I create</p>
@@ -40,3 +40,4 @@ export const Footer = () => {
     </footer>
   )
 }
+

@@ -59,9 +59,9 @@ export const Banner = () => {
                   </span>
                 </h1>
                 <div className="banner-description">
-                  <p>Java Backend Developer skilled in designing and implementing scalable, robust backend solutions using Java, Spring Boot, JPA, Hibernate, and SQL</p>
-                  <p>Experienced in building REST APIs to seamlessly integrate backend and frontend systems. Proficient with Angular and React, and well-versed in tools like Git, GitHub, and Postman.</p>
-                  <p><strong>Your vision is my command - I believe the client is king, and thier satisfaction is my highest priority.</strong></p>
+                  <p>Java Backend Developer skilled in designing and implementing scalable, robust backend solutions using Java, Spring Boot, JPA, Hibernate, and SQL. Expert in enterprise Java applications and microservices architecture.</p>
+                  <p>Experienced in building REST APIs to seamlessly integrate backend and frontend systems. Proficient with Angular and React, and well-versed in tools like Git, GitHub, and Postman. Specializing in high-performance web applications.</p>
+                  <p><strong>Your vision is my command - I believe the client is king, and their satisfaction is my highest priority.</strong></p>
                 </div>
                 
                 <div className="skills-highlight">
@@ -98,7 +98,7 @@ export const Banner = () => {
             <TrackVisibility>
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__zoomIn animate__slower banner-img-container" : "banner-img-container"}>
-                  <img src={headerImg} alt="Header Img" className="banner-img"/>
+                  <img src={headerImg} alt="Kaushal Gujarathi - Java Backend & Full Stack Developer" className="banner-img" loading="eager" />
                 </div>}
             </TrackVisibility>
           </Col>

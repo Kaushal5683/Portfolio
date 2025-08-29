@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /static/
+
+# Optimize crawl rate
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://kaushal104.netlify.app/sitemap.xml

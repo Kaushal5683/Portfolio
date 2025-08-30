@@ -2,7 +2,7 @@ import { Col } from "react-bootstrap";
 import { BsGithub } from 'react-icons/bs';
 import { FiExternalLink } from 'react-icons/fi';
 
-export const ProjectCard = ({ title, description, githubUrl, demoUrl, index }) => {
+export const ProjectCard = ({ title, description, githubUrl, demoUrl, imgUrl, index }) => {
   // Extract username and repo name from GitHub URL if available
   const getGitHubPreviewUrl = (url) => {
     if (!url) return null;
@@ -22,7 +22,11 @@ export const ProjectCard = ({ title, description, githubUrl, demoUrl, index }) =
     <Col size={12} sm={6} md={4} className="proj-col">
       <div className="proj-card" style={{'--index': index}}>
         <div className="proj-imgbx">
-          {previewUrl ? (
+          {imgUrl ? (
+            <div className="github-preview-container">
+              <img src={require(`../assets/img/${imgUrl}`)} alt={title} className="github-preview-img" />
+            </div>
+          ) : previewUrl ? (
             <div className="github-preview-container">
               <img src={previewUrl} alt={title} className="github-preview-img" />
             </div>

@@ -7,22 +7,22 @@ import TrackVisibility from 'react-on-screen';
 export const Projects = () => {
   const projects = [
     {
+      title: "Commercial Enterprises Website",
+      description: "Developed a responsive website for Arnav Enterprises, a concrete manufacturing company with 14+ years of experience, using Next.js and TailwindCSS.",
+      demoUrl: "https://arnaventerprises.netlify.app/",
+      imgUrl: "arnav.webp"
+    },
+    {
+      title: "Commercial Enterprises Website",
+      description: "Developed and deployed a modern React.js website for a construction company using Material-UI, featuring dynamic project galleries with image carousels, dark/light theme modes, and responsive design optimized for all devices.",
+      demoUrl: "https://gurukrupaenterprise.netlify.app/",
+      imgUrl: "gurukrupa.webp"
+    },
+    {
       title: "Commercial Matrimonial Website",
-      description: "Built with React to showcase projects, skills, and personal branding. Integrated EmailJS for direct emails, cutting deployment complexity and server costs.",
-      githubUrl: "https://github.com/Kaushal5683/Portfolio",
-      demoUrl: "https://hitechmatrimonials.com/"
-    },
-    {
-      title: "Commercial Enterprises Website",
-      description: "Built with React to showcase projects, skills, and personal branding. Integrated EmailJS for direct emails, cutting deployment complexity and server costs.",
-      githubUrl: "https://github.com/Kaushal5683/Portfolio",
-      demoUrl: "https://arnaventerprises.netlify.app/"
-    },
-    {
-      title: "Commercial Enterprises Website",
-      description: "Built with React to showcase projects, skills, and personal branding. Integrated EmailJS for direct emails, cutting deployment complexity and server costs.",
-      githubUrl: "https://github.com/Kaushal5683/Portfolio",
-      demoUrl: "https://gurukrupaenterprise.netlify.app/"
+      description: "Delivered the full project within 4 weeks, independently transferring ownership and ensuring 100% functionality post-deployment. Completed the project independently and transferred ownership after deployment",
+      demoUrl: "https://hitechmatrimonials.com/",
+      imgUrl: "hitech.webp"
     },
     {
       title: "Personal Portfolio Website",

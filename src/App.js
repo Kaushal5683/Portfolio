@@ -9,8 +9,12 @@ import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 
 function App() {
+  // Determine the basename based on the current URL
+  const isPortfolioPath = window.location.pathname.includes('/Portfolio');
+  const basename = isPortfolioPath ? '/Portfolio' : '/';
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <div className="App">
         <NavBar />
         <Banner />

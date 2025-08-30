@@ -6,5 +6,6 @@ Disallow: /static/
 # Optimize crawl rate
 Crawl-delay: 10
 
-# Sitemap location
+# Sitemap locations
 Sitemap: https://kaushal104.netlify.app/sitemap.xml
+Sitemap: https://kaushal5683.github.io/Portfolio/sitemap.xml

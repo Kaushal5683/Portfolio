@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import headerImg from "../assets/img/banner.webp";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
+import { FiDownload } from 'react-icons/fi';
+import resumePDF from "../assets/KaushalGujarathiFullStack.pdf";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import { HashLink } from 'react-router-hash-link';
@@ -11,7 +13,14 @@ export const Banner = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState('');
   const [delta, setDelta] = useState(300 - Math.random() * 100);
-  const toRotate = ["Java Backend Developer", "Web Designer", "Full Stack Developer"];
+  
+  // Memoize the toRotate array to prevent it from changing on every render
+  const toRotate = useMemo(() => [
+    "Java Backend Developer", 
+    "Web Designer", 
+    "Full Stack Developer"
+  ], []);
+  
   const period = 200;
 
   useEffect(() => {
@@ -39,7 +48,7 @@ export const Banner = () => {
     let ticker = setInterval(tick, delta);
 
     return () => { clearInterval(ticker); };
-  }); // Include all relevant dependencies
+  }, [text, delta, isDeleting, loopNum, period, toRotate]); // toRotate is now memoized
 
   return (
     <section className="banner" id="home">
@@ -49,7 +58,7 @@ export const Banner = () => {
             <TrackVisibility>
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn animate__slower" : ""}>
-                <span className="tagline">Welcome to my Portfolio - You Are My Priority</span>
+                <span className="tagline">Welcome to my Portfolio — Your Vision, My Expertise</span>
                 <h1 className="heading-text">
                   <span className="hi-text">Hi! I'm Kaushal Gujarathi</span>
                   <span className="profession">
@@ -64,33 +73,16 @@ export const Banner = () => {
                   <p><strong>Your vision is my command - I believe the client is king, and their satisfaction is my highest priority.</strong></p>
                 </div>
                 
-                <div className="skills-highlight">
-                  <h3>Technical Skills:</h3>
-                  <div className="skills-grid">
-                    <div className="skill-category">
-                      <span className="skill-title">Languages:</span>
-                      <span className="skill-items">Java, SQL, HTML/CSS, JavaScript, TypeScript, Python, PHP</span>
-                    </div>
-                    <div className="skill-category">
-                      <span className="skill-title">Frameworks:</span>
-                      <span className="skill-items">Spring Boot, Spring MVC, Hibernate, Angular, React, Tailwind CSS</span>
-                    </div>
-                    <div className="skill-category">
-                      <span className="skill-title">Tools:</span>
-                      <span className="skill-items">Git, GitHub, VS Code, Eclipse, Postman, STS</span>
-                    </div>
-                    <div className="skill-category">
-                      <span className="skill-title">Database:</span>
-                      <span className="skill-items">MySQL, PostgreSQL, MongoDB</span>
-                    </div>
-                  </div>
+                <div className="banner-buttons">
+                  <HashLink to='#connect'>
+                    <button className="connect-btn">
+                      Let's Connect <ArrowRightCircle size={25} />
+                    </button>
+                  </HashLink>
+                  <a href={resumePDF} download="KaushalGujarathiFullStack.pdf" className="connect-btn">
+                    Download Resume <FiDownload size={20} />
+                  </a>
                 </div>
-                
-                <HashLink to='#connect'>
-                  <button className="connect-btn">
-                    Let's Connect <ArrowRightCircle size={25} />
-                  </button>
-                </HashLink>
               </div>}
             </TrackVisibility>
           </Col>

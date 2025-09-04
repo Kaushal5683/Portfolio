@@ -1,0 +1,72 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#151515" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#151515" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="1440" height="900" fill="url(#grad1)"/>
+  <g filter="url(#glow)">
+    <!-- Particles -->
+    <circle class="particle" cx="100" cy="100" r="2" fill="#4A2FBD" opacity="0.6">
+      <animate attributeName="cx" from="100" to="300" dur="15s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="100" to="500" dur="20s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="200" cy="200" r="3" fill="#AA367C" opacity="0.5">
+      <animate attributeName="cx" from="200" to="1000" dur="25s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="200" to="300" dur="18s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="300" cy="300" r="2" fill="#4A2FBD" opacity="0.7">
+      <animate attributeName="cx" from="300" to="500" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="300" to="800" dur="22s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="400" cy="100" r="2.5" fill="#AA367C" opacity="0.6">
+      <animate attributeName="cx" from="400" to="900" dur="22s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="100" to="700" dur="18s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="500" cy="400" r="2" fill="#4A2FBD" opacity="0.5">
+      <animate attributeName="cx" from="500" to="100" dur="23s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="400" to="200" dur="19s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="600" cy="500" r="3" fill="#AA367C" opacity="0.7">
+      <animate attributeName="cx" from="600" to="1200" dur="21s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="500" to="100" dur="24s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="700" cy="600" r="2" fill="#4A2FBD" opacity="0.6">
+      <animate attributeName="cx" from="700" to="400" dur="19s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="600" to="300" dur="23s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="800" cy="200" r="2.5" fill="#AA367C" opacity="0.5">
+      <animate attributeName="cx" from="800" to="200" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="200" to="600" dur="20s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="900" cy="300" r="2" fill="#4A2FBD" opacity="0.7">
+      <animate attributeName="cx" from="900" to="700" dur="22s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="300" to="500" dur="25s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="1000" cy="400" r="3" fill="#AA367C" opacity="0.6">
+      <animate attributeName="cx" from="1000" to="300" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="400" to="200" dur="21s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="1100" cy="500" r="2" fill="#4A2FBD" opacity="0.5">
+      <animate attributeName="cx" from="1100" to="800" dur="23s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="500" to="700" dur="19s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="1200" cy="600" r="2.5" fill="#AA367C" opacity="0.7">
+      <animate attributeName="cx" from="1200" to="500" dur="21s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="600" to="400" dur="24s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="1300" cy="200" r="2" fill="#4A2FBD" opacity="0.6">
+      <animate attributeName="cx" from="1300" to="1000" dur="19s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="200" to="300" dur="22s" repeatCount="indefinite" />
+    </circle>
+    <circle class="particle" cx="1400" cy="300" r="3" fill="#AA367C" opacity="0.5">
+      <animate attributeName="cx" from="1400" to="1100" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="cy" from="300" to="600" dur="20s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg>

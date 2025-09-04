@@ -4,7 +4,8 @@ import contactImg from "../assets/img/mail.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import emailjs from 'emailjs-com';
-import { FiSend } from 'react-icons/fi';
+import { FiSend, FiDownload, FiPhone } from 'react-icons/fi';
+import resumePDF from "../assets/KaushalGujarathiFullStack.pdf";
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -28,8 +29,15 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
+    
+    // Validate form before submission
+    if (!formDetails.firstName || !formDetails.email || !formDetails.message) {
+      setStatus({ success: false, message: 'Please fill in all required fields.' });
+      setButtonText("Send");
+      return;
+    }
 
-    // Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', 'YOUR_USER_ID' with your actual EmailJS credentials
+    // Prepare email parameters
     const templateParams = {
       firstName: formDetails.firstName,
       lastName: formDetails.lastName,
@@ -39,15 +47,23 @@ export const Contact = () => {
     };
 
     try {
+      // Add a small delay to prevent UI freezing during submission
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       const response = await emailjs.send('service_hyg3qse', 'template_872kmo9', templateParams, 'IFz-Ot4BAJQ3XzunH');
       console.log('Email sent successfully!', response.status, response.text);
       setStatus({ success: true, message: 'Message sent successfully!' });
+      
+      // Clear form after successful submission
+      setFormDetails(formInitialDetails);
     } catch (error) {
       console.error('Failed to send email. Error:', error);
-      setStatus({ success: false, message: 'Something went wrong, please try again later.' });
+      setStatus({ 
+        success: false, 
+        message: 'Something went wrong, please try again later.'
+      });
     } finally {
       setButtonText("Send");
-      setFormDetails(formInitialDetails);
     }
   };
 
@@ -75,6 +91,14 @@ export const Contact = () => {
                   <div className={isVisible ? "animate__animated animate__fadeIn contact-form-container" : "contact-form-container"}>
                     <h2 className="contact-heading">Get In Touch</h2>
                     <p className="contact-subheading">Your needs are my top priority. As they say, "Client is God" - I'm here to turn your vision into reality. Please share your thoughts!</p>
+                    <div className="contact-actions">
+                      <div className="direct-contact-info">
+                        <FiPhone className="contact-icon" /> <a href="tel:+917218499483">+91 7218499483</a>
+                      </div>
+                      <a href={resumePDF} download="KaushalGujarathiFullStack.pdf" className="resume-download-link">
+                        <FiDownload className="contact-icon" /> Download Resume
+                      </a>
+                    </div>
                     <form onSubmit={handleSubmit} className="contact-form">
                       <Row>
                         <Col size={12} sm={6} className="px-1">

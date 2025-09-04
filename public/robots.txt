@@ -2,6 +2,7 @@
 User-agent: *
 Allow: /
 Disallow: /static/
+Disallow: /*.json$
 
 # Optimize crawl rate
 Crawl-delay: 10
@@ -9,3 +10,14 @@ Crawl-delay: 10
 # Sitemap locations
 Sitemap: https://kaushal104.netlify.app/sitemap.xml
 Sitemap: https://kaushal5683.github.io/Portfolio/sitemap.xml
+
+# Additional directives for specific bots
+User-agent: Googlebot
+Allow: /
+Disallow: /static/
+Disallow: /*.json$
+
+User-agent: Bingbot
+Allow: /
+Disallow: /static/
+Disallow: /*.json$

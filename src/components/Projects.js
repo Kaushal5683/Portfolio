@@ -1,6 +1,7 @@
 import { Container, Row, Col, Tab} from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import colorSharp2 from "../assets/img/color-sharp2.webp";
+import projectsBg from "../assets/img/projects-bg.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
@@ -10,19 +11,25 @@ export const Projects = () => {
       title: "Commercial Enterprises Website",
       description: "Developed a responsive website for Arnav Enterprises, a concrete manufacturing company with 14+ years of experience, using Next.js and TailwindCSS.",
       demoUrl: "https://arnaventerprises.netlify.app/",
-      imgUrl: "arnav.webp"
+      imgUrl: "arnav.webp",
+      clientProject: true,
+      client: "Arnav Enterprises"
     },
     {
       title: "Commercial Enterprises Website",
       description: "Developed and deployed a modern React.js website for a construction company using Material-UI, featuring dynamic project galleries with image carousels, dark/light theme modes, and responsive design optimized for all devices.",
       demoUrl: "https://gurukrupaenterprise.netlify.app/",
-      imgUrl: "gurukrupa.webp"
+      imgUrl: "gurukrupa.webp",
+      clientProject: true,
+      client: "Gurukrupa Enterprise"
     },
     {
       title: "Commercial Matrimonial Website",
       description: "Delivered the full project within 4 weeks, independently transferring ownership and ensuring 100% functionality post-deployment. Completed the project independently and transferred ownership after deployment",
       demoUrl: "https://hitechmatrimonials.com/",
-      imgUrl: "hitech.webp"
+      imgUrl: "hitech.webp",
+      clientProject: true,
+      client: "HiTech Matrimonials"
     },
     {
       title: "Personal Portfolio Website",
@@ -73,15 +80,15 @@ export const Projects = () => {
   ];
   
   return (
-    <section className="project" id="projects">
+    <section className="project" id="projects" style={{ background: `url(${projectsBg}) center center/cover no-repeat`, backgroundBlendMode: 'overlay' }}>
       <Container>
-        <Row className="align-items-center">
+        <Row>
           <Col size={12}>
             <TrackVisibility>
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn": ""}>
                 <h2>Projects</h2>
-                <p>Below are the projects made during Bachelor's Degree and Some Personal Projects</p>
+                <p>Explore my portfolio of work spanning commercial client projects and personal development initiatives. Each project showcases my commitment to creating responsive, user-friendly, and visually appealing digital experiences.</p>
                 <Tab.Container id="projects-tabs" defaultActiveKey="first">
                   <Tab.Content id="slideInUp" className={isVisible ? "animate__animated animate__slideInUp" : ""} >
                     <Tab.Pane eventKey="first">
@@ -107,7 +114,7 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-      <img className="background-image-right" src={colorSharp2} alt=""></img>
+      <img className="background-image-right" src={colorSharp2} alt="" />
     </section>
   )
 }

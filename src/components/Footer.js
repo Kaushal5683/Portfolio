@@ -4,6 +4,9 @@ import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/nav-icon2.svg";
 import navIcon3 from "../assets/img/nav-icon3.svg";
 import navIcon4 from "../assets/img/git.svg";
+import navIcon5 from "../assets/img/whatsapp.svg";
+import { FiPhone } from 'react-icons/fi';
+
 export const Footer = () => {
   return (
     <footer className="footer">
@@ -16,6 +19,7 @@ export const Footer = () => {
               </a>
               <p className="footer-tagline">Building digital experiences that inspire</p>
               <p className="client-priority">Your vision is my mission - clients are the heart of everything I create</p>
+              <p className="footer-contact"><FiPhone className="footer-contact-icon" /> <a href="tel:+917218499483">+91 7218499483</a></p>
             </Col>
             <Col size={12} sm={6} className="text-center text-sm-end">
               <div className="footer-social-icons">
@@ -30,6 +34,9 @@ export const Footer = () => {
                 </a>
                 <a href="https://github.com/Kaushal5683" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
                   <img src={navIcon4} alt="GitHub" />
+                </a>
+                <a href="https://wa.me/917218499483" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                  <img src={navIcon5} alt="WhatsApp" />
                 </a>
               </div>
               <p className="copyright">&copy; {new Date().getFullYear()} All Rights Reserved</p>

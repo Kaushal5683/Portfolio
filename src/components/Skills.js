@@ -76,7 +76,7 @@ export const Skills = () => {
                   </div>
                   
                   <div className="skill-section">
-                    <h3 className="skill-subheading">Technical Skills</h3>
+                    <h3 className="skill-subheading">Soft Skills</h3>
                     <Carousel 
                       responsive={responsive} 
                       infinite={true} 

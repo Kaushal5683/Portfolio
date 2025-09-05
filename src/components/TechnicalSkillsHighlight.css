@@ -64,6 +64,7 @@
   font-weight: 700;
   background: linear-gradient(90.21deg, #fff -5.91%, #AA367C 111.58%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   position: relative;
@@ -137,6 +138,7 @@
   letter-spacing: 0.5px;
   background: linear-gradient(90deg, #fff, #AA367C);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 0.3s ease;
 }

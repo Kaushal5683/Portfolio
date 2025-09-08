@@ -78,23 +78,56 @@ export const useSmoothScroll = () => {
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
     let startTime = null;
+    let rafId = null;
+    
+    // Use transform for smoother animation when possible
+    const supportsScrollBehavior = 'scrollBehavior' in document.documentElement.style;
+    
+    if (supportsScrollBehavior && Math.abs(distance) < 1500) {
+      // For shorter distances, use native smooth scrolling
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+      return;
+    }
     
     const animation = currentTime => {
       if (startTime === null) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
       const progress = Math.min(timeElapsed / duration, 1);
       
-      // Easing function for smoother animation
-      const ease = t => t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1;
+      // Enhanced easing function for smoother animation
+      // Using cubic bezier approximation for better smoothness
+      const ease = t => {
+        // Improved easing curve that starts and ends more gradually
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
       
-      window.scrollTo(0, startPosition + distance * ease(progress));
+      window.scrollTo({
+        top: startPosition + distance * ease(progress),
+        behavior: 'auto' // Using auto with our custom easing is smoother than 'smooth'
+      });
       
       if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
+        rafId = requestAnimationFrame(animation);
       }
     };
     
-    requestAnimationFrame(animation);
+    // Cancel any existing animation before starting a new one
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+    }
+    
+    // Use requestAnimationFrame for optimal performance
+    rafId = requestAnimationFrame(animation);
+    
+    // Return a cleanup function
+    return () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
   
   return { scrollToElement };
@@ -140,12 +173,21 @@ export const debounce = (func, wait = 100) => {
  * @param {number} limit - Milliseconds to limit
  */
 export const throttle = (func, limit = 100) => {
-  let inThrottle;
+  let lastFunc;
+  let lastRan;
   return function(...args) {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+    const context = this;
+    if (!lastRan) {
+      func.apply(context, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(function() {
+        if ((Date.now() - lastRan) >= limit) {
+          func.apply(context, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
     }
   };
 };

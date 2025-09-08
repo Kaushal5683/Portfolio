@@ -18,17 +18,21 @@ export const NavBar = () => {
   const navbarRef = useRef(null);
   const { scrollToElement } = useSmoothScroll();
 
-  // Throttled scroll handler for better performance
+  // Optimized scroll handler with improved throttling for better performance
   const handleScroll = useCallback(() => {
     const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      // Use requestAnimationFrame for smoother state updates
+      requestAnimationFrame(() => {
+        if (window.scrollY > 50) {
+          if (!scrolled) setScrolled(true);
+        } else {
+          if (scrolled) setScrolled(false);
+        }
+      });
     };
-    return throttle(onScroll, 100);
-  }, [])();
+    // More aggressive throttling for better performance
+    return throttle(onScroll, 50);
+  }, [scrolled])();
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

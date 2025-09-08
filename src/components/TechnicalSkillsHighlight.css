@@ -39,20 +39,14 @@
   height: 200%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
 .skills-highlight-container:hover::before {
-  opacity: 1;
-  animation: pulseGlow 3s infinite;
+  opacity: 0.1;
 }
 
-@keyframes pulseGlow {
-  0% { opacity: 0; }
-  50% { opacity: 0.1; }
-  100% { opacity: 0; }
-}
 
 .skills-highlight-header {
   text-align: center;
@@ -200,14 +194,14 @@
   width: 40px;
   height: 40px;
   object-fit: contain;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
   opacity: 0.85;
 }
 
 .skill-icon-wrapper:hover img {
-  transform: scale(1.2) rotate(5deg);
-  filter: drop-shadow(0 0 10px rgba(170, 54, 124, 0.8));
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px rgba(170, 54, 124, 0.6));
   opacity: 1;
   z-index: 2;
 }

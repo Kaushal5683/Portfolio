@@ -70,9 +70,7 @@ export const ProjectCard = memo(({ title, description, githubUrl, demoUrl, imgUr
         id={`project-card-${index}`} 
         className="proj-card" 
         style={{
-          '--index': index,
-          willChange: 'transform, opacity',
-          transform: 'translateZ(0)'
+          '--index': index
         }}
       >
         <div className="proj-imgbx">
@@ -94,11 +92,9 @@ export const ProjectCard = memo(({ title, description, githubUrl, demoUrl, imgUr
                 afterLoad={() => setImageLoaded(true)}
                 placeholderSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3C/svg%3E"
                 style={{
-                  willChange: 'transform, opacity',
-                  transform: `translateZ(0)`, // Hardware acceleration
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover'
+                  objectFit: 'contain' // Using contain to show the full image
                 }}
               />
             ) : null}

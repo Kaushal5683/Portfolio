@@ -169,6 +169,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 75px;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
 }
 
 body {
@@ -178,6 +179,10 @@ body {
   background-color: #121212 !important;
   color: #fff !important;
   font-family: 'Centra', sans-serif !important;
+  will-change: scroll-position;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  perspective: 1000;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1875,31 +1880,25 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
-  transform: translateY(0) translateZ(0);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  animation: fadeInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-  animation-delay: calc(0.05s * var(--index, 0));
+  animation: fadeInUp 0.5s ease forwards;
+  animation-delay: calc(0.03s * var(--index, 0));
   opacity: 0;
   position: relative;
-  will-change: transform, opacity;
   contain: content;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 /* Image placeholder and loading states */
 .img-placeholder {
   background: linear-gradient(110deg, rgba(236, 236, 236, 0.1) 8%, rgba(245, 245, 245, 0.2) 18%, rgba(236, 236, 236, 0.1) 33%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  animation: shimmer 1.5s ease infinite;
   width: 100%;
   height: 200px;
   border-radius: 8px;
-  will-change: background-position;
-  transform: translateZ(0);
-  contain: strict;
+  contain: content;
 }
 
 .project-card-placeholder {
@@ -1948,11 +1947,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px) translateZ(0);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) translateZ(0);
+    transform: translateY(0);
   }
 }
 
@@ -1961,6 +1960,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   .proj-card {
     animation: none !important;
     opacity: 1 !important;
+    transition: none !important;
   }
   
   .img-placeholder {
@@ -1971,14 +1971,23 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     animation: none !important;
   }
   
-  .proj-imgbx:hover .github-preview-img {
+  .skill-icon-wrapper:hover img {
     transform: none !important;
   }
+  
+  .skill-category-card:hover {
+    transform: none !important;
+  }
+  
+  * {
+    transition-duration: 0.1s !important;
+  }
+}
   
   .proj-card:hover {
     transform: none !important;
   }
-}
+
 
 .proj-card:hover {
   transform: translateY(-8px) translateZ(0);
@@ -2033,9 +2042,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  will-change: transform;
-  transform: translateZ(0);
-  contain: layout size style;
+  contain: content;
 }
 
 .lazy-load-image-wrapper {
@@ -2055,13 +2062,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease, opacity 0.3s ease;
+  object-fit: contain; /* Using contain to show the full image */
+  transition: opacity 0.3s ease;
   filter: brightness(0.95);
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  contain: strict;
+  contain: content;
 }
 
 .project-img {
@@ -2073,12 +2077,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .proj-imgbx:hover .github-preview-img {
-  transform: scale(1.05) translateZ(0);
-  filter: brightness(0.7);
+  filter: brightness(1);
 }
 
 .proj-imgbx:hover .project-img {
-  transform: scale(1.1);
   filter: brightness(0.7);
 }
 
@@ -2953,7 +2955,7 @@ textarea.form-control {
   }
   
   .github-preview-container {
-    padding-top: 65%; /* Taller aspect ratio for mobile */
+    padding-top: 75%; /* Increased aspect ratio for mobile to accommodate full image height */
   }
 }
 
@@ -2981,6 +2983,12 @@ textarea.form-control {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
   
+  /* Improve GitHub preview image display on small screens */
+  .github-preview-container {
+    padding-top: 65%;
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  
   .proj-txtx h5 {
     font-size: 16px;
     margin-bottom: 5px;
@@ -3003,10 +3011,13 @@ textarea.form-control {
   
   /* Optimize animations for better performance on mobile */
   .proj-card:hover {
-    transform: translateY(-5px) translateZ(0);
+    transform: translateY(-3px);
   }
   
-  .proj-imgbx:hover .github-preview-img {
-    transform: scale(1.03) translateZ(0);
+  /* Ensure images are fully visible on small screens */
+  .github-preview-img {
+    object-position: center;
+    max-width: 100%;
+    max-height: 100%;
   }
 }

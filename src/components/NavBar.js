@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from '../assets/img/ksg.webp';
 import navIcon1 from '../assets/img/nav-icon1.svg';
@@ -8,40 +8,57 @@ import navIcon4 from '../assets/img/git.svg';
 import navIcon5 from '../assets/img/whatsapp.svg'
 import { HashLink } from 'react-router-hash-link';
 import 'animate.css';
+import { throttle, useSmoothScroll } from '../utils/animationUtils';
 
 export const NavBar = () => {
 
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const navbarRef = useRef(null);
+  const { scrollToElement } = useSmoothScroll();
+
+  // Throttled scroll handler for better performance
+  const handleScroll = useCallback(throttle(() => {
+    if (window.scrollY > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  }, 100), []);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    }
+    window.addEventListener("scroll", handleScroll);
 
-    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll])
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [])
-
-  const onUpdateActiveLink = (value) => {
+  const onUpdateActiveLink = useCallback((value) => {
     setActiveLink(value);
-  }
+  }, []);
 
-  const closeNavbar = () => {
+  const closeNavbar = useCallback(() => {
     setExpanded(false);
-  };
+  }, []);
 
   return (
-      <Navbar expand="md" className={scrolled ? "scrolled" : ""} expanded={expanded}>
+      <Navbar 
+        expand="md" 
+        className={scrolled ? "scrolled" : ""} 
+        expanded={expanded}
+        ref={navbarRef}
+        style={{ 
+          willChange: 'transform, opacity',
+          transform: 'translateZ(0)' // Force GPU acceleration
+        }}
+      >
         <Container>
           <Navbar.Brand href="/" className="animate__animated animate__fadeIn">
-            <img src={logo} alt="Kaushal Gujarathi" />
+            <img 
+              src={logo} 
+              alt="Kaushal Gujarathi" 
+              style={{ willChange: 'transform' }}
+            />
           </Navbar.Brand>
           <Navbar.Toggle 
             aria-controls="basic-navbar-nav" 
@@ -49,7 +66,11 @@ export const NavBar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </Navbar.Toggle>
-          <Navbar.Collapse id="basic-navbar-nav" className="animate__animated animate__fadeIn">
+          <Navbar.Collapse 
+            id="basic-navbar-nav" 
+            className="animate__animated animate__fadeIn"
+            style={{ willChange: expanded ? 'transform, opacity' : 'auto' }}
+          >
             <Nav className="ms-auto">
               <Nav.Link 
                 href="#home" 
@@ -78,6 +99,13 @@ export const NavBar = () => {
                 onClick={() => {onUpdateActiveLink('projects'); closeNavbar();}}
               >
                 Projects
+              </Nav.Link>
+              <Nav.Link 
+                href="#certificates" 
+                className={activeLink === 'certificates' ? 'active navbar-link' : 'navbar-link'} 
+                onClick={() => {onUpdateActiveLink('certificates'); closeNavbar();}}
+              >
+                Certificates
               </Nav.Link>
               <Nav.Link 
                 href="#testimonials" 
@@ -112,7 +140,11 @@ export const NavBar = () => {
                   <img src={navIcon5} alt="WhatsApp" />
                 </a>
               </div>
-              <HashLink to='#connect' onClick={closeNavbar}>
+              <HashLink to='#connect' onClick={(e) => {
+                e.preventDefault();
+                closeNavbar();
+                scrollToElement('connect', 800);
+              }}>
                 <button className="vvd">
                   <span>Let's Connect</span>
                 </button>

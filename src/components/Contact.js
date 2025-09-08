@@ -30,10 +30,15 @@ export const Contact = () => {
     e.preventDefault();
     setButtonText("Sending...");
     
+    // Add sending class to button for loading animation
+    const submitBtn = e.target.querySelector('.contact-submit-btn');
+    if (submitBtn) submitBtn.classList.add('sending');
+    
     // Validate form before submission
     if (!formDetails.firstName || !formDetails.email || !formDetails.message) {
       setStatus({ success: false, message: 'Please fill in all required fields.' });
       setButtonText("Send");
+      if (submitBtn) submitBtn.classList.remove('sending');
       return;
     }
 
@@ -64,6 +69,8 @@ export const Contact = () => {
       });
     } finally {
       setButtonText("Send");
+      // Remove sending class when done
+      if (submitBtn) submitBtn.classList.remove('sending');
     }
   };
 
@@ -75,11 +82,21 @@ export const Contact = () => {
             <Col size={12} md={6}>
               <TrackVisibility>
                 {({ isVisible }) =>
-                  <div className="contact-img-container">
+                  <div 
+                    className={isVisible ? "animate__animated animate__fadeIn contact-img-container" : "contact-img-container"}
+                    style={{ 
+                      willChange: isVisible ? 'opacity, transform' : 'auto',
+                      transform: 'translateZ(0)' // Force GPU acceleration
+                    }}
+                  >
                     <img 
                       className={isVisible ? "animate__animated animate__zoomIn contact-img" : "contact-img"} 
                       src={contactImg} 
                       alt="Contact Us" 
+                      style={{ 
+                        willChange: isVisible ? 'transform, opacity' : 'auto',
+                        transform: 'translateZ(0)' // Force GPU acceleration
+                      }}
                     />
                   </div>
                 }
@@ -163,7 +180,7 @@ export const Contact = () => {
                           <button type="submit" className="contact-submit-btn">
                             <span>{buttonText}</span>
                             <FiSend className="send-icon" />
-                            <span className="priority-text">Your request is my command</span>
+                            <span>Your request is my command</span>
                           </button>
                         </Col>
                         {

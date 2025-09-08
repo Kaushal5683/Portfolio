@@ -239,6 +239,119 @@ background-clip: text;
   background: rgba(74, 47, 189, 0.25);
 }
 
+/* Certificate Preview Styles */
+.certificate-preview-thumbnail {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.certificate-preview-thumbnail:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.certificate-thumbnail {
+  transition: all 0.3s ease;
+}
+
+.certificate-embed-placeholder {
+  transition: all 0.3s ease;
+}
+
+.certificate-embed-placeholder:hover {
+  background-color: rgba(170, 54, 124, 0.25) !important;
+}
+
+/* Modal Styles for Certificate Preview */
+.certificate-modal .modal-content {
+  background-color: #151515;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.certificate-modal .modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.certificate-modal .modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.certificate-modal .close {
+  color: #fff;
+}
+
+.certificate-modal .modal-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+.certificate-image {
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.certificate-embed {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-content h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.timeline-content h5 {
+  font-size: 16px;
+  color: #B8B8B8;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.timeline-content p {
+  color: #B8B8B8;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* Skills and Achievements Tags */
+.timeline-skills, .timeline-achievements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.timeline-skill-tag, .timeline-achievement-tag {
+  background: rgba(170, 54, 124, 0.15);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(170, 54, 124, 0.3);
+  transition: all 0.3s ease;
+}
+
+.timeline-skill-tag:hover, .timeline-achievement-tag:hover {
+  background: rgba(170, 54, 124, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(170, 54, 124, 0.2);
+}
+
+.timeline-achievement-tag {
+  background: rgba(74, 47, 189, 0.15);
+  border: 1px solid rgba(74, 47, 189, 0.3);
+}
+
+.timeline-achievement-tag:hover {
+  background: rgba(74, 47, 189, 0.25);
+}
+
 /* Responsive styles */
 @media (max-width: 1200px) {
   .experience-education-container {

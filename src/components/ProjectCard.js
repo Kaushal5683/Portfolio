@@ -2,9 +2,10 @@ import { Col } from "react-bootstrap";
 import { BsGithub } from 'react-icons/bs';
 import { FiExternalLink } from 'react-icons/fi';
 import { FaBriefcase } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-export const ProjectCard = ({ title, description, githubUrl, demoUrl, imgUrl, index, clientProject, client }) => {
+export const ProjectCard = memo(({ title, description, githubUrl, demoUrl, imgUrl, index, clientProject, client }) => {
   // Extract username and repo name from GitHub URL if available
   const getGitHubPreviewUrl = (url) => {
     if (!url) return null;
@@ -21,9 +22,12 @@ export const ProjectCard = ({ title, description, githubUrl, demoUrl, imgUrl, in
   const previewUrl = githubUrl ? getGitHubPreviewUrl(githubUrl) : null;
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const cardRef = useRef(null);
   
-  // Lazy loading with Intersection Observer
+  // Optimized lazy loading with Intersection Observer
   useEffect(() => {
+    const currentRef = cardRef.current; // Store reference to avoid stale closure in cleanup
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -31,71 +35,86 @@ export const ProjectCard = ({ title, description, githubUrl, demoUrl, imgUrl, in
           observer.disconnect();
         }
       },
-      { threshold: 0.1 } // Start loading when 10% of the element is visible
+      { 
+        rootMargin: '200px', // Increased margin to load images earlier
+        threshold: 0.05 // Lower threshold for faster detection
+      }
     );
     
-    const currentCard = document.getElementById(`project-card-${index}`);
-    if (currentCard) observer.observe(currentCard);
+    if (currentRef) observer.observe(currentRef);
     
     return () => {
-      if (currentCard) observer.unobserve(currentCard);
+      if (currentRef) observer.unobserve(currentRef);
     };
-  }, [index]);
+  }, []);
+
+  // Preload image when in viewport with priority based on index
+  useEffect(() => {
+    if (isInView && (imgUrl || previewUrl)) {
+      // Small delay based on index to prevent all images loading at once
+      const delay = Math.min(index * 50, 300);
+      const timer = setTimeout(() => {
+        const img = new Image();
+        img.src = imgUrl ? require(`../assets/img/${imgUrl}`) : previewUrl;
+        img.onload = () => setImageLoaded(true);
+      }, delay);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, imgUrl, previewUrl, index]);
 
   return (
     <Col size={12} sm={6} md={4} className="proj-col">
-      <div id={`project-card-${index}`} className="proj-card" style={{'--index': index}}>
+      <div 
+        ref={cardRef}
+        id={`project-card-${index}`} 
+        className="proj-card" 
+        style={{
+          '--index': index,
+          willChange: 'transform, opacity',
+          transform: 'translateZ(0)'
+        }}
+      >
         <div className="proj-imgbx">
           {clientProject && (
             <div className="client-badge">
               <FaBriefcase /> Client Project
             </div>
           )}
-          {clientProject && (
-            <div className="client-badge">
-              <FaBriefcase /> Client Project
-            </div>
-          )}
-          {imgUrl ? (
-            <div className="github-preview-container">
-              {isInView && (
-                <img 
-                  src={require(`../assets/img/${imgUrl}`)} 
-                  alt={title} 
-                  className={`github-preview-img ${imageLoaded ? 'img-loaded' : 'img-loading'}`}
-                  onLoad={() => setImageLoaded(true)}
-                  loading="lazy"
-                />
-              )}
-              {!imageLoaded && <div className="img-placeholder" />}
-            </div>
-          ) : previewUrl && isInView ? (
-            <div className="github-preview-container">
-              <img 
-                src={previewUrl} 
-                alt={title} 
+          <div className="github-preview-container">
+            {isInView && (imgUrl || previewUrl) ? (
+              <LazyLoadImage
+                src={imgUrl ? require(`../assets/img/${imgUrl}`) : previewUrl}
+                alt={title}
+                effect="blur"
                 className={`github-preview-img ${imageLoaded ? 'img-loaded' : 'img-loading'}`}
-                onLoad={() => setImageLoaded(true)}
-                loading="lazy"
+                wrapperClassName="lazy-load-image-wrapper"
+                threshold={50}
+                beforeLoad={() => setImageLoaded(false)}
+                afterLoad={() => setImageLoaded(true)}
+                placeholderSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3C/svg%3E"
+                style={{
+                  willChange: 'transform, opacity',
+                  transform: `translateZ(0)`, // Hardware acceleration
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
               />
-              {!imageLoaded && <div className="img-placeholder" />}
-            </div>
-          ) : (
-            <div className="github-preview-container">
-              <div className="img-placeholder" />
-            </div>
-          )}
+            ) : null}
+            {(!imageLoaded || !isInView) && <div className="img-placeholder" />}
+          </div>
           <div className="proj-txtx">
             <h5>{title}</h5>
             <span>{description}</span>
             <div className="proj-links">
               {githubUrl && (
-                <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="proj-link github-link">
+                <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="proj-link github-link" aria-label="View code on GitHub">
                   <BsGithub size={16} /> Code
                 </a>
               )}
               {demoUrl && (
-                <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="proj-link demo-link">
+                <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="proj-link demo-link" aria-label="View live demo">
                   <FiExternalLink size={16} /> Live
                 </a>
               )}
@@ -105,4 +124,4 @@ export const ProjectCard = ({ title, description, githubUrl, demoUrl, imgUrl, in
       </div>
     </Col>
   )
-}
+})

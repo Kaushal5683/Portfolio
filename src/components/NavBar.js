@@ -19,13 +19,16 @@ export const NavBar = () => {
   const { scrollToElement } = useSmoothScroll();
 
   // Throttled scroll handler for better performance
-  const handleScroll = useCallback(throttle(() => {
-    if (window.scrollY > 50) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  }, 100), [setScrolled, throttle]);
+  const handleScroll = useCallback(() => {
+    const onScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    return throttle(onScroll, 100);
+  }, [])();
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

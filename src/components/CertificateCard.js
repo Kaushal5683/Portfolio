@@ -1,6 +1,6 @@
 import { Col } from "react-bootstrap";
 import { FaCertificate } from 'react-icons/fa';
-import { useState, useEffect, useRef, memo } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useOptimizedIntersectionObserver } from '../utils/animationUtils';
 

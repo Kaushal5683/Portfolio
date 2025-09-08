@@ -29,7 +29,7 @@ export const useAnimationFrame = (callback, dependencies = []) => {
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
-  }, [animate, ...dependencies]);
+  }, [animate]); // Removed spread element from dependencies array
 };
 
 /**
@@ -185,13 +185,15 @@ export const useLazyImage = () => {
       threshold: 0.01
     });
     
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
+    const currentImgRef = imgRef.current; // Store ref value to avoid stale ref in cleanup
+    
+    if (currentImgRef) {
+      observer.observe(currentImgRef);
     }
     
     return () => {
-      if (imgRef.current) {
-        observer.unobserve(imgRef.current);
+      if (currentImgRef) {
+        observer.unobserve(currentImgRef);
       }
     };
   }, []);

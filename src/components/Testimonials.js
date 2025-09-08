@@ -1,4 +1,4 @@
-import React, { memo, useState, useRef, useEffect } from 'react';
+import React, { memo, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -8,7 +8,6 @@ import { FaQuoteLeft, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { FiArrowRight } from 'react-icons/fi';
 import './Testimonials.css';
 import testimonialsBg from '../assets/img/testimonials-bg.svg';
-import { useOptimizedIntersectionObserver } from '../utils/animationUtils';
 
 export const Testimonials = () => {
   const testimonials = [

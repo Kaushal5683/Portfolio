@@ -69,7 +69,7 @@ const LoadingFallback = () => (
 
 function App() {
   // State to track if critical resources are loaded
-  const [criticalAssetsLoaded, setCriticalAssetsLoaded] = useState(false);
+  const [, setCriticalAssetsLoaded] = useState(false);
   
   // Determine the basename based on the current URL
   const isPortfolioPath = window.location.pathname.includes('/Portfolio');

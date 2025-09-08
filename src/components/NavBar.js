@@ -25,7 +25,7 @@ export const NavBar = () => {
     } else {
       setScrolled(false);
     }
-  }, 100), []);
+  }, 100), [setScrolled]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

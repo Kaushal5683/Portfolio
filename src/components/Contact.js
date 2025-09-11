@@ -6,6 +6,7 @@ import TrackVisibility from 'react-on-screen';
 import emailjs from 'emailjs-com';
 import { FiSend, FiDownload, FiPhone } from 'react-icons/fi';
 import resumePDF from "../assets/KaushalGujarathiFullStack.pdf";
+import './Contact.css';
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -16,7 +17,7 @@ export const Contact = () => {
     message: ''
   }
   const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState('Send');
+  const [setButtonText] = useState('Send');
   const [status, setStatus] = useState({});
 
   const onFormUpdate = (category, value) => {
@@ -177,10 +178,8 @@ export const Contact = () => {
                               required
                             ></textarea>
                           </div>
-                          <button type="submit" className="contact-submit-btn">
-                            <span>{buttonText}</span>
+                          <button type="submit" className="contact-submit-btn animated-button type1">
                             <FiSend className="send-icon" />
-                            <span>Your request is my command</span>
                           </button>
                         </Col>
                         {

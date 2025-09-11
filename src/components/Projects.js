@@ -1,12 +1,12 @@
 import { Container, Row, Col, Tab} from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
-import colorSharp2 from "../assets/img/color-sharp2.webp";
 import projectsBg from "../assets/img/projects-bg.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import './Projects.css';
 
 export const Projects = () => {
   // State to track if projects should be loaded
@@ -168,7 +168,6 @@ export const Projects = () => {
             </Col>
           </Row>
         </Container>
-        <img className="background-image-right" src={colorSharp2} alt="" />
       </section>
     );
   }
@@ -217,7 +216,6 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-      <img className="background-image-right" src={colorSharp2} alt="" />
     </section>
   )
 }

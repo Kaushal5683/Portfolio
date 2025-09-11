@@ -9,6 +9,7 @@ import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import { HashLink } from 'react-router-hash-link';
 import { useAnimationFrame, useSmoothScroll } from "../utils/animationUtils";
+import './Banner.css';
 
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);

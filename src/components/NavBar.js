@@ -9,6 +9,7 @@ import navIcon5 from '../assets/img/whatsapp.svg'
 import { HashLink } from 'react-router-hash-link';
 import 'animate.css';
 import { throttle, useSmoothScroll } from '../utils/animationUtils';
+import './NavBar.css';
 
 export const NavBar = () => {
 
@@ -152,8 +153,11 @@ export const NavBar = () => {
                 closeNavbar();
                 scrollToElement('connect', 800);
               }}>
-                <button className="vvd">
+                <button className="connect-btn">
                   <span>Let's Connect</span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </button>
               </HashLink>
             </span>

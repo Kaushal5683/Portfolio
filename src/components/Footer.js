@@ -5,6 +5,7 @@ import navIcon2 from "../assets/img/nav-icon2.svg";
 import navIcon3 from "../assets/img/nav-icon3.svg";
 import navIcon4 from "../assets/img/git.svg";
 import navIcon5 from "../assets/img/whatsapp.svg";
+import './Footer.css';
 import { FiPhone } from 'react-icons/fi';
 
 export const Footer = () => {

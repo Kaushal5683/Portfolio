@@ -3,10 +3,9 @@ import meter2 from "../assets/img/meter2.svg";
 import meter3 from "../assets/img/meter3.svg";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import colorSharp from "../assets/img/color-sharp.webp";
-import colorSharp1 from "../assets/img/color-sharp2.webp";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import './Skills.css';
 
 export const Skills = () => {
   const responsive = {
@@ -39,7 +38,7 @@ export const Skills = () => {
                   <h2 className="skill-heading">Skills</h2>
                   
                   <div className="skill-section">
-                    <h3 className="skill-subheading">Technical Skills</h3>
+                    <h4 className="skill-subheading">Technical Skills</h4>
                     <Carousel 
                       responsive={responsive} 
                       infinite={true} 
@@ -76,7 +75,7 @@ export const Skills = () => {
                   </div>
                   
                   <div className="skill-section">
-                    <h3 className="skill-subheading">Soft Skills</h3>
+                    <h4 className="skill-subheading">Soft Skills</h4>
                     <Carousel 
                       responsive={responsive} 
                       infinite={true} 
@@ -87,8 +86,8 @@ export const Skills = () => {
                     >
                       <div className="item">
                         <div className="skill-item">
-                          <img src={meter1} alt="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quick Learner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
-                          <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quick Learner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                          <img src={meter1} alt="Quick Learner" />
+                          <h5>Quick Learner</h5>
                         </div>
                       </div>
                       <div className="item">
@@ -99,8 +98,8 @@ export const Skills = () => {
                       </div>
                       <div className="item">
                         <div className="skill-item">
-                          <img src={meter3} alt="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active Listener&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
-                          <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active Listener&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                          <img src={meter3} alt="Active Listener" />
+                          <h5>Active Listener</h5>
                         </div>
                       </div>
                       <div className="item">
@@ -116,9 +115,7 @@ export const Skills = () => {
             </TrackVisibility>
           </div>
         </div>
-      </div>
-      <img className="background-image-left" src={colorSharp} alt="" />
-      <img className="background-image-right" src={colorSharp1} alt="" />
+      </div>  
     </section>
   )
 }

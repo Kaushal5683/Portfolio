@@ -3,6 +3,7 @@ import { FaCertificate } from 'react-icons/fa';
 import { useState, useEffect, memo } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useOptimizedIntersectionObserver } from '../utils/animationUtils';
+import './CertificateCard.css';
 
 export const CertificateCard = memo(({ title, completionDate, imgUrl, index }) => {
   const [imageLoaded, setImageLoaded] = useState(false);

@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useOptimizedIntersectionObserver } from '../utils/animationUtils';
+import './Certificates.css';
 
 export const Certificates = () => {
   // State to track if certificates should be loaded

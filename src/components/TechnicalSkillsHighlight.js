@@ -3,12 +3,10 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import './TechnicalSkillsHighlight.css';
-import { ReactComponent as TechBackground } from './TechBackgroundPattern.svg';
 
 export const TechnicalSkillsHighlight = () => {
   return (
     <section className="technical-skills" id="technical-skills">
-      <TechBackground className="tech-background-svg" aria-hidden="true" />
       <Container>
         <TrackVisibility>
           {({ isVisible }) => (

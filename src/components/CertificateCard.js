@@ -1,11 +1,11 @@
 import { Col } from "react-bootstrap";
-import { FaCertificate } from 'react-icons/fa';
+import { FaCertificate, FaUniversity } from 'react-icons/fa';
 import { useState, useEffect, memo } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useOptimizedIntersectionObserver } from '../utils/animationUtils';
 import './CertificateCard.css';
 
-export const CertificateCard = memo(({ title, completionDate, imgUrl, index }) => {
+export const CertificateCard = memo(({ title, completionDate, institute, imgUrl, index }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   
@@ -53,6 +53,11 @@ export const CertificateCard = memo(({ title, completionDate, imgUrl, index }) =
           <div className="certificate-badge">
             <FaCertificate /> Certificate
           </div>
+          {institute && (
+            <div className="institute-badge">
+              <FaUniversity /> {institute}
+            </div>
+          )}
           <div className="certificate-preview-container">
             {isInView && imgUrl ? (
               <LazyLoadImage

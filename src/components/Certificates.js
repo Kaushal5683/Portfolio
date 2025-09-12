@@ -20,49 +20,58 @@ export const Certificates = () => {
   // Memoize certificates data to prevent unnecessary re-renders
   const certificatesData = useMemo(() => [
     {
-      title: "Cyber Security",
-      completionDate: "June 2023",
-      imgUrl: "CyberSecurity Certificate.webp"
-    },
-    {
-      title: "Data Structures and Algorithms",
-      completionDate: "August 2023",
-      imgUrl: "DSA Certificate.webp"
-    },
-    {
-      title: "Full Stack Java Development",
-      completionDate: "September 2023",
-      imgUrl: "FullStackJava.webp"
-    },
-    {
-      title: "ISRO Certification",
-      completionDate: "July 2023",
-      imgUrl: "ISRO Certificate.webp"
-    },
-    {
-      title: "Infosys Java Course",
-      completionDate: "October 2023",
-      imgUrl: "Infosys Java Course.webp"
-    },
-    {
-      title: "JavaScript Development",
-      completionDate: "May 2023",
-      imgUrl: "JavaScript Certificate.webp"
-    },
-    {
       title: "NVIDIA Deep Learning",
-      completionDate: "November 2023",
+      completionDate: "July 2025",
+      institute: "NVIDIA",
       imgUrl: "NVIDIA.webp"
     },
     {
-      title: "Python Programming",
-      completionDate: "April 2023",
+      title: "React Development",
+      completionDate: "January 2025",
+      institute: "Udemy",
+      imgUrl: "React Certificate.webp"
+    },
+    {
+      title: "Cyber Security Analyst Job Simulation",
+      completionDate: "November 2024",
+      institute: "Tata & Forage",
+      imgUrl: "CyberSecurity Certificate.webp"
+    },
+    {
+      title: "JavaScript Development",
+      completionDate: "November 2024",
+      institute: "Udemy",
+      imgUrl: "JavaScript Certificate.webp"
+    },
+    {
+      title: "Full Stack Java Development",
+      completionDate: "July 2024",
+      institute: "Symbiosis",
+      imgUrl: "FullStackJava.webp"
+    },
+    {
+      title: "Data Structures Using C Programming",
+      completionDate: "May 2024",
+      institute: "SWAYAM",
+      imgUrl: "DSA Certificate.webp"
+    },
+    {
+      title: "Java Programming Fundamentals",
+      completionDate: "April 2024",
+      institute: "Infosys Springboard",
+      imgUrl: "Infosys Java Course.webp"
+    },
+    {
+      title: "Python Programming & SQL",
+      completionDate: "October 2022",
+      institute: "ExcelR",
       imgUrl: "Python Certificate.webp"
     },
     {
-      title: "React Development",
-      completionDate: "July 2023",
-      imgUrl: "React Certificate.webp"
+      title: "Overview of Space Science & Technology For School Students",
+      completionDate: "July 2022",
+      institute: "ISRO",
+      imgUrl: "ISRO Certificate.webp"
     }
   ], []);
 

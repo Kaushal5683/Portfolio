@@ -1,0 +1,187 @@
+<svg width="1440" height="800" viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="contact-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A2FBD" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#AA367C" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#4A2FBD" stop-opacity="0.15"/>
+    </linearGradient>
+    
+    <filter id="contact-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    
+    <pattern id="network-pattern" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+      <circle cx="60" cy="60" r="2" fill="#4A2FBD" opacity="0.3">
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <line x1="60" y1="60" x2="120" y2="60" stroke="#AA367C" stroke-width="0.5" opacity="0.2">
+        <animate attributeName="opacity" values="0.2;0.4;0.2" dur="10s" repeatCount="indefinite"/>
+      </line>
+      <line x1="60" y1="60" x2="60" y2="120" stroke="#4A2FBD" stroke-width="0.5" opacity="0.2">
+        <animate attributeName="opacity" values="0.2;0.4;0.2" dur="12s" repeatCount="indefinite"/>
+      </line>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1440" height="800" fill="#151515"/>
+  
+  <!-- Network pattern -->
+  <rect width="1440" height="800" fill="url(#network-pattern)" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.4;0.6" dur="15s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Communication Icons -->
+  <g filter="url(#contact-glow)">
+    <!-- Email envelope -->
+    <g transform="translate(200,150)">
+      <rect x="0" y="10" width="60" height="40" rx="3" stroke="#4A2FBD" stroke-width="2" fill="none" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.7;0.4" dur="8s" repeatCount="indefinite"/>
+      </rect>
+      <path d="M0,10 L30,35 L60,10" stroke="#4A2FBD" stroke-width="2" fill="none" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.7;0.4" dur="8s" repeatCount="indefinite"/>
+      </path>
+      <animateTransform attributeName="transform" type="translate" 
+                        values="200,150; 200,140; 200,150" dur="10s" repeatCount="indefinite"/>
+    </g>
+    
+    <!-- Phone -->
+    <g transform="translate(800,200)">
+      <rect x="0" y="0" width="25" height="45" rx="5" stroke="#AA367C" stroke-width="2" fill="none" opacity="0.45">
+        <animate attributeName="opacity" values="0.45;0.75;0.45" dur="9s" repeatCount="indefinite"/>
+      </rect>
+      <circle cx="12.5" cy="35" r="3" fill="#AA367C" opacity="0.3">
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="6s" repeatCount="indefinite"/>
+      </circle>
+      <animateTransform attributeName="transform" type="translate" 
+                        values="800,200; 800,190; 800,200" dur="12s" repeatCount="indefinite"/>
+    </g>
+    
+    <!-- Message bubbles -->
+    <g transform="translate(1200,180)">
+      <ellipse cx="20" cy="15" rx="18" ry="12" stroke="#4A2FBD" stroke-width="2" fill="none" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.7;0.4" dur="7s" repeatCount="indefinite"/>
+      </ellipse>
+      <path d="M15,25 L20,30 L25,25" stroke="#4A2FBD" stroke-width="2" fill="none" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.7;0.4" dur="7s" repeatCount="indefinite"/>
+      </path>
+      <animateTransform attributeName="transform" type="translate" 
+                        values="1200,180; 1200,170; 1200,180" dur="11s" repeatCount="indefinite"/>
+    </g>
+    
+    <!-- LinkedIn icon -->
+    <g transform="translate(300,400)">
+      <rect x="0" y="0" width="40" height="40" rx="5" stroke="#AA367C" stroke-width="2" fill="none" opacity="0.35">
+        <animate attributeName="opacity" values="0.35;0.65;0.35" dur="10s" repeatCount="indefinite"/>
+      </rect>
+      <text x="20" y="28" font-family="Arial" font-size="16" text-anchor="middle" fill="#AA367C" opacity="0.5">in</text>
+      <animateTransform attributeName="transform" type="translate" 
+                        values="300,400; 300,390; 300,400" dur="13s" repeatCount="indefinite"/>
+    </g>
+    
+    <!-- GitHub icon -->
+    <g transform="translate(1000,350)">
+      <circle cx="20" cy="20" r="18" stroke="#4A2FBD" stroke-width="2" fill="none" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.7;0.4" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <path d="M20,8 C15,8 11,12 11,17 C11,21 13,24 16,25 C16,24 16,23 16,22 C14,22 13,21 13,21 C12,20 11,20 11,20 C10,19 11,19 11,19 C12,19 13,20 13,20 C14,21 16,21 16,20 C16,19 16,19 16,19 C14,18 13,17 13,15 C13,14 13,13 14,13 C15,13 15,14 15,14 C16,15 18,15 19,14 C19,13 19,13 20,13 C21,13 21,14 21,14 C22,15 24,15 25,14 C25,13 25,13 25,13 C26,13 26,14 26,15 C26,17 25,18 23,19 C23,19 23,19 23,20 C23,21 25,21 26,20 C26,20 27,19 27,19 C28,20 27,20 27,20 C26,21 25,22 23,22 C23,23 23,24 23,25 C26,24 28,21 28,17 C28,12 24,8 20,8 Z" fill="#4A2FBD" opacity="0.3">
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="9s" repeatCount="indefinite"/>
+      </path>
+      <animateTransform attributeName="transform" type="translate" 
+                        values="1000,350; 1000,340; 1000,350" dur="14s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  
+  <!-- Connection Lines -->
+  <g opacity="0.25" filter="url(#contact-glow)">
+    <path d="M230,180 Q400,250 600,200 Q800,150 1000,220" stroke="#4A2FBD" stroke-width="1.5" fill="none">
+      <animate attributeName="opacity" values="0.25;0.5;0.25" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="d" dur="20s" repeatCount="indefinite" values="
+        M230,180 Q400,250 600,200 Q800,150 1000,220;
+        M230,190 Q400,260 600,210 Q800,160 1000,230;
+        M230,180 Q400,250 600,200 Q800,150 1000,220"/>
+    </path>
+    
+    <path d="M330,430 Q600,350 900,400 Q1100,450 1230,380" stroke="#AA367C" stroke-width="1.5" fill="none">
+      <animate attributeName="opacity" values="0.25;0.5;0.25" dur="18s" repeatCount="indefinite"/>
+      <animate attributeName="d" dur="22s" repeatCount="indefinite" values="
+        M330,430 Q600,350 900,400 Q1100,450 1230,380;
+        M330,440 Q600,360 900,410 Q1100,460 1230,390;
+        M330,430 Q600,350 900,400 Q1100,450 1230,380"/>
+    </path>
+  </g>
+  
+  <!-- Floating Data Packets -->
+  <g filter="url(#contact-glow)">
+    <rect x="100" y="300" width="8" height="8" rx="2" fill="#4A2FBD" opacity="0.6">
+      <animate attributeName="x" from="100" to="500" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="y" from="300" to="250" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    
+    <rect x="1300" y="400" width="6" height="6" rx="1" fill="#AA367C" opacity="0.5">
+      <animate attributeName="x" from="1300" to="900" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="y" from="400" to="350" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.1;0.5" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    
+    <circle cx="600" cy="500" r="4" fill="#4A2FBD" opacity="0.7">
+      <animate attributeName="cx" from="600" to="200" dur="18s" repeatCount="indefinite"/>
+      <animate attributeName="cy" from="500" to="600" dur="18s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Contact Form Elements -->
+  <g filter="url(#contact-glow)">
+    <!-- Form field lines -->
+    <line x1="150" y1="600" x2="350" y2="600" stroke="#4A2FBD" stroke-width="2" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="350;380;350" dur="8s" repeatCount="indefinite"/>
+    </line>
+    
+    <line x1="150" y1="650" x2="300" y2="650" stroke="#AA367C" stroke-width="2" opacity="0.35">
+      <animate attributeName="opacity" values="0.35;0.65;0.35" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="300;330;300" dur="9s" repeatCount="indefinite"/>
+    </line>
+    
+    <line x1="150" y1="700" x2="400" y2="700" stroke="#4A2FBD" stroke-width="2" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.7;0.4" dur="11s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="400;430;400" dur="7s" repeatCount="indefinite"/>
+    </line>
+    
+    <!-- Send button -->
+    <rect x="1200" y="680" width="80" height="30" rx="15" stroke="#AA367C" stroke-width="2" fill="none" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.7;0.4" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="1240" y="700" font-family="Arial" font-size="12" text-anchor="middle" fill="#AA367C" opacity="0.5">SEND</text>
+  </g>
+  
+  <!-- Signal waves -->
+  <g opacity="0.2" filter="url(#contact-glow)">
+    <circle cx="720" cy="400" r="50" stroke="#4A2FBD" stroke-width="1" fill="none">
+      <animate attributeName="r" values="50;80;50" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0.05;0.2" dur="8s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle cx="720" cy="400" r="70" stroke="#AA367C" stroke-width="1" fill="none">
+      <animate attributeName="r" values="70;100;70" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0.05;0.2" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle cx="720" cy="400" r="90" stroke="#4A2FBD" stroke-width="1" fill="none">
+      <animate attributeName="r" values="90;120;90" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0.05;0.2" dur="12s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Gradient Overlays -->
+  <rect x="0" y="0" width="1440" height="200" fill="url(#contact-gradient)" opacity="0.1">
+    <animate attributeName="opacity" values="0.1;0.2;0.1" dur="20s" repeatCount="indefinite"/>
+  </rect>
+  
+  <rect x="0" y="600" width="1440" height="200" fill="url(#contact-gradient)" opacity="0.15">
+    <animate attributeName="opacity" values="0.15;0.25;0.15" dur="18s" repeatCount="indefinite"/>
+  </rect>
+</svg>

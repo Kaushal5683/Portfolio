@@ -1,0 +1,95 @@
+<svg width="1440" height="600" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hex-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A2FBD" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#AA367C" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#4A2FBD" stop-opacity="0.15"/>
+    </linearGradient>
+    
+    <pattern id="hexagon-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M50 0 L93.3 25 L93.3 75 L50 100 L6.7 75 L6.7 25 Z" fill="none" stroke="url(#hex-gradient)" stroke-width="1" opacity="0.3">
+        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="8s" repeatCount="indefinite" />
+      </path>
+    </pattern>
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1440" height="600" fill="#151515"/>
+  
+  <!-- Hexagon Grid -->
+  <rect width="1440" height="600" fill="url(#hexagon-pattern)" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.6;0.8" dur="10s" repeatCount="indefinite" />
+  </rect>
+  
+  <!-- Diagonal Lines -->
+  <g opacity="0.15">
+    <line x1="0" y1="0" x2="1440" y2="600" stroke="#4A2FBD" stroke-width="1">
+      <animate attributeName="stroke-width" values="1;2;1" dur="15s" repeatCount="indefinite" />
+    </line>
+    <line x1="1440" y1="0" x2="0" y2="600" stroke="#AA367C" stroke-width="1">
+      <animate attributeName="stroke-width" values="1;2;1" dur="12s" repeatCount="indefinite" />
+    </line>
+  </g>
+  
+  <!-- Floating Geometric Elements -->
+  <g>
+    <!-- Hexagon 1 -->
+    <path d="M200,150 L215,158 L215,174 L200,182 L185,174 L185,158 Z" fill="#4A2FBD" opacity="0.2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="7s" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-10; 0,0" dur="8s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Hexagon 2 -->
+    <path d="M800,250 L815,258 L815,274 L800,282 L785,274 L785,258 Z" fill="#AA367C" opacity="0.2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.2;0.4;0.2" dur="9s" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-15; 0,0" dur="10s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Hexagon 3 -->
+    <path d="M1200,180 L1215,188 L1215,204 L1200,212 L1185,204 L1185,188 Z" fill="#4A2FBD" opacity="0.2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="8s" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-12; 0,0" dur="9s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Circle 1 -->
+    <circle cx="400" cy="120" r="8" fill="#AA367C" opacity="0.3" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="5s" repeatCount="indefinite" />
+      <animate attributeName="r" values="8;10;8" dur="6s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Circle 2 -->
+    <circle cx="1000" cy="300" r="6" fill="#4A2FBD" opacity="0.3" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.5;0.3" dur="7s" repeatCount="indefinite" />
+      <animate attributeName="r" values="6;8;6" dur="8s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Small Dots -->
+    <g>
+      <circle cx="300" cy="200" r="2" fill="#ffffff" opacity="0.5">
+        <animate attributeName="opacity" values="0.5;0.2;0.5" dur="4s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="600" cy="150" r="1.5" fill="#ffffff" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.1;0.4" dur="5s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="900" cy="250" r="2" fill="#ffffff" opacity="0.6">
+        <animate attributeName="opacity" values="0.6;0.3;0.6" dur="6s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="1200" cy="100" r="1.5" fill="#ffffff" opacity="0.5">
+        <animate attributeName="opacity" values="0.5;0.2;0.5" dur="4.5s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="1350" cy="220" r="2" fill="#ffffff" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.1;0.4" dur="5.5s" repeatCount="indefinite" />
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Gradient Overlay at Bottom -->
+  <rect x="0" y="400" width="1440" height="200" fill="url(#hex-gradient)" opacity="0.1">
+    <animate attributeName="opacity" values="0.1;0.2;0.1" dur="10s" repeatCount="indefinite" />
+  </rect>
+</svg>

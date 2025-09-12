@@ -1,0 +1,71 @@
+<svg width="1440" height="100" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nav-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4A2FBD" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#AA367C" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4A2FBD" stop-opacity="0.1"/>
+    </linearGradient>
+    
+    <filter id="nav-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    
+    <pattern id="nav-dots" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="30" cy="30" r="1" fill="#4A2FBD" opacity="0.3">
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="8s" repeatCount="indefinite"/>
+      </circle>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1440" height="100" fill="#151515"/>
+  
+  <!-- Subtle dot pattern -->
+  <rect width="1440" height="100" fill="url(#nav-dots)" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.3;0.5" dur="12s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Horizontal lines -->
+  <line x1="0" y1="25" x2="1440" y2="25" stroke="#4A2FBD" stroke-width="0.5" opacity="0.4">
+    <animate attributeName="opacity" values="0.4;0.6;0.4" dur="15s" repeatCount="indefinite"/>
+  </line>
+  <line x1="0" y1="75" x2="1440" y2="75" stroke="#AA367C" stroke-width="0.5" opacity="0.3">
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="18s" repeatCount="indefinite"/>
+  </line>
+  
+  <!-- Subtle geometric elements -->
+  <g filter="url(#nav-glow)">
+    <!-- Small triangles -->
+    <path d="M100,20 L110,35 L90,35 Z" fill="#4A2FBD" opacity="0.2">
+      <animate attributeName="opacity" values="0.2;0.4;0.2" dur="10s" repeatCount="indefinite"/>
+    </path>
+    
+    <path d="M300,65 L310,80 L290,80 Z" fill="#AA367C" opacity="0.25">
+      <animate attributeName="opacity" values="0.25;0.45;0.25" dur="12s" repeatCount="indefinite"/>
+    </path>
+    
+    <path d="M1200,30 L1210,45 L1190,45 Z" fill="#4A2FBD" opacity="0.2">
+      <animate attributeName="opacity" values="0.2;0.4;0.2" dur="14s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Small circles -->
+    <circle cx="500" cy="50" r="2" fill="#AA367C" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.5;0.3" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="2;3;2" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle cx="800" cy="30" r="1.5" fill="#4A2FBD" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.6;0.4" dur="9s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle cx="1000" cy="70" r="2" fill="#AA367C" opacity="0.25">
+      <animate attributeName="opacity" values="0.25;0.45;0.25" dur="11s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Gradient overlay -->
+  <rect x="0" y="0" width="1440" height="100" fill="url(#nav-gradient)" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.6;0.8" dur="20s" repeatCount="indefinite"/>
+  </rect>
+</svg>

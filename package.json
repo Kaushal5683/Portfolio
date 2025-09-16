@@ -37,8 +37,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "optimize-images": "node convert-images.js",
-    "predeploy": "npm run optimize-images && npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

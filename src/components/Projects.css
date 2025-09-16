@@ -128,6 +128,103 @@
     backdrop-filter: blur(4px);
     will-change: transform;
   }
+
+  /* Rotating lines effect around project cards */
+  .proj-card::before {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 130%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 60deg,
+      #9333ea 60deg,
+      #9333ea 120deg,
+      transparent 120deg,
+      transparent 240deg,
+      #3b82f6 240deg,
+      #3b82f6 300deg,
+      transparent 300deg,
+      transparent 360deg
+    );
+    animation: rotBGimg 3s linear infinite;
+    z-index: -2;
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(1px);
+    will-change: transform;
+  }
+
+  @keyframes rotBGimg {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  .proj-card::after {
+    content: '';
+    position: absolute;
+    background: var(--bg-glass);
+    inset: 3px;
+    border-radius: calc(var(--radius-lg) - 3px);
+    z-index: -1;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Corner hover effect elements */
+  .proj-card {
+    overflow: hidden;
+  }
+
+  .proj-card .github-preview-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 20%;
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.8), rgba(192, 132, 252, 0.9));
+    border-radius: 0 20px 0 100%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .proj-card .github-preview-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    height: 20%;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(6, 182, 212, 0.9));
+    border-radius: 0 100% 0 20px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .proj-card:hover .github-preview-container::before,
+  .proj-card:hover .github-preview-container::after {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    opacity: 0.2;
+    transform: scale(1);
+  }
+
+  .proj-card:hover .github-preview-container::after {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(59, 130, 246, 0.15));
+  }
   
   /* Image placeholder and loading states */
   .img-placeholder {
@@ -194,21 +291,57 @@
   }
   
   .proj-card:hover::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    background: var(--gradient-card);
-    border-radius: var(--radius-lg);
-    z-index: -1;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 60deg,
+      #9333ea 60deg,
+      #9333ea 120deg,
+      transparent 120deg,
+      transparent 240deg,
+      #06b6d4 240deg,
+      #06b6d4 300deg,
+      transparent 300deg,
+      transparent 360deg
+    );
+    animation: rotBGimg 2.5s linear infinite;
+    width: 140px;
+    filter: blur(0.5px);
+    transform: translate(-50%, -50%);
   }
   
   .proj-imgbx {
     position: relative;
     overflow: hidden;
     border-radius: 20px 20px 0 0;
+  }
+
+  /* Client Project Badge Styling */
+  .client-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    color: #2d3748;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 3;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    text-shadow: none;
+  }
+
+  .client-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
   }
   
   .proj-imgbx::before {

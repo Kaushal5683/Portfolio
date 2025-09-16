@@ -1,14 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from '../assets/img/ksg.webp';
-import navIcon1 from '../assets/img/nav-icon1.svg';
-import navIcon2 from '../assets/img/nav-icon2.svg';
-import navIcon3 from '../assets/img/nav-icon3.svg';
-import navIcon4 from '../assets/img/git.svg';
-import navIcon5 from '../assets/img/whatsapp.svg'
 import { HashLink } from 'react-router-hash-link';
 import 'animate.css';
 import { throttle, useSmoothScroll } from '../utils/animationUtils';
+import { SocialMediaButtons } from './SocialMediaButtons';
 import './NavBar.css';
 
 export const NavBar = () => {
@@ -131,23 +127,7 @@ export const NavBar = () => {
               </Nav.Link>
             </Nav>
             <span className="navbar-text">
-              <div className="social-icon" aria-label="Social media links">
-                <a href="https://www.linkedin.com/in/kaushal-gujarathi104/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                  <img src={navIcon1} alt="LinkedIn" />
-                </a>
-                <a href="https://www.facebook.com/kaushal.gujaratihi" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile">
-                  <img src={navIcon2} alt="Facebook" />
-                </a>
-                <a href="https://www.instagram.com/kaushalll_01_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
-                  <img src={navIcon3} alt="Instagram" />
-                </a>
-                <a href="https://github.com/Kaushal5683" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-                  <img src={navIcon4} alt="GitHub" />
-                </a>
-                <a href="https://wa.me/917218499483" target="_blank" rel="noopener noreferrer" aria-label="Contact on WhatsApp">
-                  <img src={navIcon5} alt="WhatsApp" />
-                </a>
-              </div>
+              <SocialMediaButtons />
               <HashLink to='#connect' onClick={(e) => {
                 e.preventDefault();
                 closeNavbar();

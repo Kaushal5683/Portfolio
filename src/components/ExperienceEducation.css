@@ -173,14 +173,63 @@
 }
 
 .timeline-content {
-  background: rgba(20, 10, 30, 0.7);
+  background: rgba(20, 10, 30, 0.9);
   border: 1px solid rgba(147, 51, 234, 0.3);
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 25px;
   box-shadow: 0 0 20px rgba(147, 51, 234, 0.15);
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Rotating lines effect for timeline cards */
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 60deg,
+    #00b7ff 60deg,
+    #00b7ff 120deg,
+    transparent 120deg,
+    transparent 240deg,
+    #ff30ff 240deg,
+    #ff30ff 300deg,
+    transparent 300deg,
+    transparent 360deg
+  );
+  height: 130%;
+  animation: rotTimelineBG 3s linear infinite;
+  z-index: -2;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(1px);
+  will-change: transform;
+}
+
+@keyframes rotTimelineBG {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.timeline-content::after {
+  content: '';
+  position: absolute;
+  background: rgba(20, 10, 30, 0.95);
+  inset: 3px;
+  border-radius: 17px;
+  z-index: -1;
   backdrop-filter: blur(10px);
 }
 
@@ -190,20 +239,23 @@
   border-color: rgba(147, 51, 234, 0.6);
 }
 
-.timeline-content::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(147, 51, 234, 0.1), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
 .timeline-content:hover::before {
-  opacity: 1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 60deg,
+    #51ff00 60deg,
+    #51ff00 120deg,
+    transparent 120deg,
+    transparent 240deg,
+    #9333ea 240deg,
+    #9333ea 300deg,
+    transparent 300deg,
+    transparent 360deg
+  );
+  animation: rotTimelineBG 2.5s linear infinite;
+  width: 120px;
+  filter: blur(0.5px);
 }
 
 .timeline-content h4 {

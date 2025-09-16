@@ -1,0 +1,236 @@
+/* Social Media Buttons - Themed to match portfolio */
+.social-media-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  margin-left: 14px;
+  align-items: flex-start;
+}
+
+.social-up {
+  display: flex;
+  flex-direction: row;
+  gap: 0.35em;
+  align-items: center;
+}
+
+.social-down {
+  display: flex;
+  flex-direction: row;
+  gap: 0.35em;
+  align-items: center;
+}
+
+.social-card1 {
+  width: 32px;
+  height: 32px;
+  outline: none;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-glass);
+  border-radius: 32px 3px 3px 3px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.social-card1 svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: block;
+}
+
+.instagram {
+  fill: var(--secondary-purple);
+}
+
+.social-card2 {
+  width: 32px;
+  height: 32px;
+  outline: none;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-glass);
+  border-radius: 3px 32px 3px 3px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.social-card2 svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: block;
+}
+
+.linkedin {
+  fill: var(--primary-purple-light);
+}
+
+.social-card3 {
+  width: 32px;
+  height: 32px;
+  outline: none;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-glass);
+  border-radius: 3px 3px 3px 32px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.social-card3 svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: block;
+}
+
+.github {
+  fill: var(--text-secondary);
+}
+
+.social-card4 {
+  width: 32px;
+  height: 32px;
+  outline: none;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-glass);
+  border-radius: 3px 3px 32px 3px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.social-card4 svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: block;
+}
+
+.whatsapp {
+  fill: var(--accent-purple);
+}
+
+/* Hover effects */
+.social-card1:hover {
+  scale: 1.1;
+  background: var(--gradient-card);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+  z-index: 10;
+  position: relative;
+}
+
+.social-card1:hover .instagram {
+  fill: var(--text-primary);
+}
+
+.social-card2:hover {
+  scale: 1.1;
+  background: var(--gradient-card);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+  z-index: 10;
+  position: relative;
+}
+
+.social-card2:hover .linkedin {
+  fill: var(--text-primary);
+}
+
+.social-card3:hover {
+  scale: 1.1;
+  background: var(--gradient-card);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+  z-index: 10;
+  position: relative;
+}
+
+.social-card3:hover .github {
+  fill: var(--text-primary);
+}
+
+.social-card4:hover {
+  scale: 1.1;
+  background: var(--gradient-card);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+  z-index: 10;
+  position: relative;
+}
+
+.social-card4:hover .whatsapp {
+  fill: var(--text-primary);
+}
+
+/* Mobile responsive */
+@media (max-width: 991px) {
+  .social-media-main {
+    margin: 10px 0;
+    align-items: center;
+    gap: 0.3em;
+  }
+  
+  .social-up,
+  .social-down {
+    justify-content: center;
+    gap: 0.3em;
+  }
+  
+  .social-card1,
+  .social-card2,
+  .social-card3,
+  .social-card4 {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .social-card1 {
+    border-radius: 28px 3px 3px 3px;
+  }
+  
+  .social-card2 {
+    border-radius: 3px 28px 3px 3px;
+  }
+  
+  .social-card3 {
+    border-radius: 3px 3px 3px 28px;
+  }
+  
+  .social-card4 {
+    border-radius: 3px 3px 28px 3px;
+  }
+  
+  .social-card1 svg,
+  .social-card2 svg,
+  .social-card3 svg,
+  .social-card4 svg {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    display: block;
+  }
+}

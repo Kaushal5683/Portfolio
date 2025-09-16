@@ -108,7 +108,7 @@
   text-shadow: var(--shadow-text);
 }
 
-/* Footer social icons */
+/* Footer social icons with animated tooltips */
 .footer-social-icons {
   display: flex;
   gap: var(--spacing-md);
@@ -117,40 +117,76 @@
 }
 
 .footer-social-icon {
+  position: relative;
   width: 50px;
   height: 50px;
-  background: var(--bg-glass);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.8), rgba(192, 132, 252, 0.9));
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   border: 1px solid var(--border-primary);
-  transition: all var(--transition-normal);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   backdrop-filter: blur(4px);
   will-change: transform;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Animated tooltip */
 .footer-social-icon::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-300%) skewY(20deg);
+  background: linear-gradient(135deg, #d4ff8f, #8ce99a);
+  color: #2d3748;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+/* Tooltip arrow */
+.footer-social-icon::after {
   content: "";
   position: absolute;
-  width: 50px;
-  height: 50px;
-  background: var(--gradient-card);
-  border-radius: 50%;
-  transform: scale(0);
-  transition: transform var(--transition-normal);
-  z-index: -1;
-  will-change: transform;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-150%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: #d4ff8f;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9;
+  pointer-events: none;
 }
 
 .footer-social-icon:hover::before {
-  transform: scale(1);
+  opacity: 1;
+  transform: translateX(-50%) translateY(-150%) skewY(0deg);
+  transition-delay: 0.5s;
+}
+
+.footer-social-icon:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transition-delay: 0.5s;
 }
 
 .footer-social-icon:hover {
-  transform: translateY(-5px) translateZ(0);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-5px) scale(1.1) translateZ(0);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 1), rgba(59, 130, 246, 0.9));
+  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
   border-color: var(--border-hover);
 }
 
@@ -158,13 +194,14 @@
   width: 24px;
   height: 24px;
   filter: brightness(0) invert(1);
-  transition: all var(--transition-normal);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
   will-change: filter;
 }
 
 .footer-social-icon:hover img {
-  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+  transform: scale(1.1);
 }
 
 /* Copyright */

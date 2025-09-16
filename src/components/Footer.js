@@ -24,19 +24,19 @@ export const Footer = () => {
             </Col>
             <Col size={12} sm={6} className="text-center text-sm-end">
               <div className="footer-social-icons">
-                <a href="https://www.linkedin.com/in/kaushal-gujarathi104/" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                <a href="https://www.linkedin.com/in/kaushal-gujarathi104/" target="_blank" rel="noopener noreferrer" className="footer-social-icon" data-tooltip="LinkedIn">
                   <img src={navIcon1} alt="LinkedIn" />
                 </a>
-                <a href="https://www.facebook.com/kaushal.gujaratihi" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                <a href="https://www.facebook.com/kaushal.gujaratihi" target="_blank" rel="noopener noreferrer" className="footer-social-icon" data-tooltip="Facebook">
                   <img src={navIcon2} alt="Facebook" />
                 </a>
-                <a href="https://www.instagram.com/kaushalll_01_/" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                <a href="https://www.instagram.com/kaushalll_01_/" target="_blank" rel="noopener noreferrer" className="footer-social-icon" data-tooltip="Instagram">
                   <img src={navIcon3} alt="Instagram" />
                 </a>
-                <a href="https://github.com/Kaushal5683" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                <a href="https://github.com/Kaushal5683" target="_blank" rel="noopener noreferrer" className="footer-social-icon" data-tooltip="GitHub">
                   <img src={navIcon4} alt="GitHub" />
                 </a>
-                <a href="https://wa.me/917218499483" target="_blank" rel="noopener noreferrer" className="footer-social-icon">
+                <a href="https://wa.me/917218499483" target="_blank" rel="noopener noreferrer" className="footer-social-icon" data-tooltip="WhatsApp">
                   <img src={navIcon5} alt="WhatsApp" />
                 </a>
               </div>

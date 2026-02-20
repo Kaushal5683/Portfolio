@@ -23,6 +23,8 @@ const { personalInfo, socialLinks } = raw;
 
 const GITHUB = "https://kaushal5683.github.io/Portfolio";
 const NETLIFY = "https://kaushal104.netlify.app";
+const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
+const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
 const OG_IMG = `${GITHUB}/images/ksg.webp`;
 
 export const metadata: Metadata = {
@@ -72,20 +74,20 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: "/favicon/favicon.ico", sizes: "any" },
-      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: `${PATH_PREFIX}/favicon/favicon.ico`, sizes: "any" },
+      { url: `${PATH_PREFIX}/favicon/favicon-16x16.png`, sizes: "16x16", type: "image/png" },
+      { url: `${PATH_PREFIX}/favicon/favicon-32x32.png`, sizes: "32x32", type: "image/png" },
     ],
     apple: [
-      { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: `${PATH_PREFIX}/favicon/apple-touch-icon.png`, sizes: "180x180", type: "image/png" },
     ],
     other: [
-      { rel: "android-chrome", url: "/favicon/android-chrome-192x192.png" },
-      { rel: "android-chrome", url: "/favicon/android-chrome-512x512.png" },
+      { rel: "android-chrome", url: `${PATH_PREFIX}/favicon/android-chrome-192x192.png` },
+      { rel: "android-chrome", url: `${PATH_PREFIX}/favicon/android-chrome-512x512.png` },
     ],
   },
 
-  manifest: "/favicon/site.webmanifest",
+  manifest: `${PATH_PREFIX}/favicon/site.webmanifest`,
 
   alternates: {
     canonical: GITHUB,

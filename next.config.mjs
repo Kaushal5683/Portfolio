@@ -9,8 +9,15 @@ const nextConfig = {
     ...(process.env.GITHUB_PAGES === "true"
         ? {
             basePath: "/Portfolio",
+            env: {
+                NEXT_PUBLIC_BASE_PATH: "/Portfolio",
+            },
         }
-        : {}),
+        : {
+            env: {
+                NEXT_PUBLIC_BASE_PATH: "",
+            },
+        }),
 };
 
 export default nextConfig;

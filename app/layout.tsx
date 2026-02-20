@@ -24,7 +24,7 @@ const { personalInfo, socialLinks } = raw;
 const GITHUB = "https://kaushal5683.github.io/Portfolio";
 const NETLIFY = "https://kaushal104.netlify.app";
 const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
-const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const OG_IMG = `${GITHUB}/images/ksg.webp`;
 
 export const metadata: Metadata = {

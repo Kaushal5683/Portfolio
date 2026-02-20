@@ -9,8 +9,7 @@ import Image from "next/image";
 // Keep a stable random rotation per slot
 const rotations = [-8, 6, -5, 9, -7, 4, -6, 8];
 
-const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
-const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default function AnimatedTestimonials() {
     const { testimonials, sectionDescriptions } = portfolioData;

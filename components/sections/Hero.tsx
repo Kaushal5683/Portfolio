@@ -207,7 +207,7 @@ export default function Hero() {
                     </MagneticButton>
                     <MagneticButton
                         variant="outline"
-                        href={process.env.GITHUB_PAGES === "true" ? "/Portfolio/images/KaushalGujarathiFullStack.pdf" : "/images/KaushalGujarathiFullStack.pdf"}
+                        href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/KaushalGujarathiFullStack.pdf`}
                     >
                         Download Resume <Download size={15} />
                     </MagneticButton>

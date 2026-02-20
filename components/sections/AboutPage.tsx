@@ -129,8 +129,7 @@ function EduCard({ degree, institution, period, description, achievements, curre
 
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
-const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
-const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default function AboutPage() {
     const { personalInfo, experience, education, certificates } = portfolioData;
@@ -242,7 +241,7 @@ export default function AboutPage() {
                         items={certificates.map((c): ExpandableCardItem => ({
                             title: c.title,
                             description: c.institute,
-                            src: `/images/${c.imgUrl}`,
+                            src: `${PATH_PREFIX}/images/${c.imgUrl}`,
                             badge: c.completionDate,
                             content: `Issued by ${c.institute} · Completed ${c.completionDate}`,
                         }))}

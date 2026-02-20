@@ -34,8 +34,7 @@ const GRADIENTS = [
     "from-rose-950 to-pink-900",
 ];
 
-const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
-const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default function ProjectsPage() {
     const { projects } = portfolioData;

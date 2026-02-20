@@ -6,8 +6,7 @@ import { portfolioData, featuredProjects } from "@/lib/portfolioData";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 
-const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
-const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 function ProjectCard({
     title,

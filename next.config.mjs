@@ -9,7 +9,6 @@ const nextConfig = {
     ...(process.env.GITHUB_PAGES === "true"
         ? {
             basePath: "/Portfolio",
-            assetPrefix: "/Portfolio/",
         }
         : {}),
 };

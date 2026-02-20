@@ -34,13 +34,16 @@ const GRADIENTS = [
     "from-rose-950 to-pink-900",
 ];
 
+const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
+const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+
 export default function ProjectsPage() {
     const { projects } = portfolioData;
 
     const items: ExpandableCardItem[] = projects.map((p, i) => ({
         title: p.title,
         description: p.client ?? inferTags(p.title, p.description),
-        src: p.imgUrl ? `/images/${p.imgUrl}` : undefined,
+        src: p.imgUrl ? `${PATH_PREFIX}/images/${p.imgUrl}` : undefined,
         ctaText: p.demoUrl ? "Live Demo" : undefined,
         ctaLink: p.demoUrl,
         githubLink: p.githubUrl,

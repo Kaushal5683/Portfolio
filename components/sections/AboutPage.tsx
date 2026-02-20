@@ -129,6 +129,9 @@ function EduCard({ degree, institution, period, description, achievements, curre
 
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
+const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
+const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+
 export default function AboutPage() {
     const { personalInfo, experience, education, certificates } = portfolioData;
 
@@ -191,7 +194,7 @@ export default function AboutPage() {
                             <div className="relative p-[3px] rounded-full bg-gradient-to-br from-brand-400 via-accent to-brand-600">
                                 <div className="rounded-full overflow-hidden w-52 h-52 md:w-64 md:h-64 bg-bg-card">
                                     <Image
-                                        src="/images/ME.webp"
+                                        src={`${PATH_PREFIX}/images/ME.webp`}
                                         alt="Kaushal Gujarathi — Java Backend & Full Stack Developer"
                                         fill
                                         className="object-cover object-top"

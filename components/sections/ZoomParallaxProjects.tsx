@@ -6,6 +6,9 @@ import { portfolioData, featuredProjects } from "@/lib/portfolioData";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 
+const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
+const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+
 function ProjectCard({
     title,
     description,
@@ -50,7 +53,7 @@ function ProjectCard({
                     {imgUrl ? (
                         <div className="relative w-full h-[170px] sm:h-[220px] md:h-full">
                             <Image
-                                src={`/images/${imgUrl}`}
+                                src={`${PATH_PREFIX}/images/${imgUrl}`}
                                 alt={client || title}
                                 fill
                                 className="object-cover object-top transition-transform duration-700 hover:scale-105"

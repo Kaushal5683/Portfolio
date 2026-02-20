@@ -30,16 +30,12 @@ jobs:
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        with:
-          # Automatically inject basePath in your Next.js config file, and a
-          # static image prefix.
-          static_site_generator: next
-          
+        
       - name: Install dependencies
         run: npm ci
         
       - name: Build with Next.js
-        run: npx --no-install next build
+        run: npm run build
         env:
           GITHUB_PAGES: "true"
           

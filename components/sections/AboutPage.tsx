@@ -7,6 +7,7 @@ import {
     CheckCircle, MapPin, Calendar,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { ExpandableCardGrid, type ExpandableCardItem } from "@/components/ui/ExpandableCardGrid";
 
 // ─── Section header ──────────────────────────────────────────────────────────
@@ -189,12 +190,13 @@ export default function AboutPage() {
                             {/* Border gradient ring */}
                             <div className="relative p-[3px] rounded-full bg-gradient-to-br from-brand-400 via-accent to-brand-600">
                                 <div className="rounded-full overflow-hidden w-52 h-52 md:w-64 md:h-64 bg-bg-card">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
+                                    <Image
                                         src="/images/ME.webp"
                                         alt="Kaushal Gujarathi — Java Backend & Full Stack Developer"
-                                        className="w-full h-full object-cover object-top"
+                                        fill
+                                        className="object-cover object-top"
                                         loading="eager"
+                                        priority
                                     />
                                 </div>
                             </div>

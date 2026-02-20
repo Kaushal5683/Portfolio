@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { portfolioData, featuredProjects } from "@/lib/portfolioData";
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 function ProjectCard({
     title,
@@ -47,12 +48,15 @@ function ProjectCard({
                 {/* Image side */}
                 <div className="md:w-[55%] bg-bg-primary/60 overflow-hidden flex-shrink-0">
                     {imgUrl ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                            src={`/images/${imgUrl}`}
-                            alt={client || title}
-                            className="w-full h-[170px] sm:h-[220px] md:h-full object-cover object-top transition-transform duration-700 hover:scale-105"
-                        />
+                        <div className="relative w-full h-[170px] sm:h-[220px] md:h-full">
+                            <Image
+                                src={`/images/${imgUrl}`}
+                                alt={client || title}
+                                fill
+                                className="object-cover object-top transition-transform duration-700 hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, 55vw"
+                            />
+                        </div>
                     ) : (
                         <div className="w-full h-[170px] sm:h-[220px] md:h-full flex items-center justify-center text-text-muted">
                             <span className="text-6xl">🖥️</span>

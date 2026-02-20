@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { portfolioData } from "@/lib/portfolioData";
+import Image from "next/image";
 
 // Keep a stable random rotation per slot
 const rotations = [-8, 6, -5, 9, -7, 4, -6, 8];
@@ -73,11 +74,11 @@ export default function AnimatedTestimonials() {
                                 }}
                                 transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                             >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <Image
                                     src={`/images/${t.image}`}
                                     alt={t.name}
-                                    className="h-full w-full rounded-3xl object-cover object-top border border-white/8 shadow-2xl"
+                                    fill
+                                    className="rounded-3xl object-cover object-top border border-white/8 shadow-2xl"
                                     draggable={false}
                                 />
                             </motion.div>

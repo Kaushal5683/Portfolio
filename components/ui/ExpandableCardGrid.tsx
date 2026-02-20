@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, ExternalLink, Github } from "lucide-react";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import Image from "next/image";
 
 export interface ExpandableCardItem {
     title: string;
@@ -86,12 +87,13 @@ export function ExpandableCardGrid({ items }: { items: ExpandableCardItem[] }) {
 
                             {/* Image */}
                             {active.src ? (
-                                <div>
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
+                                <div className="relative w-full h-58 aspect-[16/10]">
+                                    <Image
                                         src={active.src}
                                         alt={active.title}
-                                        className="w-full h-58 object-cover object-top"
+                                        fill
+                                        className="object-cover object-top"
+                                        priority
                                     />
                                 </div>
                             ) : (
@@ -155,13 +157,13 @@ export function ExpandableCardGrid({ items }: { items: ExpandableCardItem[] }) {
                         {/* Thumbnail */}
                         <div className="relative overflow-hidden">
                             {item.src ? (
-                                <div>
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
+                                <div className="relative w-full h-28">
+                                    <Image
                                         src={item.src}
                                         alt={item.title}
-                                        className="w-full h-28 object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                                        loading="lazy"
+                                        fill
+                                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                                        sizes="(max-width: 768px) 50vw, 33vw"
                                     />
                                 </div>
                             ) : (

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/lib/portfolioData";
 import { Github, Linkedin, Instagram, MessageCircle, Heart } from "lucide-react";
+import Link from "next/link";
 
 const socialItems = [
     { icon: Github, href: (s: typeof portfolioData.socialLinks) => s.github, label: "GitHub" },
@@ -99,12 +100,12 @@ export default function Footer() {
                             <ul className="space-y-3">
                                 {navLinks.map(({ label, href }) => (
                                     <li key={label}>
-                                        <a
+                                        <Link
                                             href={href}
                                             className="text-sm text-text-secondary hover:text-brand-300 transition-colors duration-200"
                                         >
                                             {label}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
@@ -115,12 +116,12 @@ export default function Footer() {
                             <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-5">Get In Touch</p>
                             <div className="space-y-3">
                                 <p className="text-sm text-text-secondary">{personalInfo.footerMotto}</p>
-                                <a
+                                <Link
                                     href="/contact"
                                     className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-brand-400 text-white text-sm font-semibold hover:shadow-[0_0_20px_rgba(98,65,232,0.4)] transition-all duration-300"
                                 >
                                     Hire Me
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

@@ -11,6 +11,7 @@ import {
     useMotionValueEvent,
 } from "framer-motion";
 import React, { useRef, useState } from "react";
+import Link from "next/link";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface NavbarProps { children: React.ReactNode; className?: string }
@@ -85,7 +86,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             )}
         >
             {items.map((item, idx) => (
-                <a
+                <Link
                     key={idx}
                     href={item.link}
                     onClick={onItemClick}
@@ -99,7 +100,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                         />
                     )}
                     <span className="relative z-20">{item.name}</span>
-                </a>
+                </Link>
             ))}
         </motion.div>
     );
@@ -188,7 +189,7 @@ export const NavbarButton = ({
     };
 
     return (
-        <Tag href={href} className={cn(base, variants[variant], className)} {...props}>
+        <Tag href={href || "#"} className={cn(base, variants[variant], className)} {...props}>
             {children}
         </Tag>
     );

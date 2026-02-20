@@ -9,6 +9,9 @@ import Image from "next/image";
 // Keep a stable random rotation per slot
 const rotations = [-8, 6, -5, 9, -7, 4, -6, 8];
 
+const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
+const PATH_PREFIX = IS_GITHUB_PAGES ? "/Portfolio" : "";
+
 export default function AnimatedTestimonials() {
     const { testimonials, sectionDescriptions } = portfolioData;
     const [active, setActive] = useState(0);
@@ -75,7 +78,7 @@ export default function AnimatedTestimonials() {
                                 transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                             >
                                 <Image
-                                    src={`/images/${t.image}`}
+                                    src={`${PATH_PREFIX}/images/${t.image}`}
                                     alt={t.name}
                                     fill
                                     className="rounded-3xl object-cover object-top border border-white/8 shadow-2xl"

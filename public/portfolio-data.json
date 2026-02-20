@@ -1,0 +1,419 @@
+{
+    "websites": {
+        "note": "Both domains display the same portfolio content",
+        "totalDomains": 2,
+        "domains": [
+            {
+                "url": "https://kaushal5683.github.io/Portfolio/",
+                "name": "GitHub Pages Portfolio",
+                "type": "Primary",
+                "hosting": "GitHub Pages",
+                "ssl": true,
+                "description": "Main portfolio hosted on GitHub Pages - free, reliable, and fast CDN delivery",
+                "repository": "https://github.com/Kaushal5683/Portfolio"
+            },
+            {
+                "url": "https://kaushal104.netlify.app",
+                "name": "Netlify Portfolio",
+                "type": "Secondary",
+                "hosting": "Netlify",
+                "ssl": true,
+                "description": "Portfolio mirror hosted on Netlify - provides additional reliability and fast global CDN",
+                "isNetlifyDomain": true
+            }
+        ],
+        "features": {
+            "responsive": true,
+            "darkMode": false,
+            "animations": true,
+            "seo": true,
+            "pwa": false,
+            "analytics": false
+        },
+        "techStack": {
+            "frontend": "React.js",
+            "styling": "CSS3 with Bootstrap",
+            "animations": "Animate.css",
+            "email": "EmailJS",
+            "deployment": "GitHub Pages"
+        }
+    },
+    "personalInfo": {
+        "name": "Kaushal Gujarathi",
+        "title": "Java Backend Developer | Full Stack Developer | Web Designer",
+        "tagline": "Kaushal Gujarathi — Java Backend & Full Stack Developer from Pune, India",
+        "phone": "+91 7218499483",
+        "email": "Contact via form",
+        "motto": "Your vision is my command — I believe the client is king, and their satisfaction is my highest priority.",
+        "footerTagline": "Kaushal Gujarathi — Building digital experiences that inspire",
+        "footerMotto": "Your vision is my mission · Java · Spring Boot · React · Angular",
+        "rotatingTitles": [
+            "Java Backend Developer",
+            "Full Stack Developer",
+            "Web Designer"
+        ],
+        "description": [
+            "Kaushal Gujarathi is a Java Backend Developer skilled in designing and implementing scalable, robust backend solutions using Java, Spring Boot, JPA, Hibernate, and SQL — based in Pune, Maharashtra, India.",
+            "Experienced in building REST APIs to seamlessly integrate backend and frontend systems. Proficient with Angular, React, Next.js, and tools like Git, GitHub, and Postman. Available for freelance and full-time opportunities."
+        ]
+    },
+    "socialLinks": {
+        "linkedin": "https://www.linkedin.com/in/kaushal-gujarathi104/",
+        "github": "https://github.com/Kaushal5683",
+        "instagram": "https://www.instagram.com/kaushalll_01_/",
+        "facebook": "https://www.facebook.com/kaushal.gujaratihi",
+        "whatsapp": "https://wa.me/917218499483"
+    },
+    "skills": {
+        "technical": [
+            "Backend Development",
+            "Java Development",
+            "Webpage Design",
+            "API Development"
+        ],
+        "soft": [
+            "Quick Learner",
+            "Fast Problem Solver",
+            "Active Listener",
+            "Efficient Communication"
+        ],
+        "languages": [
+            "Java",
+            "SQL",
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "TypeScript",
+            "Python",
+            "PHP"
+        ],
+        "frameworks": [
+            "Spring Boot",
+            "Hibernate",
+            "Angular",
+            "React",
+            "Tailwind CSS"
+        ],
+        "tools": [
+            "Git",
+            "GitHub",
+            "VS Code",
+            "Eclipse"
+        ],
+        "databases": [
+            "MySQL",
+            "PostgreSQL",
+            "MongoDB"
+        ]
+    },
+    "experience": [
+        {
+            "id": 1,
+            "title": "Freelance Full Stack Developer",
+            "company": "Self-Employed",
+            "period": "April 2025 - Present",
+            "description": "Delivering custom web solutions for multiple clients across various industries. Specializing in responsive design, modern frameworks, and client-focused development with a 100% satisfaction rate.",
+            "skills": [
+                "React",
+                "Angular",
+                "Java",
+                "Spring Boot",
+                "Full Stack"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Student Intern",
+            "company": "Edreamz Technologies (On-Site)",
+            "period": "Jan 2025 - April 2025",
+            "description": "Assisted senior developers with debugging to reduce application errors to boost system performance. Developed Shopify applications using Node.js, React.js, and GraphQL to simplify store management.",
+            "skills": [
+                "Node.js",
+                "React.js",
+                "GraphQL",
+                "Shopify APIs",
+                "Debugging"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Project Intern",
+            "company": "CodSoft (Remote)",
+            "period": "Jan 2025 - Feb 2025",
+            "description": "Implemented a Tic Tac Toe AI using the Minimax algorithm, achieving 100% optimal decision-making. Created a voice assistant AI for real-time weather updates and Wikipedia search, increasing response time by 40%.",
+            "skills": [
+                "AI",
+                "NLP",
+                "Minimax Algorithm",
+                "Voice Assistant",
+                "Python"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Project Intern",
+            "company": "CodeAlpha (Remote)",
+            "period": "Jan 2025 - Jan 2025",
+            "description": "Created REST APIs using Node.js, Express.js, and MySQL for data handling. Optimized backend logic and SQL queries, reducing data fetch time by roughly 20%.",
+            "skills": [
+                "Node.js",
+                "Express.js",
+                "MySQL",
+                "REST APIs",
+                "Full Stack"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "id": 1,
+            "degree": "Master of Science (Computer Application)",
+            "institution": "Symbiosis School for Online & Digital Learning",
+            "period": "2025 - Present",
+            "description": "Specialized in Software Engineering with focus on distributed systems and cloud computing.",
+            "achievements": [],
+            "current": true
+        },
+        {
+            "id": 2,
+            "degree": "Bachelor of Science (Computer Science)",
+            "institution": "Sinhgad College Of Science",
+            "period": "2022 - 2025",
+            "description": "Comprehensive program covering programming fundamentals, data structures, algorithms, and software development.",
+            "achievements": [
+                "CGPA: 8.56/10.0",
+                "Percentage: 77.72%",
+                "Grade: A+"
+            ]
+        },
+        {
+            "id": 3,
+            "degree": "HSC",
+            "institution": "Sarhad Public School And Junior College",
+            "period": "2020 - 2022",
+            "description": "Science and Mathematics focus with Computer Science electives.",
+            "achievements": [
+                "Percentage: 64.64%",
+                "Grade: A"
+            ]
+        },
+        {
+            "id": 4,
+            "degree": "SSC",
+            "institution": "Priyadarshini English School",
+            "period": "2020",
+            "description": "",
+            "achievements": [
+                "Percentage: 84.00%",
+                "Grade: A+"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "title": "Commercial Enterprises Website",
+            "description": "Developed a responsive website for Arnav Enterprises, a concrete manufacturing company with 14+ years of experience, using Next.js and TailwindCSS.",
+            "demoUrl": "https://arnaventerprises.netlify.app/",
+            "imgUrl": "arnav.webp",
+            "clientProject": true,
+            "client": "Arnav Enterprises"
+        },
+        {
+            "title": "Commercial Enterprises Website",
+            "description": "Developed and deployed a modern React.js website for a construction company using Material-UI, featuring dynamic project galleries with image carousels, dark/light theme modes, and responsive design optimized for all devices.",
+            "demoUrl": "https://gurukrupaenterprise.netlify.app/",
+            "imgUrl": "gurukrupa.webp",
+            "clientProject": true,
+            "client": "Gurukrupa Enterprise"
+        },
+        {
+            "title": "Commercial Matrimonial Website",
+            "description": "Delivered the full project within 4 weeks, independently transferring ownership and ensuring 100% functionality post-deployment. Completed the project independently and transferred ownership after deployment",
+            "demoUrl": "https://hitechmatrimonials.com/",
+            "imgUrl": "hitech.webp",
+            "clientProject": true,
+            "client": "HiTech Matrimonials"
+        },
+        {
+            "title": "Personal Portfolio Website",
+            "description": "Built with React to showcase projects, skills, and personal branding. Integrated EmailJS for direct emails, cutting deployment complexity and server costs.",
+            "githubUrl": "https://github.com/Kaushal5683/Portfolio",
+            "demoUrl": "https://kaushal5683.github.io/Portfolio/",
+            "imgUrl": "Portfolio.webp"
+        },
+        {
+            "title": "Automatic Timetable Generator",
+            "description": "Engineered the frontend interface with Angular, JavaScript, and Node.js to enhance user interaction and achieve seamless integration with backend services for the Automatic Timetable Generator.",
+            "githubUrl": "https://github.com/Kaushal5683/FinalTT",
+            "imgUrl": "FinalTT.webp"
+        },
+        {
+            "title": "Tic Tac Toe AI Game",
+            "description": "A 3x3 Tic Tac Toe game powered by the Minimax Algorithm, where the AI makes optimal moves for a challenging gameplay experience.",
+            "githubUrl": "https://github.com/Kaushal5683/AI-Projects/tree/main/Ai%20Tic%20Tac%20Toe",
+            "imgUrl": "AI-Projects.webp"
+        },
+        {
+            "title": "2 Player Tic Tac Toe Game",
+            "description": "A full-stack MERN project of a classic Tic Tac Toe game, featuring a 3x3 grid where two players can compete in real-time. The game is responsive, interactive, and ensures smooth gameplay.",
+            "githubUrl": "https://github.com/Kaushal5683/2-Player-Tic-Tac-Toe",
+            "imgUrl": "2-Player-Tic-Tac-Toe.webp"
+        },
+        {
+            "title": "Voice Assistant AI",
+            "description": "A Python-powered AI assistant that provides weather updates and speaks Wikipedia information on request.",
+            "githubUrl": "https://github.com/Kaushal5683/Voice-Assistant",
+            "imgUrl": "Voice-Assistant.webp"
+        },
+        {
+            "title": "Chat Bot AI",
+            "description": "AI chatbot project is designed to engage users in conversations and learn about Earth through their input. The chatbot dynamically adapts to responses, aiming to expand its knowledge and understanding of the world around us.",
+            "githubUrl": "https://github.com/Kaushal5683/AI-Projects/tree/main/Chatbot",
+            "imgUrl": "AI-Projects.webp"
+        },
+        {
+            "title": "Mobile Control Car",
+            "description": "Engineered a remote-controlled surveillance car with real-time video streaming live at Html webpage ESP-32 Camera Module and Embedded C.",
+            "githubUrl": "https://github.com/Kaushal5683/ESP32CAR",
+            "imgUrl": "ESP32CAR.webp"
+        },
+        {
+            "title": "E-Commerce Platform (MERN Stack)",
+            "description": "Built a responsive e-commerce platform with user authentication, product management, cart, and secure checkout, leveraging the MERN stack for scalability and performance.",
+            "githubUrl": "https://github.com/Kaushal5683/E-Commerce",
+            "imgUrl": "E-Commerce.webp"
+        },
+        {
+            "title": "Sonar System",
+            "description": "Designed a sonar system that combines stepper motors for dynamic scanning with an Arduino Uno and ultrasonic sensors to measure distance with an accuracy of less than 50 cm.",
+            "githubUrl": "https://github.com/Kaushal5683/Sonar-System",
+            "imgUrl": "Sonar-System.webp"
+        }
+    ],
+    "certificates": [
+        {
+            "title": "NVIDIA Deep Learning",
+            "completionDate": "July 2025",
+            "institute": "NVIDIA",
+            "imgUrl": "NVIDIA.webp"
+        },
+        {
+            "title": "React Development",
+            "completionDate": "January 2025",
+            "institute": "Udemy",
+            "imgUrl": "React Certificate.webp"
+        },
+        {
+            "title": "Cyber Security Analyst Job Simulation",
+            "completionDate": "November 2024",
+            "institute": "Tata & Forage",
+            "imgUrl": "CyberSecurity Certificate.webp"
+        },
+        {
+            "title": "JavaScript Development",
+            "completionDate": "November 2024",
+            "institute": "Udemy",
+            "imgUrl": "JavaScript Certificate.webp"
+        },
+        {
+            "title": "Full Stack Java Development",
+            "completionDate": "July 2024",
+            "institute": "Symbiosis",
+            "imgUrl": "FullStackJava.webp"
+        },
+        {
+            "title": "Data Structures Using C Programming",
+            "completionDate": "May 2024",
+            "institute": "SWAYAM",
+            "imgUrl": "DSA Certificate.webp"
+        },
+        {
+            "title": "Java Programming Fundamentals",
+            "completionDate": "April 2024",
+            "institute": "Infosys Springboard",
+            "imgUrl": "Infosys Java Course.webp"
+        },
+        {
+            "title": "Python Programming & SQL",
+            "completionDate": "October 2022",
+            "institute": "ExcelR",
+            "imgUrl": "Python Certificate.webp"
+        },
+        {
+            "title": "Overview of Space Science & Technology For School Students",
+            "completionDate": "July 2022",
+            "institute": "ISRO",
+            "imgUrl": "ISRO Certificate.webp"
+        }
+    ],
+    "testimonials": [
+        {
+            "id": 1,
+            "name": "Dheeraj Butala",
+            "position": "Director, Arnav Enterprises",
+            "image": "arnav.webp",
+            "rating": 5,
+            "projectType": "Corporate Website",
+            "text": "Kaushal delivered an exceptional website for our concrete manufacturing business. His attention to detail and understanding of our industry needs was impressive. The website has significantly improved our online presence and customer engagement by 45% in just three months."
+        },
+        {
+            "id": 2,
+            "name": "Nilesh Gandhi & Yashwant Dalvi",
+            "position": "Director, Gurukrupa Enterprise",
+            "image": "gurukrupa.webp",
+            "rating": 5,
+            "projectType": "Construction Portfolio",
+            "text": "Working with Kaushal was a pleasure. He created a modern, responsive website for our construction company that perfectly represents our brand. The dynamic project galleries and theme options exceeded our expectations and helped us secure three major contracts."
+        },
+        {
+            "id": 3,
+            "name": "Priya Desai",
+            "position": "Founder, HiTech Matrimonials",
+            "image": "hitech.webp",
+            "rating": 5,
+            "projectType": "Matrimonial Platform",
+            "text": "Kaushal completed our matrimonial website ahead of schedule and ensured a smooth transition. His technical expertise and commitment to quality are commendable. We've seen a significant increase in user registrations since launch, with over 5,000 new users in the first month."
+        }
+    ],
+    "contactInfo": {
+        "heading": "Get In Touch",
+        "subheading": "Your needs are my top priority. As they say, \"Client is God\" - I'm here to turn your vision into reality. Please share your thoughts!",
+        "phone": "+91 7218499483",
+        "emailJsConfig": {
+            "serviceId": "service_hyg3qse",
+            "templateId": "template_872kmo9",
+            "publicKey": "IFz-Ot4BAJQ3XzunH"
+        }
+    },
+    "sectionDescriptions": {
+        "projects": "Explore my portfolio of work spanning commercial client projects and personal development initiatives. Each project showcases my commitment to creating responsive, user-friendly, and visually appealing digital experiences.",
+        "certificates": "A collection of professional certifications I've earned, showcasing my commitment to continuous learning and skill development in various technologies and domains.",
+        "experienceEducation": "My professional journey and academic background",
+        "testimonials": "Real results from satisfied clients who trusted my expertise",
+        "technicalSkills": "Specialized in modern technologies to deliver high-quality solutions"
+    },
+    "assets": {
+        "images": {
+            "banner": "banner.webp",
+            "logo": "ksg.webp",
+            "projectImages": [
+                "arnav.webp",
+                "gurukrupa.webp",
+                "hitech.webp",
+                "logo.webp"
+            ],
+            "certificateImages": [
+                "NVIDIA.webp",
+                "React Certificate.webp",
+                "CyberSecurity Certificate.webp",
+                "JavaScript Certificate.webp",
+                "FullStackJava.webp",
+                "DSA Certificate.webp",
+                "Infosys Java Course.webp",
+                "Python Certificate.webp",
+                "ISRO Certificate.webp"
+            ]
+        },
+        "resume": "KaushalGujarathiFullStack.pdf"
+    }
+}

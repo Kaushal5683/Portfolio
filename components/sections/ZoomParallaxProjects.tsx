@@ -3,8 +3,9 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { portfolioData, featuredProjects } from "@/lib/portfolioData";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -239,6 +240,17 @@ export default function ZoomParallaxProjects() {
                         containerRef={containerRef}
                     />
                 ))}
+            </div>
+
+            {/* View all projects CTA */}
+            <div className="relative z-10 py-12 md:py-16 text-center">
+                <Link
+                    href="/projects"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-brand-500/30 bg-brand-500/10 text-brand-300 text-sm font-semibold hover:bg-brand-500/20 hover:border-brand-400/50 hover:shadow-[0_0_20px_rgba(98,65,232,0.25)] transition-all duration-300 group"
+                >
+                    View All Projects
+                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
             </div>
         </section>
     );

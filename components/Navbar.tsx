@@ -11,6 +11,7 @@ import {
     MobileNavToggle,
     NavbarButton,
 } from "@/components/ui/resizable-navbar";
+import Link from "next/link";
 import { portfolioData } from "@/lib/portfolioData";
 
 const navLinks = [
@@ -30,7 +31,7 @@ export default function AppNavbar() {
             {/* ── Desktop ─────────────────────────────────────── */}
             <NavBody>
                 {/* Logo */}
-                <a href="/" className="relative z-20 flex items-center gap-2 shrink-0">
+                <Link href="/" className="relative z-20 flex items-center gap-2 shrink-0">
                     <span className="text-sm font-black tracking-tight">
                         <span className="text-text-primary">
                             {personalInfo.name.split(" ")[0]}
@@ -39,14 +40,14 @@ export default function AppNavbar() {
                             {personalInfo.name.split(" ")[1]}
                         </span>
                     </span>
-                </a>
+                </Link>
 
                 {/* Nav links */}
                 <NavItems items={navLinks} />
 
                 {/* CTA */}
                 <div className="relative z-20 shrink-0">
-                    <NavbarButton href="/contact" variant="gradient">
+                    <NavbarButton as={Link} href="/contact" variant="gradient">
                         Hire Me
                     </NavbarButton>
                 </div>
@@ -56,7 +57,7 @@ export default function AppNavbar() {
             <MobileNav>
                 <MobileNavHeader>
                     {/* Logo */}
-                    <a href="/" className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center gap-2">
                         <span className="text-sm font-black tracking-tight">
                             <span className="text-text-primary">
                                 {personalInfo.name.split(" ")[0]}
@@ -65,7 +66,7 @@ export default function AppNavbar() {
                                 {personalInfo.name.split(" ")[1]}
                             </span>
                         </span>
-                    </a>
+                    </Link>
 
                     <MobileNavToggle isOpen={mobileOpen} onClick={() => setMobileOpen((v) => !v)} />
                 </MobileNavHeader>
@@ -75,16 +76,16 @@ export default function AppNavbar() {
                     onClose={() => setMobileOpen(false)}
                 >
                     {navLinks.map((link) => (
-                        <a
+                        <Link
                             key={link.name}
                             href={link.link}
                             onClick={() => setMobileOpen(false)}
                             className="w-full py-2 text-base font-medium text-text-secondary hover:text-text-primary transition-colors"
                         >
                             {link.name}
-                        </a>
+                        </Link>
                     ))}
-                    <NavbarButton href="/contact" variant="gradient" className="mt-2 w-full justify-center">
+                    <NavbarButton as={Link} href="/contact" variant="gradient" className="mt-2 w-full justify-center">
                         Hire Me
                     </NavbarButton>
                 </MobileNavMenu>

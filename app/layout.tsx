@@ -91,8 +91,6 @@ export const metadata: Metadata = {
 
   alternates: {
     canonical: GITHUB,
-    // Both domains are mine
-    languages: { "en-IN": NETLIFY },
   },
 
   // Enables Google to show a search box in results

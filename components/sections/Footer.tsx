@@ -132,7 +132,7 @@ export default function Footer() {
                             © {year} {personalInfo.name}. All rights reserved.
                         </p>
                         <p className="text-xs text-text-muted flex items-center gap-1.5">
-                            Built with <Heart size={11} className="text-brand-400 fill-brand-400" /> using Next.js &amp; Tailwind CSS
+                            Build this using Next.js &amp; Tailwind CSS
                         </p>
                     </div>
                 </div>

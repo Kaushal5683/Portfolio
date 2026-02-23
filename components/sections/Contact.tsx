@@ -179,12 +179,12 @@ export default function Contact() {
                         >
                             <div className="grid sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="first_name">
+                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="firstName">
                                         First Name
                                     </label>
                                     <input
-                                        id="first_name"
-                                        name="first_name"
+                                        id="firstName"
+                                        name="firstName"
                                         type="text"
                                         required
                                         placeholder="John"
@@ -192,12 +192,12 @@ export default function Contact() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="last_name">
+                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="lastName">
                                         Last Name
                                     </label>
                                     <input
-                                        id="last_name"
-                                        name="last_name"
+                                        id="lastName"
+                                        name="lastName"
                                         type="text"
                                         required
                                         placeholder="Doe"

@@ -214,7 +214,7 @@ export default function AboutPage() {
 
 
                 {/* ── Experience + Education side by side ── */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+                <div id="experience" className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
                     <section>
                         <SectionHeading icon={Briefcase} label="Career" title="Work Experience" />
                         <div>
@@ -235,7 +235,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* ── Certificates ───────────────── */}
-                <section className="mb-16">
+                <section id="certificates" className="scroll-mt-24 mb-16">
                     <SectionHeading icon={Award} label="Certifications" title="Certificates" />
                     <ExpandableCardGrid
                         items={certificates.map((c): ExpandableCardItem => ({

@@ -3,7 +3,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)); }
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import {
     motion,
     AnimatePresence,
@@ -14,9 +14,11 @@ import React, { useRef, useState } from "react";
 import Link from "next/link";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
+interface NavSubItem { name: string; link: string; icon?: React.ElementType }
+interface NavItem { name: string; link: string; subItems?: NavSubItem[] }
 interface NavbarProps { children: React.ReactNode; className?: string }
 interface NavBodyProps { children: React.ReactNode; className?: string; visible?: boolean }
-interface NavItemsProps { items: { name: string; link: string }[]; className?: string; onItemClick?: () => void }
+interface NavItemsProps { items: NavItem[]; className?: string; onItemClick?: () => void }
 interface MobileNavProps { children: React.ReactNode; className?: string; visible?: boolean }
 interface MobileNavHeaderProps { children: React.ReactNode; className?: string }
 interface MobileNavMenuProps { children: React.ReactNode; className?: string; isOpen: boolean; onClose: () => void }
@@ -73,35 +75,96 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     );
 };
 
-// ─── NavItems (desktop links with hover highlight) ───────────────────────────
+// ─── NavItems (desktop links with hover highlight + dropdown) ────────────────
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     const [hovered, setHovered] = useState<number | null>(null);
+    const [dropdownOpen, setDropdownOpen] = useState<number | null>(null);
+    const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const openDropdown = (idx: number) => {
+        if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
+        setDropdownOpen(idx);
+    };
+    const scheduleClose = () => {
+        closeTimer.current = setTimeout(() => setDropdownOpen(null), 150);
+    };
 
     return (
         <motion.div
-            onMouseLeave={() => setHovered(null)}
+            onMouseLeave={() => { setHovered(null); scheduleClose(); }}
             className={cn(
                 "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium lg:flex",
                 className
             )}
         >
-            {items.map((item, idx) => (
-                <Link
-                    key={idx}
-                    href={item.link}
-                    onClick={onItemClick}
-                    onMouseEnter={() => setHovered(idx)}
-                    className="relative px-4 py-2 text-text-secondary hover:text-text-primary transition-colors duration-200"
-                >
-                    {hovered === idx && (
-                        <motion.div
-                            layoutId="nav-hover"
-                            className="absolute inset-0 h-full w-full rounded-full bg-white/8"
-                        />
-                    )}
-                    <span className="relative z-20">{item.name}</span>
-                </Link>
-            ))}
+            {items.map((item, idx) => {
+                const hasSub = item.subItems && item.subItems.length > 0;
+                return (
+                    <div
+                        key={idx}
+                        className="relative"
+                        onMouseEnter={() => { setHovered(idx); if (hasSub) openDropdown(idx); }}
+                        onMouseLeave={scheduleClose}
+                    >
+                        <Link
+                            href={item.link}
+                            onClick={onItemClick}
+                            className="relative flex items-center gap-1 px-4 py-2 text-text-secondary hover:text-text-primary transition-colors duration-200"
+                        >
+                            {hovered === idx && (
+                                <motion.div
+                                    layoutId="nav-hover"
+                                    className="absolute inset-0 h-full w-full rounded-full bg-white/8"
+                                />
+                            )}
+                            <span className="relative z-20">{item.name}</span>
+                            {hasSub && (
+                                <ChevronDown
+                                    size={13}
+                                    className={cn(
+                                        "relative z-20 transition-transform duration-200",
+                                        dropdownOpen === idx && "rotate-180"
+                                    )}
+                                />
+                            )}
+                        </Link>
+
+                        {/* Dropdown */}
+                        {hasSub && (
+                            <AnimatePresence>
+                                {dropdownOpen === idx && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -6, scale: 0.96 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: -6, scale: 0.96 }}
+                                        transition={{ duration: 0.18, ease: "easeOut" }}
+                                        onMouseEnter={() => openDropdown(idx)}
+                                        onMouseLeave={scheduleClose}
+                                        className="absolute left-1/2 -translate-x-1/2 top-full mt-2 min-w-[220px] rounded-xl border border-white/10 bg-bg-primary/95 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] py-2 z-[70]"
+                                    >
+                                        {/* Subtle top accent */}
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-gradient-to-r from-transparent via-brand-400/60 to-transparent rounded-full" />
+
+                                        {item.subItems!.map((sub, si) => (
+                                            <Link
+                                                key={si}
+                                                href={sub.link}
+                                                onClick={() => { setDropdownOpen(null); onItemClick?.(); }}
+                                                className="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all duration-150 group"
+                                            >
+                                                {sub.icon && (
+                                                    <sub.icon size={15} className="text-brand-400 group-hover:text-brand-300 transition-colors flex-shrink-0" />
+                                                )}
+                                                <span>{sub.name}</span>
+                                            </Link>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        )}
+                    </div>
+                );
+            })}
         </motion.div>
     );
 };

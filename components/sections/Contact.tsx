@@ -179,45 +179,59 @@ export default function Contact() {
                         >
                             <div className="grid sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="from_name">
-                                        Your Name
+                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="first_name">
+                                        First Name
                                     </label>
                                     <input
-                                        id="from_name"
-                                        name="from_name"
+                                        id="first_name"
+                                        name="first_name"
                                         type="text"
                                         required
-                                        placeholder="John Doe"
+                                        placeholder="John"
                                         className={inputClass}
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="from_email">
-                                        Email Address
+                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="last_name">
+                                        Last Name
                                     </label>
                                     <input
-                                        id="from_email"
-                                        name="from_email"
+                                        id="last_name"
+                                        name="last_name"
+                                        type="text"
+                                        required
+                                        placeholder="Doe"
+                                        className={inputClass}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="email">
+                                        Email
+                                    </label>
+                                    <input
+                                        id="email"
+                                        name="email"
                                         type="email"
                                         required
                                         placeholder="john@example.com"
                                         className={inputClass}
                                     />
                                 </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="subject">
-                                    Subject
-                                </label>
-                                <input
-                                    id="subject"
-                                    name="subject"
-                                    type="text"
-                                    required
-                                    placeholder="Project Inquiry"
-                                    className={inputClass}
-                                />
+                                <div>
+                                    <label className="block text-xs font-medium text-text-secondary mb-2" htmlFor="phone">
+                                        Phone
+                                    </label>
+                                    <input
+                                        id="phone"
+                                        name="phone"
+                                        type="tel"
+                                        placeholder="+91 98765 43210"
+                                        className={inputClass}
+                                    />
+                                </div>
                             </div>
 
                             <div>

@@ -211,6 +211,14 @@
     ],
     "projects": [
         {
+            "title": "Digital Marketing Agency Website",
+            "description": "Developed a modern, responsive portfolio website for MClicksMedia, a digital marketing agency, ensuring high performance and a seamless user experience.",
+            "demoUrl": "https://mclicksmedia.in/",
+            "imgUrl": "mclicksmedia.webp",
+            "clientProject": true,
+            "client": "MClicksMedia"
+        },
+        {
             "title": "Commercial Enterprises Website",
             "description": "Developed a responsive website for Arnav Enterprises, a concrete manufacturing company with 14+ years of experience, using Next.js and TailwindCSS.",
             "demoUrl": "https://arnaventerprises.netlify.app/",

@@ -58,7 +58,7 @@ function ProjectCard({
                                 alt={client || title}
                                 fill
                                 loading="lazy"
-                                className="object-cover object-top transition-transform duration-700 hover:scale-105"
+                                className="object-contain object-center transition-transform duration-700 hover:scale-105 p-4"
                                 sizes="(max-width: 768px) 100vw, 55vw"
                             />
                         </div>

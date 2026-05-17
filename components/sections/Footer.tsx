@@ -2,14 +2,15 @@
 
 import { motion } from "framer-motion";
 import { portfolioData } from "@/lib/portfolioData";
-import { Github, Linkedin, Instagram, MessageCircle, Heart } from "lucide-react";
+import { Github, Linkedin, Instagram, Heart } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import Link from "next/link";
 
 const socialItems = [
     { icon: Github, href: (s: typeof portfolioData.socialLinks) => s.github, label: "GitHub" },
     { icon: Linkedin, href: (s: typeof portfolioData.socialLinks) => s.linkedin, label: "LinkedIn" },
     { icon: Instagram, href: (s: typeof portfolioData.socialLinks) => s.instagram, label: "Instagram" },
-    { icon: MessageCircle, href: (s: typeof portfolioData.socialLinks) => s.whatsapp, label: "WhatsApp" },
+    { icon: WhatsAppIcon, href: (s: typeof portfolioData.socialLinks) => s.whatsapp, label: "WhatsApp" },
 ];
 
 const navLinks = [
@@ -61,8 +62,8 @@ export default function Footer() {
 
             {/* ── DESKTOP layout (hidden on mobile) ──────────────── */}
             <div className="hidden md:block">
-                <div className="max-w-6xl mx-auto px-6 py-16">
-                    <div className="grid grid-cols-3 gap-12 mb-12">
+                <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 lg:gap-16 mb-12">
 
                         {/* Brand column */}
                         <div className="space-y-4">

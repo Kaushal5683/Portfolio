@@ -162,7 +162,7 @@ export default function AboutPage() {
                         {/* ── Text ── */}
                         <div className="flex-1 min-w-0">
                             <p className="text-brand-400 text-xs font-semibold tracking-widest uppercase mb-3">Full Profile</p>
-                            <h1 className="text-4xl md:text-6xl font-black text-text-primary mb-4">
+                            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-text-primary mb-4">
                                 About{" Me"}
                             </h1>
                             <p className="text-text-secondary leading-relaxed mb-3">
@@ -191,7 +191,7 @@ export default function AboutPage() {
 
                             {/* Border gradient ring */}
                             <div className="relative p-[3px] rounded-full bg-gradient-to-br from-brand-400 via-accent to-brand-600">
-                                <div className="rounded-full overflow-hidden w-52 h-52 md:w-64 md:h-64 bg-bg-card">
+                                <div className="rounded-full overflow-hidden w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 bg-bg-card">
                                     <Image
                                         src={`${PATH_PREFIX}/images/ME.webp`}
                                         alt="Kaushal Gujarathi — Java Backend & Full Stack Developer"

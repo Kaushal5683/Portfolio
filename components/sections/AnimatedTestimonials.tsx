@@ -33,7 +33,7 @@ export default function AnimatedTestimonials() {
     return (
         <section
             id="testimonials"
-            className="relative py-28 bg-bg-secondary/20 overflow-hidden"
+            className="relative py-16 md:py-28 bg-bg-secondary/20 overflow-hidden"
         >
             {/* Background glow */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(98,65,232,0.1)_0%,transparent_70%)]" />
@@ -45,7 +45,7 @@ export default function AnimatedTestimonials() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.7 }}
-                    className="text-center mb-20"
+                    className="text-center mb-10 md:mb-20"
                 >
                     <p className="text-brand-400 text-sm font-semibold tracking-widest uppercase mb-3">
                         Client Feedback
@@ -62,7 +62,7 @@ export default function AnimatedTestimonials() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
 
                     {/* ── Left: stacked rotating images ─────────────── */}
-                    <div className="relative w-full aspect-video max-w-lg mx-auto md:mx-0">
+                    <div className="relative w-full aspect-[4/3] sm:aspect-video max-w-sm sm:max-w-lg mx-auto md:mx-0">
                         {testimonials.map((t, index) => (
                             <motion.div
                                 key={t.id}
@@ -80,6 +80,8 @@ export default function AnimatedTestimonials() {
                                     src={`${PATH_PREFIX}/images/${t.image}`}
                                     alt={t.name}
                                     fill
+                                    loading={isActive(index) ? "eager" : "lazy"}
+                                    sizes="(max-width: 768px) 90vw, 50vw"
                                     className="rounded-3xl object-cover object-top border border-white/8 shadow-2xl"
                                     draggable={false}
                                 />
@@ -88,7 +90,7 @@ export default function AnimatedTestimonials() {
                     </div>
 
                     {/* ── Right: animated text content ──────────────── */}
-                    <div className="flex flex-col justify-between h-full min-h-[320px]">
+                    <div className="flex flex-col justify-between h-full min-h-[280px] md:min-h-[320px]">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={active}

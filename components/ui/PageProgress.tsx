@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 /**
- * Shows a thin top-bar progress indicator ONLY if route navigation
- * takes longer than SHOW_THRESHOLD_MS. Fast navigations get no loader.
+ * Shows a thin top-bar progress indicator ONLY during client-side route
+ * navigation that takes longer than SHOW_THRESHOLD_MS.
+ *
+ * On first page load (hard navigation / SSG hydration) the bar is NEVER
+ * shown — we only track changes from the initial path.
  */
-const SHOW_THRESHOLD_MS = 300;
+const SHOW_THRESHOLD_MS = 400;
 
 export default function PageProgress() {
     const pathname = usePathname();
@@ -15,19 +18,19 @@ export default function PageProgress() {
     const [visible, setVisible] = useState(false);
     const [completing, setCompleting] = useState(false);
 
-    const showTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const showTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
     const progressTimer = useRef<ReturnType<typeof setInterval> | null>(null);
-    const prevPath = useRef(pathname);
+    // Track whether we've seen the first path — don't show on initial mount
+    const isFirstMount = useRef(true);
+    const prevPath     = useRef(pathname);
 
-    // Reset all state and clear all timers
     const reset = () => {
-        if (showTimer.current) clearTimeout(showTimer.current);
+        if (showTimer.current)    clearTimeout(showTimer.current);
         if (progressTimer.current) clearInterval(progressTimer.current);
         showTimer.current = null;
         progressTimer.current = null;
     };
 
-    // Complete the bar (shoot to 100%, then hide)
     const complete = () => {
         reset();
         setWidth(100);
@@ -36,37 +39,41 @@ export default function PageProgress() {
             setVisible(false);
             setCompleting(false);
             setWidth(0);
-        }, 400); // matches CSS transition duration
+        }, 400);
     };
 
     useEffect(() => {
-        // Same path — nothing to do (strict-mode double-fire guard)
+        // First mount — just record the path, never show the bar
+        if (isFirstMount.current) {
+            isFirstMount.current = false;
+            prevPath.current = pathname;
+            return;
+        }
+
+        // Same path (strict-mode double-fire guard)
         if (pathname === prevPath.current) return;
         prevPath.current = pathname;
 
-        // Start: schedule the bar to appear only if loading is slow
+        // Client-side navigation started — show bar only if slow
         reset();
         setWidth(0);
         setVisible(false);
 
         showTimer.current = setTimeout(() => {
-            // Still loading after threshold — show the bar
             setVisible(true);
             setWidth(25);
 
-            // Trickle slowly toward 85%
             progressTimer.current = setInterval(() => {
                 setWidth(w => {
                     if (w >= 85) {
                         clearInterval(progressTimer.current!);
                         return 85;
                     }
-                    return w + Math.random() * 12;
+                    return w + Math.random() * 10;
                 });
-            }, 400);
+            }, 350);
         }, SHOW_THRESHOLD_MS);
 
-        // Cleanup = page finished loading → complete the bar
         return () => complete();
     }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 

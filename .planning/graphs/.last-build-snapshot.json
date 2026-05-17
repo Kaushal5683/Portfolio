@@ -1,0 +1,920 @@
+{
+  "version": 1,
+  "timestamp": "2026-05-17T07:42:46.540Z",
+  "nodes": [
+    {
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "next-env.d.ts",
+      "source_location": "L1",
+      "id": "next_env_d_ts",
+      "community": 21,
+      "norm_label": "next-env.d.ts"
+    },
+    {
+      "label": "next.config.mjs",
+      "file_type": "code",
+      "source_file": "next.config.mjs",
+      "source_location": "L1",
+      "id": "next_config_mjs",
+      "community": 22,
+      "norm_label": "next.config.mjs"
+    },
+    {
+      "label": "postcss.config.mjs",
+      "file_type": "code",
+      "source_file": "postcss.config.mjs",
+      "source_location": "L1",
+      "id": "postcss_config_mjs",
+      "community": 23,
+      "norm_label": "postcss.config.mjs"
+    },
+    {
+      "label": "tailwind.config.ts",
+      "file_type": "code",
+      "source_file": "tailwind.config.ts",
+      "source_location": "L1",
+      "id": "tailwind_config_ts",
+      "community": 24,
+      "norm_label": "tailwind.config.ts"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "app\\layout.tsx",
+      "source_location": "L1",
+      "id": "app_layout_tsx",
+      "community": 25,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app\\page.tsx",
+      "source_location": "L1",
+      "id": "app_page_tsx",
+      "community": 26,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "robots.ts",
+      "file_type": "code",
+      "source_file": "app\\robots.ts",
+      "source_location": "L1",
+      "id": "app_robots_ts",
+      "community": 7,
+      "norm_label": "robots.ts"
+    },
+    {
+      "label": "robots()",
+      "file_type": "code",
+      "source_file": "app\\robots.ts",
+      "source_location": "L6",
+      "id": "app_robots_robots",
+      "community": 7,
+      "norm_label": "robots()"
+    },
+    {
+      "label": "sitemap.ts",
+      "file_type": "code",
+      "source_file": "app\\sitemap.ts",
+      "source_location": "L1",
+      "id": "app_sitemap_ts",
+      "community": 8,
+      "norm_label": "sitemap.ts"
+    },
+    {
+      "label": "sitemap()",
+      "file_type": "code",
+      "source_file": "app\\sitemap.ts",
+      "source_location": "L13",
+      "id": "app_sitemap_sitemap",
+      "community": 8,
+      "norm_label": "sitemap()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app\\about\\page.tsx",
+      "source_location": "L1",
+      "id": "app_about_page_tsx",
+      "community": 9,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "About()",
+      "file_type": "code",
+      "source_file": "app\\about\\page.tsx",
+      "source_location": "L59",
+      "id": "about_page_about",
+      "community": 9,
+      "norm_label": "about()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app\\contact\\page.tsx",
+      "source_location": "L1",
+      "id": "app_contact_page_tsx",
+      "community": 10,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ContactPage()",
+      "file_type": "code",
+      "source_file": "app\\contact\\page.tsx",
+      "source_location": "L50",
+      "id": "contact_page_contactpage",
+      "community": 10,
+      "norm_label": "contactpage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app\\projects\\page.tsx",
+      "source_location": "L1",
+      "id": "app_projects_page_tsx",
+      "community": 11,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "Projects()",
+      "file_type": "code",
+      "source_file": "app\\projects\\page.tsx",
+      "source_location": "L47",
+      "id": "projects_page_projects",
+      "community": 11,
+      "norm_label": "projects()"
+    },
+    {
+      "label": "FloatingSocialBar.tsx",
+      "file_type": "code",
+      "source_file": "components\\FloatingSocialBar.tsx",
+      "source_location": "L1",
+      "id": "components_floatingsocialbar_tsx",
+      "community": 2,
+      "norm_label": "floatingsocialbar.tsx"
+    },
+    {
+      "label": "socials()",
+      "file_type": "code",
+      "source_file": "components\\FloatingSocialBar.tsx",
+      "source_location": "L8",
+      "id": "components_floatingsocialbar_socials",
+      "community": 2,
+      "norm_label": "socials()"
+    },
+    {
+      "label": "DesktopBar()",
+      "file_type": "code",
+      "source_file": "components\\FloatingSocialBar.tsx",
+      "source_location": "L17",
+      "id": "components_floatingsocialbar_desktopbar",
+      "community": 2,
+      "norm_label": "desktopbar()"
+    },
+    {
+      "label": "Navbar.tsx",
+      "file_type": "code",
+      "source_file": "components\\Navbar.tsx",
+      "source_location": "L1",
+      "id": "components_navbar_tsx",
+      "community": 27,
+      "norm_label": "navbar.tsx"
+    },
+    {
+      "label": "AboutMe.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\AboutMe.tsx",
+      "source_location": "L1",
+      "id": "components_sections_aboutme_tsx",
+      "community": 28,
+      "norm_label": "aboutme.tsx"
+    },
+    {
+      "label": "AboutPage.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\AboutPage.tsx",
+      "source_location": "L1",
+      "id": "components_sections_aboutpage_tsx",
+      "community": 3,
+      "norm_label": "aboutpage.tsx"
+    },
+    {
+      "label": "SectionHeading()",
+      "file_type": "code",
+      "source_file": "components\\sections\\AboutPage.tsx",
+      "source_location": "L14",
+      "id": "sections_aboutpage_sectionheading",
+      "community": 3,
+      "norm_label": "sectionheading()"
+    },
+    {
+      "label": "ExpCard()",
+      "file_type": "code",
+      "source_file": "components\\sections\\AboutPage.tsx",
+      "source_location": "L29",
+      "id": "sections_aboutpage_expcard",
+      "community": 3,
+      "norm_label": "expcard()"
+    },
+    {
+      "label": "AnimatedTestimonials.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\AnimatedTestimonials.tsx",
+      "source_location": "L1",
+      "id": "components_sections_animatedtestimonials_tsx",
+      "community": 0,
+      "norm_label": "animatedtestimonials.tsx"
+    },
+    {
+      "label": "next()",
+      "file_type": "code",
+      "source_file": "components\\sections\\AnimatedTestimonials.tsx",
+      "source_location": "L19",
+      "id": "sections_animatedtestimonials_next",
+      "community": 0,
+      "norm_label": "next()"
+    },
+    {
+      "label": "prev()",
+      "file_type": "code",
+      "source_file": "components\\sections\\AnimatedTestimonials.tsx",
+      "source_location": "L20",
+      "id": "sections_animatedtestimonials_prev",
+      "community": 0,
+      "norm_label": "prev()"
+    },
+    {
+      "label": "isActive()",
+      "file_type": "code",
+      "source_file": "components\\sections\\AnimatedTestimonials.tsx",
+      "source_location": "L29",
+      "id": "sections_animatedtestimonials_isactive",
+      "community": 0,
+      "norm_label": "isactive()"
+    },
+    {
+      "label": "Contact.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\Contact.tsx",
+      "source_location": "L1",
+      "id": "components_sections_contact_tsx",
+      "community": 4,
+      "norm_label": "contact.tsx"
+    },
+    {
+      "label": "SocialLink()",
+      "file_type": "code",
+      "source_file": "components\\sections\\Contact.tsx",
+      "source_location": "L21",
+      "id": "sections_contact_sociallink",
+      "community": 4,
+      "norm_label": "sociallink()"
+    },
+    {
+      "label": "handleSubmit()",
+      "file_type": "code",
+      "source_file": "components\\sections\\Contact.tsx",
+      "source_location": "L50",
+      "id": "sections_contact_handlesubmit",
+      "community": 4,
+      "norm_label": "handlesubmit()"
+    },
+    {
+      "label": "Footer.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\Footer.tsx",
+      "source_location": "L1",
+      "id": "components_sections_footer_tsx",
+      "community": 29,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "Hero.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\Hero.tsx",
+      "source_location": "L1",
+      "id": "components_sections_hero_tsx",
+      "community": 5,
+      "norm_label": "hero.tsx"
+    },
+    {
+      "label": "handleMouseMove()",
+      "file_type": "code",
+      "source_file": "components\\sections\\Hero.tsx",
+      "source_location": "L30",
+      "id": "sections_hero_handlemousemove",
+      "community": 5,
+      "norm_label": "handlemousemove()"
+    },
+    {
+      "label": "handleMouseLeave()",
+      "file_type": "code",
+      "source_file": "components\\sections\\Hero.tsx",
+      "source_location": "L39",
+      "id": "sections_hero_handlemouseleave",
+      "community": 5,
+      "norm_label": "handlemouseleave()"
+    },
+    {
+      "label": "ProjectsPage.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\ProjectsPage.tsx",
+      "source_location": "L1",
+      "id": "components_sections_projectspage_tsx",
+      "community": 12,
+      "norm_label": "projectspage.tsx"
+    },
+    {
+      "label": "inferTags()",
+      "file_type": "code",
+      "source_file": "components\\sections\\ProjectsPage.tsx",
+      "source_location": "L9",
+      "id": "sections_projectspage_infertags",
+      "community": 12,
+      "norm_label": "infertags()"
+    },
+    {
+      "label": "Skills.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\Skills.tsx",
+      "source_location": "L1",
+      "id": "components_sections_skills_tsx",
+      "community": 13,
+      "norm_label": "skills.tsx"
+    },
+    {
+      "label": "SkillChip()",
+      "file_type": "code",
+      "source_file": "components\\sections\\Skills.tsx",
+      "source_location": "L52",
+      "id": "sections_skills_skillchip",
+      "community": 13,
+      "norm_label": "skillchip()"
+    },
+    {
+      "label": "ZoomParallaxProjects.tsx",
+      "file_type": "code",
+      "source_file": "components\\sections\\ZoomParallaxProjects.tsx",
+      "source_location": "L1",
+      "id": "components_sections_zoomparallaxprojects_tsx",
+      "community": 14,
+      "norm_label": "zoomparallaxprojects.tsx"
+    },
+    {
+      "label": "ProjectCard()",
+      "file_type": "code",
+      "source_file": "components\\sections\\ZoomParallaxProjects.tsx",
+      "source_location": "L12",
+      "id": "sections_zoomparallaxprojects_projectcard",
+      "community": 14,
+      "norm_label": "projectcard()"
+    },
+    {
+      "label": "CelestialSphere.tsx",
+      "file_type": "code",
+      "source_file": "components\\ui\\CelestialSphere.tsx",
+      "source_location": "L1",
+      "id": "components_ui_celestialsphere_tsx",
+      "community": 15,
+      "norm_label": "celestialsphere.tsx"
+    },
+    {
+      "label": "CelestialSphere()",
+      "file_type": "code",
+      "source_file": "components\\ui\\CelestialSphere.tsx",
+      "source_location": "L15",
+      "id": "ui_celestialsphere_celestialsphere",
+      "community": 15,
+      "norm_label": "celestialsphere()"
+    },
+    {
+      "label": "ExpandableCardGrid.tsx",
+      "file_type": "code",
+      "source_file": "components\\ui\\ExpandableCardGrid.tsx",
+      "source_location": "L1",
+      "id": "components_ui_expandablecardgrid_tsx",
+      "community": 16,
+      "norm_label": "expandablecardgrid.tsx"
+    },
+    {
+      "label": "fn()",
+      "file_type": "code",
+      "source_file": "components\\ui\\ExpandableCardGrid.tsx",
+      "source_location": "L44",
+      "id": "ui_expandablecardgrid_fn",
+      "community": 16,
+      "norm_label": "fn()"
+    },
+    {
+      "label": "FlowFieldBackground.tsx",
+      "file_type": "code",
+      "source_file": "components\\ui\\FlowFieldBackground.tsx",
+      "source_location": "L1",
+      "id": "components_ui_flowfieldbackground_tsx",
+      "community": 17,
+      "norm_label": "flowfieldbackground.tsx"
+    },
+    {
+      "label": "FlowFieldBackground()",
+      "file_type": "code",
+      "source_file": "components\\ui\\FlowFieldBackground.tsx",
+      "source_location": "L22",
+      "id": "ui_flowfieldbackground_flowfieldbackground",
+      "community": 17,
+      "norm_label": "flowfieldbackground()"
+    },
+    {
+      "label": "PageProgress.tsx",
+      "file_type": "code",
+      "source_file": "components\\ui\\PageProgress.tsx",
+      "source_location": "L1",
+      "id": "components_ui_pageprogress_tsx",
+      "community": 18,
+      "norm_label": "pageprogress.tsx"
+    },
+    {
+      "label": "PageProgress()",
+      "file_type": "code",
+      "source_file": "components\\ui\\PageProgress.tsx",
+      "source_location": "L12",
+      "id": "ui_pageprogress_pageprogress",
+      "community": 18,
+      "norm_label": "pageprogress()"
+    },
+    {
+      "label": "resizable-navbar.tsx",
+      "file_type": "code",
+      "source_file": "components\\ui\\resizable-navbar.tsx",
+      "source_location": "L1",
+      "id": "components_ui_resizable_navbar_tsx",
+      "community": 1,
+      "norm_label": "resizable-navbar.tsx"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "components\\ui\\resizable-navbar.tsx",
+      "source_location": "L5",
+      "id": "ui_resizable_navbar_cn",
+      "community": 1,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "Navbar()",
+      "file_type": "code",
+      "source_file": "components\\ui\\resizable-navbar.tsx",
+      "source_location": "L27",
+      "id": "ui_resizable_navbar_navbar",
+      "community": 1,
+      "norm_label": "navbar()"
+    },
+    {
+      "label": "NavBody()",
+      "file_type": "code",
+      "source_file": "components\\ui\\resizable-navbar.tsx",
+      "source_location": "L55",
+      "id": "ui_resizable_navbar_navbody",
+      "community": 1,
+      "norm_label": "navbody()"
+    },
+    {
+      "label": "useOutsideClick.ts",
+      "file_type": "code",
+      "source_file": "hooks\\useOutsideClick.ts",
+      "source_location": "L1",
+      "id": "hooks_useoutsideclick_ts",
+      "community": 19,
+      "norm_label": "useoutsideclick.ts"
+    },
+    {
+      "label": "useOutsideClick()",
+      "file_type": "code",
+      "source_file": "hooks\\useOutsideClick.ts",
+      "source_location": "L3",
+      "id": "hooks_useoutsideclick_useoutsideclick",
+      "community": 19,
+      "norm_label": "useoutsideclick()"
+    },
+    {
+      "label": "LenisProvider.tsx",
+      "file_type": "code",
+      "source_file": "lib\\LenisProvider.tsx",
+      "source_location": "L1",
+      "id": "lib_lenisprovider_tsx",
+      "community": 6,
+      "norm_label": "lenisprovider.tsx"
+    },
+    {
+      "label": "useLenis()",
+      "file_type": "code",
+      "source_file": "lib\\LenisProvider.tsx",
+      "source_location": "L6",
+      "id": "lib_lenisprovider_uselenis",
+      "community": 6,
+      "norm_label": "uselenis()"
+    },
+    {
+      "label": "LenisProvider()",
+      "file_type": "code",
+      "source_file": "lib\\LenisProvider.tsx",
+      "source_location": "L11",
+      "id": "lib_lenisprovider_lenisprovider",
+      "community": 6,
+      "norm_label": "lenisprovider()"
+    },
+    {
+      "label": "portfolioData.ts",
+      "file_type": "code",
+      "source_file": "lib\\portfolioData.ts",
+      "source_location": "L1",
+      "id": "lib_portfoliodata_ts",
+      "community": 20,
+      "norm_label": "portfoliodata.ts"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "lib\\portfolioData.ts",
+      "source_location": "L119",
+      "id": "lib_portfoliodata_cn",
+      "community": 20,
+      "norm_label": "cn()"
+    }
+  ],
+  "edges": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\robots.ts",
+      "source_location": "L6",
+      "weight": 1,
+      "_src": "app_robots_ts",
+      "_tgt": "app_robots_robots",
+      "source": "app_robots_ts",
+      "target": "app_robots_robots",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\sitemap.ts",
+      "source_location": "L13",
+      "weight": 1,
+      "_src": "app_sitemap_ts",
+      "_tgt": "app_sitemap_sitemap",
+      "source": "app_sitemap_ts",
+      "target": "app_sitemap_sitemap",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\about\\page.tsx",
+      "source_location": "L59",
+      "weight": 1,
+      "_src": "app_about_page_tsx",
+      "_tgt": "about_page_about",
+      "source": "app_about_page_tsx",
+      "target": "about_page_about",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\contact\\page.tsx",
+      "source_location": "L50",
+      "weight": 1,
+      "_src": "app_contact_page_tsx",
+      "_tgt": "contact_page_contactpage",
+      "source": "app_contact_page_tsx",
+      "target": "contact_page_contactpage",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app\\projects\\page.tsx",
+      "source_location": "L47",
+      "weight": 1,
+      "_src": "app_projects_page_tsx",
+      "_tgt": "projects_page_projects",
+      "source": "app_projects_page_tsx",
+      "target": "projects_page_projects",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\FloatingSocialBar.tsx",
+      "source_location": "L8",
+      "weight": 1,
+      "_src": "components_floatingsocialbar_tsx",
+      "_tgt": "components_floatingsocialbar_socials",
+      "source": "components_floatingsocialbar_tsx",
+      "target": "components_floatingsocialbar_socials",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\FloatingSocialBar.tsx",
+      "source_location": "L17",
+      "weight": 1,
+      "_src": "components_floatingsocialbar_tsx",
+      "_tgt": "components_floatingsocialbar_desktopbar",
+      "source": "components_floatingsocialbar_tsx",
+      "target": "components_floatingsocialbar_desktopbar",
+      "confidence_score": 1
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\FloatingSocialBar.tsx",
+      "source_location": "L19",
+      "weight": 1,
+      "_src": "components_floatingsocialbar_desktopbar",
+      "_tgt": "components_floatingsocialbar_socials",
+      "source": "components_floatingsocialbar_socials",
+      "target": "components_floatingsocialbar_desktopbar",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\AboutPage.tsx",
+      "source_location": "L14",
+      "weight": 1,
+      "_src": "components_sections_aboutpage_tsx",
+      "_tgt": "sections_aboutpage_sectionheading",
+      "source": "components_sections_aboutpage_tsx",
+      "target": "sections_aboutpage_sectionheading",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\AboutPage.tsx",
+      "source_location": "L29",
+      "weight": 1,
+      "_src": "components_sections_aboutpage_tsx",
+      "_tgt": "sections_aboutpage_expcard",
+      "source": "components_sections_aboutpage_tsx",
+      "target": "sections_aboutpage_expcard",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\AnimatedTestimonials.tsx",
+      "source_location": "L19",
+      "weight": 1,
+      "_src": "components_sections_animatedtestimonials_tsx",
+      "_tgt": "sections_animatedtestimonials_next",
+      "source": "components_sections_animatedtestimonials_tsx",
+      "target": "sections_animatedtestimonials_next",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\AnimatedTestimonials.tsx",
+      "source_location": "L20",
+      "weight": 1,
+      "_src": "components_sections_animatedtestimonials_tsx",
+      "_tgt": "sections_animatedtestimonials_prev",
+      "source": "components_sections_animatedtestimonials_tsx",
+      "target": "sections_animatedtestimonials_prev",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\AnimatedTestimonials.tsx",
+      "source_location": "L29",
+      "weight": 1,
+      "_src": "components_sections_animatedtestimonials_tsx",
+      "_tgt": "sections_animatedtestimonials_isactive",
+      "source": "components_sections_animatedtestimonials_tsx",
+      "target": "sections_animatedtestimonials_isactive",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\Contact.tsx",
+      "source_location": "L21",
+      "weight": 1,
+      "_src": "components_sections_contact_tsx",
+      "_tgt": "sections_contact_sociallink",
+      "source": "components_sections_contact_tsx",
+      "target": "sections_contact_sociallink",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\Contact.tsx",
+      "source_location": "L50",
+      "weight": 1,
+      "_src": "components_sections_contact_tsx",
+      "_tgt": "sections_contact_handlesubmit",
+      "source": "components_sections_contact_tsx",
+      "target": "sections_contact_handlesubmit",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\Hero.tsx",
+      "source_location": "L30",
+      "weight": 1,
+      "_src": "components_sections_hero_tsx",
+      "_tgt": "sections_hero_handlemousemove",
+      "source": "components_sections_hero_tsx",
+      "target": "sections_hero_handlemousemove",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\Hero.tsx",
+      "source_location": "L39",
+      "weight": 1,
+      "_src": "components_sections_hero_tsx",
+      "_tgt": "sections_hero_handlemouseleave",
+      "source": "components_sections_hero_tsx",
+      "target": "sections_hero_handlemouseleave",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\ProjectsPage.tsx",
+      "source_location": "L9",
+      "weight": 1,
+      "_src": "components_sections_projectspage_tsx",
+      "_tgt": "sections_projectspage_infertags",
+      "source": "components_sections_projectspage_tsx",
+      "target": "sections_projectspage_infertags",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\Skills.tsx",
+      "source_location": "L52",
+      "weight": 1,
+      "_src": "components_sections_skills_tsx",
+      "_tgt": "sections_skills_skillchip",
+      "source": "components_sections_skills_tsx",
+      "target": "sections_skills_skillchip",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\sections\\ZoomParallaxProjects.tsx",
+      "source_location": "L12",
+      "weight": 1,
+      "_src": "components_sections_zoomparallaxprojects_tsx",
+      "_tgt": "sections_zoomparallaxprojects_projectcard",
+      "source": "components_sections_zoomparallaxprojects_tsx",
+      "target": "sections_zoomparallaxprojects_projectcard",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ui\\CelestialSphere.tsx",
+      "source_location": "L15",
+      "weight": 1,
+      "_src": "components_ui_celestialsphere_tsx",
+      "_tgt": "ui_celestialsphere_celestialsphere",
+      "source": "components_ui_celestialsphere_tsx",
+      "target": "ui_celestialsphere_celestialsphere",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ui\\ExpandableCardGrid.tsx",
+      "source_location": "L44",
+      "weight": 1,
+      "_src": "components_ui_expandablecardgrid_tsx",
+      "_tgt": "ui_expandablecardgrid_fn",
+      "source": "components_ui_expandablecardgrid_tsx",
+      "target": "ui_expandablecardgrid_fn",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ui\\FlowFieldBackground.tsx",
+      "source_location": "L22",
+      "weight": 1,
+      "_src": "components_ui_flowfieldbackground_tsx",
+      "_tgt": "ui_flowfieldbackground_flowfieldbackground",
+      "source": "components_ui_flowfieldbackground_tsx",
+      "target": "ui_flowfieldbackground_flowfieldbackground",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ui\\PageProgress.tsx",
+      "source_location": "L12",
+      "weight": 1,
+      "_src": "components_ui_pageprogress_tsx",
+      "_tgt": "ui_pageprogress_pageprogress",
+      "source": "components_ui_pageprogress_tsx",
+      "target": "ui_pageprogress_pageprogress",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ui\\resizable-navbar.tsx",
+      "source_location": "L5",
+      "weight": 1,
+      "_src": "components_ui_resizable_navbar_tsx",
+      "_tgt": "ui_resizable_navbar_cn",
+      "source": "components_ui_resizable_navbar_tsx",
+      "target": "ui_resizable_navbar_cn",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ui\\resizable-navbar.tsx",
+      "source_location": "L27",
+      "weight": 1,
+      "_src": "components_ui_resizable_navbar_tsx",
+      "_tgt": "ui_resizable_navbar_navbar",
+      "source": "components_ui_resizable_navbar_tsx",
+      "target": "ui_resizable_navbar_navbar",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ui\\resizable-navbar.tsx",
+      "source_location": "L55",
+      "weight": 1,
+      "_src": "components_ui_resizable_navbar_tsx",
+      "_tgt": "ui_resizable_navbar_navbody",
+      "source": "components_ui_resizable_navbar_tsx",
+      "target": "ui_resizable_navbar_navbody",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "hooks\\useOutsideClick.ts",
+      "source_location": "L3",
+      "weight": 1,
+      "_src": "hooks_useoutsideclick_ts",
+      "_tgt": "hooks_useoutsideclick_useoutsideclick",
+      "source": "hooks_useoutsideclick_ts",
+      "target": "hooks_useoutsideclick_useoutsideclick",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib\\LenisProvider.tsx",
+      "source_location": "L6",
+      "weight": 1,
+      "_src": "lib_lenisprovider_tsx",
+      "_tgt": "lib_lenisprovider_uselenis",
+      "source": "lib_lenisprovider_tsx",
+      "target": "lib_lenisprovider_uselenis",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib\\LenisProvider.tsx",
+      "source_location": "L11",
+      "weight": 1,
+      "_src": "lib_lenisprovider_tsx",
+      "_tgt": "lib_lenisprovider_lenisprovider",
+      "source": "lib_lenisprovider_tsx",
+      "target": "lib_lenisprovider_lenisprovider",
+      "confidence_score": 1
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib\\portfolioData.ts",
+      "source_location": "L119",
+      "weight": 1,
+      "_src": "lib_portfoliodata_ts",
+      "_tgt": "lib_portfoliodata_cn",
+      "source": "lib_portfoliodata_ts",
+      "target": "lib_portfoliodata_cn",
+      "confidence_score": 1
+    }
+  ]
+}

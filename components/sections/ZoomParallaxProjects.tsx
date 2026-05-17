@@ -48,20 +48,22 @@ function ProjectCard({
             <div className={`absolute inset-0 bg-gradient-to-br ${colors[index % 3]} z-0`} />
 
             <div className="relative z-10 flex flex-col md:flex-row h-full min-h-[300px] md:min-h-[440px]">
-                {/* Image side */}
-                <div className="md:w-[55%] bg-bg-primary/60 overflow-hidden flex-shrink-0">
+                {/* Image side — self-stretch so it fills full card height in flex-row */}
+                <div className="md:w-[55%] bg-bg-primary/60 overflow-hidden flex-shrink-0 self-stretch">
                     {imgUrl ? (
-                        <div className="relative w-full h-[170px] sm:h-[220px] md:h-full">
+                        // On mobile: 16/9 aspect ratio. On desktop: stretch to fill card height.
+                        <div className="relative w-full h-[200px] sm:h-[240px] md:h-full">
                             <Image
                                 src={`${PATH_PREFIX}/images/${imgUrl}`}
                                 alt={client || title}
                                 fill
+                                loading="lazy"
                                 className="object-cover object-top transition-transform duration-700 hover:scale-105"
                                 sizes="(max-width: 768px) 100vw, 55vw"
                             />
                         </div>
                     ) : (
-                        <div className="w-full h-[170px] sm:h-[220px] md:h-full flex items-center justify-center text-text-muted">
+                        <div className="w-full h-[200px] sm:h-[240px] md:h-full flex items-center justify-center text-text-muted">
                             <span className="text-6xl">🖥️</span>
                         </div>
                     )}
@@ -137,19 +139,27 @@ function ZoomCard({
     // Card 0 is visible immediately (no entrance animation).
     // Cards 1+ animate in from below as the user scrolls.
     const isFirst = index === 0;
+    const isLast  = index === featuredProjects.length - 1;
 
     const scale = useTransform(
         scrollYProgress,
         [start, end],
         isFirst ? [1, 1] : [0.88, 1]
     );
+
+    // Last card: never fade out — it stays fully visible until the next section
+    // takes over. Other cards fade in then fade to 0.25 as the next card arrives.
     const opacity = useTransform(
         scrollYProgress,
         isFirst
             ? [end - 0.08, end]
+            : isLast
+            ? [start, start + 0.06]
             : [start, start + 0.06, end - 0.08, end],
         isFirst
             ? [1, 0.25]
+            : isLast
+            ? [0, 1]          // fade in, then stay fully opaque
             : [0, 1, 1, 0.25]
     );
     const y = useTransform(
@@ -160,8 +170,8 @@ function ZoomCard({
 
     return (
         <motion.div
-            style={{ scale, opacity, y }}
-            className="sticky top-[155px] sm:top-[175px] md:top-[270px] mb-4 md:mb-6"
+            style={{ scale, opacity, y, willChange: "transform" }}
+            className="sticky top-[180px] sm:top-[200px] md:top-[260px] mb-4 md:mb-6"
         >
             <div
                 style={{
@@ -206,17 +216,17 @@ export default function ZoomParallaxProjects() {
             <div className="h-4" />
 
             {/* Section header — sticks below navbar while cards scroll, releases after last card */}
-            <div className={`${headerSticky ? "sticky top-16" : "relative"} z-20 py-4 md:py-7 text-center px-4`}>
+            <div className={`${headerSticky ? "sticky top-16" : "relative"} z-20 py-6 md:py-10 text-center px-4`}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-10px" }}
                     transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                 >
-                    <p className="text-brand-400 text-xs font-semibold tracking-widest uppercase mb-1.5">
+                    <p className="text-brand-400 text-xs font-semibold tracking-widest uppercase mb-2">
                         Featured Work
                     </p>
-                    <h2 className="text-2xl md:text-4xl font-black text-text-primary mb-1.5 md:mb-2">
+                    <h2 className="text-2xl md:text-4xl font-black text-text-primary mb-3 md:mb-4">
                         Client Projects
                     </h2>
                     {/* Hide long description on mobile to save vertical space */}
@@ -226,11 +236,13 @@ export default function ZoomParallaxProjects() {
                 </motion.div>
             </div>
 
-            {/* Zoom parallax scroll area — cards stick below the sticky header (64px navbar + ~168px header) */}
+            {/* Zoom parallax scroll area — cards stick below the sticky header (64px navbar + ~196px header) */}
             <div
                 ref={containerRef}
-                className="relative px-4 max-w-5xl mx-auto pt-6 pb-6"
-                style={{ height: `${featuredProjects.length * 90}vh` }}
+                className="relative px-4 max-w-5xl mx-auto pt-10 md:pt-14 pb-6"
+                style={{
+                    height: `calc(${featuredProjects.length} * var(--card-scroll-h, 80vh))`,
+                }}
             >
                 {featuredProjects.map((project, i) => (
                     <ZoomCard

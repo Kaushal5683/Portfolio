@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Note: Inter font is loaded via next/font/google in layout.tsx — no @import needed */
 
 :root {
   --font-inter: 'Inter', system-ui, sans-serif;
+  /* Controls per-card scroll height in ZoomParallaxProjects */
+  --card-scroll-h: 60vh;
+}
+
+@media (min-width: 640px) {
+  :root { --card-scroll-h: 70vh; }
+}
+
+@media (min-width: 1024px) {
+  :root { --card-scroll-h: 80vh; }
 }
 
 * {
@@ -16,9 +26,11 @@
 
 html {
   scroll-behavior: auto;
-  /* Let Lenis handle smooth scroll */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent iOS Safari from auto-zooming text */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -26,27 +38,8 @@ body {
   color: #f0f0ff;
   font-family: var(--font-inter), system-ui, sans-serif;
   overflow-x: hidden;
-}
-
-/* Lenis smooth scroll */
-html.lenis {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
+  /* Prevent tap flash on mobile */
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom scrollbar */

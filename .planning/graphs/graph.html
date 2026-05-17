@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>graphify - graphify-out\graph.html</title>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f1a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; height: 100vh; overflow: hidden; }
+  #graph { flex: 1; }
+  #sidebar { width: 280px; background: #1a1a2e; border-left: 1px solid #2a2a4e; display: flex; flex-direction: column; overflow: hidden; }
+  #search-wrap { padding: 12px; border-bottom: 1px solid #2a2a4e; }
+  #search { width: 100%; background: #0f0f1a; border: 1px solid #3a3a5e; color: #e0e0e0; padding: 7px 10px; border-radius: 6px; font-size: 13px; outline: none; }
+  #search:focus { border-color: #4E79A7; }
+  #search-results { max-height: 140px; overflow-y: auto; padding: 4px 12px; border-bottom: 1px solid #2a2a4e; display: none; }
+  .search-item { padding: 4px 6px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .search-item:hover { background: #2a2a4e; }
+  #info-panel { padding: 14px; border-bottom: 1px solid #2a2a4e; min-height: 140px; }
+  #info-panel h3 { font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  #info-content { font-size: 13px; color: #ccc; line-height: 1.6; }
+  #info-content .field { margin-bottom: 5px; }
+  #info-content .field b { color: #e0e0e0; }
+  #info-content .empty { color: #555; font-style: italic; }
+  .neighbor-link { display: block; padding: 2px 6px; margin: 2px 0; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: 3px solid #333; }
+  .neighbor-link:hover { background: #2a2a4e; }
+  #neighbors-list { max-height: 160px; overflow-y: auto; margin-top: 4px; }
+  #legend-wrap { flex: 1; overflow-y: auto; padding: 12px; }
+  #legend-wrap h3 { font-size: 13px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .legend-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; border-radius: 4px; font-size: 12px; }
+  .legend-item:hover { background: #2a2a4e; padding-left: 4px; }
+  .legend-item.dimmed { opacity: 0.35; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .legend-count { color: #666; font-size: 11px; }
+  #stats { padding: 10px 14px; border-top: 1px solid #2a2a4e; font-size: 11px; color: #555; }
+  #legend-controls { display: flex; gap: 6px; margin-bottom: 8px; }
+  #legend-controls button { flex: 1; background: #0f0f1a; border: 1px solid #3a3a5e; color: #aaa; padding: 4px 0; border-radius: 4px; font-size: 11px; cursor: pointer; }
+  #legend-controls button:hover { border-color: #4E79A7; color: #e0e0e0; }
+</style>
+</head>
+<body>
+<div id="graph"></div>
+<div id="sidebar">
+  <div id="search-wrap">
+    <input id="search" type="text" placeholder="Search nodes..." autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+  <div id="info-panel">
+    <h3>Node Info</h3>
+    <div id="info-content"><span class="empty">Click a node to inspect it</span></div>
+  </div>
+  <div id="legend-wrap">
+    <h3>Communities</h3>
+    <div id="legend-controls">
+      <button onclick="toggleAllCommunities(false)">Show All</button>
+      <button onclick="toggleAllCommunities(true)">Hide All</button>
+    </div>
+    <div id="legend"></div>
+  </div>
+  <div id="stats">60 nodes &middot; 31 edges &middot; 30 communities</div>
+</div>
+<script>
+const RAW_NODES = [{"id": "next_env_d_ts", "label": "next-env.d.ts", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "next-env.d.ts", "community": 21, "community_name": "Community 21", "source_file": "next-env.d.ts", "file_type": "code", "degree": 0}, {"id": "next_config_mjs", "label": "next.config.mjs", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "next.config.mjs", "community": 22, "community_name": "Community 22", "source_file": "next.config.mjs", "file_type": "code", "degree": 0}, {"id": "postcss_config_mjs", "label": "postcss.config.mjs", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "postcss.config.mjs", "community": 23, "community_name": "Community 23", "source_file": "postcss.config.mjs", "file_type": "code", "degree": 0}, {"id": "tailwind_config_ts", "label": "tailwind.config.ts", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "tailwind.config.ts", "community": 24, "community_name": "Community 24", "source_file": "tailwind.config.ts", "file_type": "code", "degree": 0}, {"id": "app_layout_tsx", "label": "layout.tsx", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "layout.tsx", "community": 25, "community_name": "Community 25", "source_file": "app\\layout.tsx", "file_type": "code", "degree": 0}, {"id": "app_page_tsx", "label": "page.tsx", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "page.tsx", "community": 26, "community_name": "Community 26", "source_file": "app\\page.tsx", "file_type": "code", "degree": 0}, {"id": "app_robots_ts", "label": "robots.ts", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "robots.ts", "community": 7, "community_name": "Community 7", "source_file": "app\\robots.ts", "file_type": "code", "degree": 1}, {"id": "app_robots_robots", "label": "robots()", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "robots()", "community": 7, "community_name": "Community 7", "source_file": "app\\robots.ts", "file_type": "code", "degree": 1}, {"id": "app_sitemap_ts", "label": "sitemap.ts", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "sitemap.ts", "community": 8, "community_name": "Community 8", "source_file": "app\\sitemap.ts", "file_type": "code", "degree": 1}, {"id": "app_sitemap_sitemap", "label": "sitemap()", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "sitemap()", "community": 8, "community_name": "Community 8", "source_file": "app\\sitemap.ts", "file_type": "code", "degree": 1}, {"id": "app_about_page_tsx", "label": "page.tsx", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "page.tsx", "community": 9, "community_name": "Community 9", "source_file": "app\\about\\page.tsx", "file_type": "code", "degree": 1}, {"id": "about_page_about", "label": "About()", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "About()", "community": 9, "community_name": "Community 9", "source_file": "app\\about\\page.tsx", "file_type": "code", "degree": 1}, {"id": "app_contact_page_tsx", "label": "page.tsx", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "page.tsx", "community": 10, "community_name": "Community 10", "source_file": "app\\contact\\page.tsx", "file_type": "code", "degree": 1}, {"id": "contact_page_contactpage", "label": "ContactPage()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "ContactPage()", "community": 10, "community_name": "Community 10", "source_file": "app\\contact\\page.tsx", "file_type": "code", "degree": 1}, {"id": "app_projects_page_tsx", "label": "page.tsx", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "page.tsx", "community": 11, "community_name": "Community 11", "source_file": "app\\projects\\page.tsx", "file_type": "code", "degree": 1}, {"id": "projects_page_projects", "label": "Projects()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Projects()", "community": 11, "community_name": "Community 11", "source_file": "app\\projects\\page.tsx", "file_type": "code", "degree": 1}, {"id": "components_floatingsocialbar_tsx", "label": "FloatingSocialBar.tsx", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 30.0, "font": {"size": 12, "color": "#ffffff"}, "title": "FloatingSocialBar.tsx", "community": 2, "community_name": "Community 2", "source_file": "components\\FloatingSocialBar.tsx", "file_type": "code", "degree": 2}, {"id": "components_floatingsocialbar_socials", "label": "socials()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 30.0, "font": {"size": 12, "color": "#ffffff"}, "title": "socials()", "community": 2, "community_name": "Community 2", "source_file": "components\\FloatingSocialBar.tsx", "file_type": "code", "degree": 2}, {"id": "components_floatingsocialbar_desktopbar", "label": "DesktopBar()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 30.0, "font": {"size": 12, "color": "#ffffff"}, "title": "DesktopBar()", "community": 2, "community_name": "Community 2", "source_file": "components\\FloatingSocialBar.tsx", "file_type": "code", "degree": 2}, {"id": "components_navbar_tsx", "label": "Navbar.tsx", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Navbar.tsx", "community": 27, "community_name": "Community 27", "source_file": "components\\Navbar.tsx", "file_type": "code", "degree": 0}, {"id": "components_sections_aboutme_tsx", "label": "AboutMe.tsx", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "AboutMe.tsx", "community": 28, "community_name": "Community 28", "source_file": "components\\sections\\AboutMe.tsx", "file_type": "code", "degree": 0}, {"id": "components_sections_aboutpage_tsx", "label": "AboutPage.tsx", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 30.0, "font": {"size": 12, "color": "#ffffff"}, "title": "AboutPage.tsx", "community": 3, "community_name": "Community 3", "source_file": "components\\sections\\AboutPage.tsx", "file_type": "code", "degree": 2}, {"id": "sections_aboutpage_sectionheading", "label": "SectionHeading()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "SectionHeading()", "community": 3, "community_name": "Community 3", "source_file": "components\\sections\\AboutPage.tsx", "file_type": "code", "degree": 1}, {"id": "sections_aboutpage_expcard", "label": "ExpCard()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "ExpCard()", "community": 3, "community_name": "Community 3", "source_file": "components\\sections\\AboutPage.tsx", "file_type": "code", "degree": 1}, {"id": "components_sections_animatedtestimonials_tsx", "label": "AnimatedTestimonials.tsx", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 40.0, "font": {"size": 12, "color": "#ffffff"}, "title": "AnimatedTestimonials.tsx", "community": 0, "community_name": "Community 0", "source_file": "components\\sections\\AnimatedTestimonials.tsx", "file_type": "code", "degree": 3}, {"id": "sections_animatedtestimonials_next", "label": "next()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "next()", "community": 0, "community_name": "Community 0", "source_file": "components\\sections\\AnimatedTestimonials.tsx", "file_type": "code", "degree": 1}, {"id": "sections_animatedtestimonials_prev", "label": "prev()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "prev()", "community": 0, "community_name": "Community 0", "source_file": "components\\sections\\AnimatedTestimonials.tsx", "file_type": "code", "degree": 1}, {"id": "sections_animatedtestimonials_isactive", "label": "isActive()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "isActive()", "community": 0, "community_name": "Community 0", "source_file": "components\\sections\\AnimatedTestimonials.tsx", "file_type": "code", "degree": 1}, {"id": "components_sections_contact_tsx", "label": "Contact.tsx", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 30.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Contact.tsx", "community": 4, "community_name": "Community 4", "source_file": "components\\sections\\Contact.tsx", "file_type": "code", "degree": 2}, {"id": "sections_contact_sociallink", "label": "SocialLink()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "SocialLink()", "community": 4, "community_name": "Community 4", "source_file": "components\\sections\\Contact.tsx", "file_type": "code", "degree": 1}, {"id": "sections_contact_handlesubmit", "label": "handleSubmit()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "handleSubmit()", "community": 4, "community_name": "Community 4", "source_file": "components\\sections\\Contact.tsx", "file_type": "code", "degree": 1}, {"id": "components_sections_footer_tsx", "label": "Footer.tsx", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "Footer.tsx", "community": 29, "community_name": "Community 29", "source_file": "components\\sections\\Footer.tsx", "file_type": "code", "degree": 0}, {"id": "components_sections_hero_tsx", "label": "Hero.tsx", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 30.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Hero.tsx", "community": 5, "community_name": "Community 5", "source_file": "components\\sections\\Hero.tsx", "file_type": "code", "degree": 2}, {"id": "sections_hero_handlemousemove", "label": "handleMouseMove()", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "handleMouseMove()", "community": 5, "community_name": "Community 5", "source_file": "components\\sections\\Hero.tsx", "file_type": "code", "degree": 1}, {"id": "sections_hero_handlemouseleave", "label": "handleMouseLeave()", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "handleMouseLeave()", "community": 5, "community_name": "Community 5", "source_file": "components\\sections\\Hero.tsx", "file_type": "code", "degree": 1}, {"id": "components_sections_projectspage_tsx", "label": "ProjectsPage.tsx", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "ProjectsPage.tsx", "community": 12, "community_name": "Community 12", "source_file": "components\\sections\\ProjectsPage.tsx", "file_type": "code", "degree": 1}, {"id": "sections_projectspage_infertags", "label": "inferTags()", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "inferTags()", "community": 12, "community_name": "Community 12", "source_file": "components\\sections\\ProjectsPage.tsx", "file_type": "code", "degree": 1}, {"id": "components_sections_skills_tsx", "label": "Skills.tsx", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Skills.tsx", "community": 13, "community_name": "Community 13", "source_file": "components\\sections\\Skills.tsx", "file_type": "code", "degree": 1}, {"id": "sections_skills_skillchip", "label": "SkillChip()", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "SkillChip()", "community": 13, "community_name": "Community 13", "source_file": "components\\sections\\Skills.tsx", "file_type": "code", "degree": 1}, {"id": "components_sections_zoomparallaxprojects_tsx", "label": "ZoomParallaxProjects.tsx", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "ZoomParallaxProjects.tsx", "community": 14, "community_name": "Community 14", "source_file": "components\\sections\\ZoomParallaxProjects.tsx", "file_type": "code", "degree": 1}, {"id": "sections_zoomparallaxprojects_projectcard", "label": "ProjectCard()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "ProjectCard()", "community": 14, "community_name": "Community 14", "source_file": "components\\sections\\ZoomParallaxProjects.tsx", "file_type": "code", "degree": 1}, {"id": "components_ui_celestialsphere_tsx", "label": "CelestialSphere.tsx", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "CelestialSphere.tsx", "community": 15, "community_name": "Community 15", "source_file": "components\\ui\\CelestialSphere.tsx", "file_type": "code", "degree": 1}, {"id": "ui_celestialsphere_celestialsphere", "label": "CelestialSphere()", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "CelestialSphere()", "community": 15, "community_name": "Community 15", "source_file": "components\\ui\\CelestialSphere.tsx", "file_type": "code", "degree": 1}, {"id": "components_ui_expandablecardgrid_tsx", "label": "ExpandableCardGrid.tsx", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "ExpandableCardGrid.tsx", "community": 16, "community_name": "Community 16", "source_file": "components\\ui\\ExpandableCardGrid.tsx", "file_type": "code", "degree": 1}, {"id": "ui_expandablecardgrid_fn", "label": "fn()", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "fn()", "community": 16, "community_name": "Community 16", "source_file": "components\\ui\\ExpandableCardGrid.tsx", "file_type": "code", "degree": 1}, {"id": "components_ui_flowfieldbackground_tsx", "label": "FlowFieldBackground.tsx", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "FlowFieldBackground.tsx", "community": 17, "community_name": "Community 17", "source_file": "components\\ui\\FlowFieldBackground.tsx", "file_type": "code", "degree": 1}, {"id": "ui_flowfieldbackground_flowfieldbackground", "label": "FlowFieldBackground()", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "FlowFieldBackground()", "community": 17, "community_name": "Community 17", "source_file": "components\\ui\\FlowFieldBackground.tsx", "file_type": "code", "degree": 1}, {"id": "components_ui_pageprogress_tsx", "label": "PageProgress.tsx", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "PageProgress.tsx", "community": 18, "community_name": "Community 18", "source_file": "components\\ui\\PageProgress.tsx", "file_type": "code", "degree": 1}, {"id": "ui_pageprogress_pageprogress", "label": "PageProgress()", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "PageProgress()", "community": 18, "community_name": "Community 18", "source_file": "components\\ui\\PageProgress.tsx", "file_type": "code", "degree": 1}, {"id": "components_ui_resizable_navbar_tsx", "label": "resizable-navbar.tsx", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 40.0, "font": {"size": 12, "color": "#ffffff"}, "title": "resizable-navbar.tsx", "community": 1, "community_name": "Community 1", "source_file": "components\\ui\\resizable-navbar.tsx", "file_type": "code", "degree": 3}, {"id": "ui_resizable_navbar_cn", "label": "cn()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "cn()", "community": 1, "community_name": "Community 1", "source_file": "components\\ui\\resizable-navbar.tsx", "file_type": "code", "degree": 1}, {"id": "ui_resizable_navbar_navbar", "label": "Navbar()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Navbar()", "community": 1, "community_name": "Community 1", "source_file": "components\\ui\\resizable-navbar.tsx", "file_type": "code", "degree": 1}, {"id": "ui_resizable_navbar_navbody", "label": "NavBody()", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "NavBody()", "community": 1, "community_name": "Community 1", "source_file": "components\\ui\\resizable-navbar.tsx", "file_type": "code", "degree": 1}, {"id": "hooks_useoutsideclick_ts", "label": "useOutsideClick.ts", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "useOutsideClick.ts", "community": 19, "community_name": "Community 19", "source_file": "hooks\\useOutsideClick.ts", "file_type": "code", "degree": 1}, {"id": "hooks_useoutsideclick_useoutsideclick", "label": "useOutsideClick()", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "useOutsideClick()", "community": 19, "community_name": "Community 19", "source_file": "hooks\\useOutsideClick.ts", "file_type": "code", "degree": 1}, {"id": "lib_lenisprovider_tsx", "label": "LenisProvider.tsx", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 30.0, "font": {"size": 12, "color": "#ffffff"}, "title": "LenisProvider.tsx", "community": 6, "community_name": "Community 6", "source_file": "lib\\LenisProvider.tsx", "file_type": "code", "degree": 2}, {"id": "lib_lenisprovider_uselenis", "label": "useLenis()", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "useLenis()", "community": 6, "community_name": "Community 6", "source_file": "lib\\LenisProvider.tsx", "file_type": "code", "degree": 1}, {"id": "lib_lenisprovider_lenisprovider", "label": "LenisProvider()", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "LenisProvider()", "community": 6, "community_name": "Community 6", "source_file": "lib\\LenisProvider.tsx", "file_type": "code", "degree": 1}, {"id": "lib_portfoliodata_ts", "label": "portfolioData.ts", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "portfolioData.ts", "community": 20, "community_name": "Community 20", "source_file": "lib\\portfolioData.ts", "file_type": "code", "degree": 1}, {"id": "lib_portfoliodata_cn", "label": "cn()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 20.0, "font": {"size": 12, "color": "#ffffff"}, "title": "cn()", "community": 20, "community_name": "Community 20", "source_file": "lib\\portfolioData.ts", "file_type": "code", "degree": 1}];
+const RAW_EDGES = [{"from": "app_robots_ts", "to": "app_robots_robots", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "app_sitemap_ts", "to": "app_sitemap_sitemap", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "app_about_page_tsx", "to": "about_page_about", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "app_contact_page_tsx", "to": "contact_page_contactpage", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "app_projects_page_tsx", "to": "projects_page_projects", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_floatingsocialbar_tsx", "to": "components_floatingsocialbar_socials", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_floatingsocialbar_tsx", "to": "components_floatingsocialbar_desktopbar", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_floatingsocialbar_socials", "to": "components_floatingsocialbar_desktopbar", "label": "calls", "title": "calls [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_aboutpage_tsx", "to": "sections_aboutpage_sectionheading", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_aboutpage_tsx", "to": "sections_aboutpage_expcard", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_animatedtestimonials_tsx", "to": "sections_animatedtestimonials_next", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_animatedtestimonials_tsx", "to": "sections_animatedtestimonials_prev", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_animatedtestimonials_tsx", "to": "sections_animatedtestimonials_isactive", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_contact_tsx", "to": "sections_contact_sociallink", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_contact_tsx", "to": "sections_contact_handlesubmit", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_hero_tsx", "to": "sections_hero_handlemousemove", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_hero_tsx", "to": "sections_hero_handlemouseleave", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_projectspage_tsx", "to": "sections_projectspage_infertags", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_skills_tsx", "to": "sections_skills_skillchip", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_sections_zoomparallaxprojects_tsx", "to": "sections_zoomparallaxprojects_projectcard", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_ui_celestialsphere_tsx", "to": "ui_celestialsphere_celestialsphere", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_ui_expandablecardgrid_tsx", "to": "ui_expandablecardgrid_fn", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_ui_flowfieldbackground_tsx", "to": "ui_flowfieldbackground_flowfieldbackground", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_ui_pageprogress_tsx", "to": "ui_pageprogress_pageprogress", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_ui_resizable_navbar_tsx", "to": "ui_resizable_navbar_cn", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_ui_resizable_navbar_tsx", "to": "ui_resizable_navbar_navbar", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "components_ui_resizable_navbar_tsx", "to": "ui_resizable_navbar_navbody", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "hooks_useoutsideclick_ts", "to": "hooks_useoutsideclick_useoutsideclick", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "lib_lenisprovider_tsx", "to": "lib_lenisprovider_uselenis", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "lib_lenisprovider_tsx", "to": "lib_lenisprovider_lenisprovider", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "lib_portfoliodata_ts", "to": "lib_portfoliodata_cn", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}];
+const LEGEND = [{"cid": 0, "color": "#4E79A7", "label": "Community 0", "count": 4}, {"cid": 1, "color": "#F28E2B", "label": "Community 1", "count": 4}, {"cid": 2, "color": "#E15759", "label": "Community 2", "count": 3}, {"cid": 3, "color": "#76B7B2", "label": "Community 3", "count": 3}, {"cid": 4, "color": "#59A14F", "label": "Community 4", "count": 3}, {"cid": 5, "color": "#EDC948", "label": "Community 5", "count": 3}, {"cid": 6, "color": "#B07AA1", "label": "Community 6", "count": 3}, {"cid": 7, "color": "#FF9DA7", "label": "Community 7", "count": 2}, {"cid": 8, "color": "#9C755F", "label": "Community 8", "count": 2}, {"cid": 9, "color": "#BAB0AC", "label": "Community 9", "count": 2}, {"cid": 10, "color": "#4E79A7", "label": "Community 10", "count": 2}, {"cid": 11, "color": "#F28E2B", "label": "Community 11", "count": 2}, {"cid": 12, "color": "#E15759", "label": "Community 12", "count": 2}, {"cid": 13, "color": "#76B7B2", "label": "Community 13", "count": 2}, {"cid": 14, "color": "#59A14F", "label": "Community 14", "count": 2}, {"cid": 15, "color": "#EDC948", "label": "Community 15", "count": 2}, {"cid": 16, "color": "#B07AA1", "label": "Community 16", "count": 2}, {"cid": 17, "color": "#FF9DA7", "label": "Community 17", "count": 2}, {"cid": 18, "color": "#9C755F", "label": "Community 18", "count": 2}, {"cid": 19, "color": "#BAB0AC", "label": "Community 19", "count": 2}, {"cid": 20, "color": "#4E79A7", "label": "Community 20", "count": 2}, {"cid": 21, "color": "#F28E2B", "label": "Community 21", "count": 1}, {"cid": 22, "color": "#E15759", "label": "Community 22", "count": 1}, {"cid": 23, "color": "#76B7B2", "label": "Community 23", "count": 1}, {"cid": 24, "color": "#59A14F", "label": "Community 24", "count": 1}, {"cid": 25, "color": "#EDC948", "label": "Community 25", "count": 1}, {"cid": 26, "color": "#B07AA1", "label": "Community 26", "count": 1}, {"cid": 27, "color": "#FF9DA7", "label": "Community 27", "count": 1}, {"cid": 28, "color": "#9C755F", "label": "Community 28", "count": 1}, {"cid": 29, "color": "#BAB0AC", "label": "Community 29", "count": 1}];
+
+// HTML-escape helper — prevents XSS when injecting graph data into innerHTML
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Build vis datasets
+const nodesDS = new vis.DataSet(RAW_NODES.map(n => ({
+  id: n.id, label: n.label, color: n.color, size: n.size,
+  font: n.font, title: n.title,
+  _community: n.community, _community_name: n.community_name,
+  _source_file: n.source_file, _file_type: n.file_type, _degree: n.degree,
+})));
+
+const edgesDS = new vis.DataSet(RAW_EDGES.map((e, i) => ({
+  id: i, from: e.from, to: e.to,
+  label: '',
+  title: e.title,
+  dashes: e.dashes,
+  width: e.width,
+  color: e.color,
+  arrows: { to: { enabled: true, scaleFactor: 0.5 } },
+})));
+
+const container = document.getElementById('graph');
+const network = new vis.Network(container, { nodes: nodesDS, edges: edgesDS }, {
+  physics: {
+    enabled: true,
+    solver: 'forceAtlas2Based',
+    forceAtlas2Based: {
+      gravitationalConstant: -60,
+      centralGravity: 0.005,
+      springLength: 120,
+      springConstant: 0.08,
+      damping: 0.4,
+      avoidOverlap: 0.8,
+    },
+    stabilization: { iterations: 200, fit: true },
+  },
+  interaction: {
+    hover: true,
+    tooltipDelay: 100,
+    hideEdgesOnDrag: true,
+    navigationButtons: false,
+    keyboard: false,
+  },
+  nodes: { shape: 'dot', borderWidth: 1.5 },
+  edges: { smooth: { type: 'continuous', roundness: 0.2 }, selectionWidth: 3 },
+});
+
+network.once('stabilizationIterationsDone', () => {
+  network.setOptions({ physics: { enabled: false } });
+});
+
+function showInfo(nodeId) {
+  const n = nodesDS.get(nodeId);
+  if (!n) return;
+  const neighborIds = network.getConnectedNodes(nodeId);
+  const neighborItems = neighborIds.map(nid => {
+    const nb = nodesDS.get(nid);
+    const color = nb ? nb.color.background : '#555';
+    return `<span class="neighbor-link" style="border-left-color:${esc(color)}" onclick="focusNode(${JSON.stringify(nid)})">${esc(nb ? nb.label : nid)}</span>`;
+  }).join('');
+  document.getElementById('info-content').innerHTML = `
+    <div class="field"><b>${esc(n.label)}</b></div>
+    <div class="field">Type: ${esc(n._file_type || 'unknown')}</div>
+    <div class="field">Community: ${esc(n._community_name)}</div>
+    <div class="field">Source: ${esc(n._source_file || '-')}</div>
+    <div class="field">Degree: ${n._degree}</div>
+    ${neighborIds.length ? `<div class="field" style="margin-top:8px;color:#aaa;font-size:11px">Neighbors (${neighborIds.length})</div><div id="neighbors-list">${neighborItems}</div>` : ''}
+  `;
+}
+
+function focusNode(nodeId) {
+  network.focus(nodeId, { scale: 1.4, animation: true });
+  network.selectNodes([nodeId]);
+  showInfo(nodeId);
+}
+
+// Track hovered node — hover detection is more reliable than click params
+let hoveredNodeId = null;
+network.on('hoverNode', params => {
+  hoveredNodeId = params.node;
+  container.style.cursor = 'pointer';
+});
+network.on('blurNode', () => {
+  hoveredNodeId = null;
+  container.style.cursor = 'default';
+});
+container.addEventListener('click', () => {
+  if (hoveredNodeId !== null) {
+    showInfo(hoveredNodeId);
+    network.selectNodes([hoveredNodeId]);
+  }
+});
+network.on('click', params => {
+  if (params.nodes.length > 0) {
+    showInfo(params.nodes[0]);
+  } else if (hoveredNodeId === null) {
+    document.getElementById('info-content').innerHTML = '<span class="empty">Click a node to inspect it</span>';
+  }
+});
+
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  searchResults.innerHTML = '';
+  if (!q) { searchResults.style.display = 'none'; return; }
+  const matches = RAW_NODES.filter(n => n.label.toLowerCase().includes(q)).slice(0, 20);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.style.display = 'block';
+  matches.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'search-item';
+    el.textContent = n.label;
+    el.style.borderLeft = `3px solid ${n.color.background}`;
+    el.style.paddingLeft = '8px';
+    el.onclick = () => {
+      network.focus(n.id, { scale: 1.5, animation: true });
+      network.selectNodes([n.id]);
+      showInfo(n.id);
+      searchResults.style.display = 'none';
+      searchInput.value = '';
+    };
+    searchResults.appendChild(el);
+  });
+});
+document.addEventListener('click', e => {
+  if (!searchResults.contains(e.target) && e.target !== searchInput)
+    searchResults.style.display = 'none';
+});
+
+const hiddenCommunities = new Set();
+
+function toggleAllCommunities(hide) {
+  document.querySelectorAll('.legend-item').forEach(item => {
+    hide ? item.classList.add('dimmed') : item.classList.remove('dimmed');
+  });
+  LEGEND.forEach(c => {
+    if (hide) hiddenCommunities.add(c.cid); else hiddenCommunities.delete(c.cid);
+  });
+  const updates = RAW_NODES.map(n => ({ id: n.id, hidden: hide }));
+  nodesDS.update(updates);
+}
+
+const legendEl = document.getElementById('legend');
+LEGEND.forEach(c => {
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  item.innerHTML = `<div class="legend-dot" style="background:${c.color}"></div>
+    <span class="legend-label">${c.label}</span>
+    <span class="legend-count">${c.count}</span>`;
+  item.onclick = () => {
+    if (hiddenCommunities.has(c.cid)) {
+      hiddenCommunities.delete(c.cid);
+      item.classList.remove('dimmed');
+    } else {
+      hiddenCommunities.add(c.cid);
+      item.classList.add('dimmed');
+    }
+    const updates = RAW_NODES
+      .filter(n => n.community === c.cid)
+      .map(n => ({ id: n.id, hidden: hiddenCommunities.has(c.cid) }));
+    nodesDS.update(updates);
+  };
+  legendEl.appendChild(item);
+});
+</script>
+<script>
+// Render hyperedges as shaded regions
+const hyperedges = [];
+// afterDrawing passes ctx already transformed to network coordinate space.
+// Draw node positions raw — no manual pan/zoom/DPR math needed.
+network.on('afterDrawing', function(ctx) {
+    hyperedges.forEach(h => {
+        const positions = h.nodes
+            .map(nid => network.getPositions([nid])[nid])
+            .filter(p => p !== undefined);
+        if (positions.length < 2) return;
+        ctx.save();
+        ctx.globalAlpha = 0.12;
+        ctx.fillStyle = '#6366f1';
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        // Centroid and expanded hull in network coordinates
+        const cx = positions.reduce((s, p) => s + p.x, 0) / positions.length;
+        const cy = positions.reduce((s, p) => s + p.y, 0) / positions.length;
+        const expanded = positions.map(p => ({
+            x: cx + (p.x - cx) * 1.15,
+            y: cy + (p.y - cy) * 1.15
+        }));
+        ctx.moveTo(expanded[0].x, expanded[0].y);
+        expanded.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 0.4;
+        ctx.stroke();
+        // Label
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = '#4f46e5';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(h.label, cx, cy - 5);
+        ctx.restore();
+    });
+});
+</script>
+</body>
+</html>

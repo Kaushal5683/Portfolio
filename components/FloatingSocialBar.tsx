@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Instagram, MessageCircle, Phone, Share2, X } from "lucide-react";
+import { Github, Linkedin, Instagram, Phone, Share2, X } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { portfolioData } from "@/lib/portfolioData";
 
 const socials = (socialLinks: typeof portfolioData.socialLinks, contactInfo: typeof portfolioData.contactInfo) => [
     { href: socialLinks.linkedin, icon: Linkedin, label: "LinkedIn", color: "hover:bg-[#0077b5] hover:border-[#0077b5]" },
     { href: socialLinks.github, icon: Github, label: "GitHub", color: "hover:bg-[#333] hover:border-[#333]" },
     { href: socialLinks.instagram, icon: Instagram, label: "Instagram", color: "hover:bg-[#e1306c] hover:border-[#e1306c]" },
-    { href: socialLinks.whatsapp, icon: MessageCircle, label: "WhatsApp", color: "hover:bg-[#25d366] hover:border-[#25d366]" },
+    { href: socialLinks.whatsapp, icon: WhatsAppIcon, label: "WhatsApp", color: "hover:bg-[#25d366] hover:border-[#25d366]" },
     { href: `tel:${contactInfo.phone.replace(/\s/g, "")}`, icon: Phone, label: "Call", color: "hover:bg-brand-500 hover:border-brand-500" },
 ];
 
@@ -23,7 +24,7 @@ function DesktopBar() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.2, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-            className="hidden md:flex fixed right-4 top-1/2 -translate-y-1/2 z-50 flex-col gap-2.5"
+            className="hidden md:flex fixed right-3 xl:right-5 top-1/2 -translate-y-1/2 z-50 flex-col gap-2"
         >
             {items.map(({ href, icon: Icon, label, color }, i) => (
                 <motion.a
@@ -37,9 +38,10 @@ function DesktopBar() {
                     transition={{ delay: 1.2 + i * 0.08, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                     whileHover={{ scale: 1.15, x: -4 }}
                     whileTap={{ scale: 0.92 }}
-                    className={`group relative flex items-center justify-center w-12 h-12 rounded-xl border border-white/10 bg-bg-card/80 backdrop-blur-sm text-text-secondary hover:text-white transition-all duration-300 shadow-lg ${color}`}
+                    className={`group relative flex items-center justify-center w-10 h-10 xl:w-12 xl:h-12 rounded-xl border border-white/10 bg-bg-card/80 backdrop-blur-sm text-text-secondary hover:text-white transition-all duration-300 shadow-lg ${color}`}
                 >
-                    <Icon size={22} />
+                    <Icon size={18} className="xl:hidden" />
+                    <Icon size={22} className="hidden xl:block" />
                     {/* Tooltip */}
                     <span className="absolute right-14 px-2.5 py-1 rounded-lg bg-bg-card border border-white/10 text-xs font-medium text-text-primary whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl">
                         {label}

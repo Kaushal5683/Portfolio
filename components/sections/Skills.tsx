@@ -110,7 +110,7 @@ export default function Skills() {
     return (
         <section
             id="skills"
-            className="relative py-28 bg-bg-secondary overflow-hidden"
+            className="relative py-16 md:py-28 bg-bg-secondary overflow-hidden"
         >
             {/* Background */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_100%,rgba(98,65,232,0.12)_0%,transparent_70%)]" />
@@ -122,7 +122,7 @@ export default function Skills() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-                    className="text-center mb-16"
+                    className="text-center mb-10 md:mb-16"
                 >
                     <p className="text-brand-400 text-sm font-semibold tracking-widest uppercase mb-3">
                         What I Work With

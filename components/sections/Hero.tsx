@@ -131,7 +131,7 @@ export default function Hero() {
         >
             {/* Subtle radial glow for depth — canvas bg comes from page.tsx */}
             <div className="absolute inset-0 pointer-events-none" aria-hidden>
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(98,65,232,0.15)_0%,transparent_70%)]" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(98,65,232,0.15)_0%,transparent_70%)]" />
             </div>
 
             {/* Content — pt-16 clears the fixed navbar (64px) */}
@@ -152,7 +152,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-text-primary mb-4"
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-text-primary mb-4"
                 >
                     Hi, I&apos;m{" "}
                     <span className="relative inline-block">
@@ -167,7 +167,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.35, duration: 0.6 }}
-                    className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6"
+                    className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
                 >
                     <RotatingTitle titles={personalInfo.rotatingTitles} />
                 </motion.div>
@@ -197,7 +197,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7, duration: 0.6 }}
-                    className="flex flex-wrap items-center justify-center gap-4 mb-16"
+                    className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16"
                 >
                     <MagneticButton
                         variant="primary"

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import LenisProvider from "@/lib/LenisProvider";
+import GSAPScrollProvider from "@/lib/LenisProvider";
 import portfolioRaw from "@/public/portfolio-data.json";
-import PageProgress from "@/components/ui/PageProgress";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,7 +24,7 @@ const GITHUB = "https://kaushal5683.github.io/Portfolio";
 const NETLIFY = "https://kaushal104.netlify.app";
 const IS_GITHUB_PAGES = process.env.GITHUB_PAGES === "true";
 const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || "";
-const OG_IMG = `${GITHUB}/images/ksg.webp`;
+const OG_IMG = `${GITHUB}/images/ME1.webp`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(GITHUB),
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
 
   keywords: [
     // Name variants — most important for personal brand ranking
-    "Kaushal Gujarathi", "Kaushal Gujarathi developer", "Kaushal Gujarathi portfolio",
+    "Kaushal Gujarathi", "Kaushal Gujrati", "kaushal gujrati", "kaushal gujarathi", "Kaushal Gujarthi", "kaushal gujarthi", "Kaushal Gujrathi", "kaushal gujrathi", "Kaushal Gujarathi developer", "Kaushal Gujarathi portfolio",
     "Kaushal Gujarathi Java developer", "kaushal5683", "kaushal104",
     // Role keywords
     "Java Backend Developer", "Spring Boot Developer", "Full Stack Developer India",
@@ -242,12 +241,10 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
         ))}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <meta name="theme-color" content="#0d0d14" />
       </head>
       <body className="bg-bg-primary text-text-primary antialiased">
-        <PageProgress />
-        <LenisProvider>{children}</LenisProvider>
+        <GSAPScrollProvider>{children}</GSAPScrollProvider>
       </body>
     </html>
   );

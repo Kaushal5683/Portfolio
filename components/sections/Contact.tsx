@@ -9,11 +9,11 @@ import {
     Linkedin,
     Github,
     Instagram,
-    MessageCircle,
     CheckCircle,
     AlertCircle,
     Loader2,
 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import emailjs from "@emailjs/browser";
 
 type FormState = "idle" | "loading" | "success" | "error";
@@ -75,7 +75,7 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="relative py-28 overflow-hidden"
+            className="relative py-16 md:py-28 overflow-hidden"
         >
             {/* Background glow */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[radial-gradient(ellipse_at_bottom,rgba(98,65,232,0.2)_0%,transparent_70%)]" />
@@ -150,7 +150,7 @@ export default function Contact() {
                                 />
                                 <SocialLink
                                     href={socialLinks.whatsapp}
-                                    icon={MessageCircle}
+                                    icon={WhatsAppIcon}
                                     label="WhatsApp"
                                 />
                             </div>
@@ -175,7 +175,7 @@ export default function Contact() {
                         <form
                             ref={formRef}
                             onSubmit={handleSubmit}
-                            className="space-y-4 p-8 md:p-10 rounded-3xl border border-white/8 bg-bg-card/50 backdrop-blur-sm"
+                            className="space-y-4 p-5 sm:p-8 md:p-10 rounded-3xl border border-white/8 bg-bg-card/50 backdrop-blur-sm"
                         >
                             <div className="grid sm:grid-cols-2 gap-4">
                                 <div>
@@ -187,7 +187,7 @@ export default function Contact() {
                                         name="firstName"
                                         type="text"
                                         required
-                                        placeholder="John"
+                                        placeholder="Kaushal"
                                         className={inputClass}
                                     />
                                 </div>
@@ -200,7 +200,7 @@ export default function Contact() {
                                         name="lastName"
                                         type="text"
                                         required
-                                        placeholder="Doe"
+                                        placeholder="Gujarathi"
                                         className={inputClass}
                                     />
                                 </div>
@@ -216,7 +216,7 @@ export default function Contact() {
                                         name="email"
                                         type="email"
                                         required
-                                        placeholder="john@example.com"
+                                        placeholder="kaushalgujarathi104@gmail.com"
                                         className={inputClass}
                                     />
                                 </div>
@@ -228,7 +228,7 @@ export default function Contact() {
                                         id="phone"
                                         name="phone"
                                         type="tel"
-                                        placeholder="+91 98765 43210"
+                                        placeholder="+91 72184 99483"
                                         className={inputClass}
                                     />
                                 </div>

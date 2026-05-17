@@ -60,7 +60,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
                 boxShadow: visible
                     ? "0 0 0 1px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.4)"
                     : "none",
-                width: visible ? "56%" : "100%",
+                width: visible ? "70%" : "100%",
                 y: visible ? 10 : 0,
                 backgroundColor: visible ? "rgba(6,6,20,0.85)" : "transparent",
                 borderRadius: visible ? "9999px" : "0px",
@@ -68,7 +68,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
                 paddingRight: visible ? "20px" : "24px",
             }}
             transition={pillSpring}
-            style={{ minWidth: "680px", willChange: "transform" }}
+            style={{ willChange: "transform" }}
             className={cn(
                 "relative z-[60] mx-auto hidden max-w-6xl flex-row items-center justify-between self-start py-3 lg:flex",
                 className
